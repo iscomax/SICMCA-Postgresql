@@ -52,7 +52,7 @@ if (empty($_POST['id_moodle']))
     unset($_POST['contra']);
      unset($_POST['rol']);
 
-    echo "insertar";
+   // echo "insertar";
     header("Location: adm.php");
 
 }

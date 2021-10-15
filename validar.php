@@ -20,6 +20,7 @@ try {
             if ($valdiar >=1) {
                 session_start();
                 $result= $conexion->obtenerDatos($query);
+
                 $id = $result['id_usuario'];
                 $rol1= $conexion->obtenerRol($id);
                 
@@ -37,20 +38,20 @@ try {
                  
                    header("location: profesor.php");
                 }else{
-                    echo "rol no identificado = ". $rol;
+                  //  echo "rol no identificado = ". $rol;
                 }
                 
                 
             } else {
 
-                echo $login.$pwd ;
+               // echo $login.$pwd ;
                // header("location: index.php");
             }
             
         }
     } else {
        // header("location: index.php");
-        echo "vacio";
+       // echo "vacio";
     }
 } catch (Exception $e) {
     die("error:" . $e->getMessage());

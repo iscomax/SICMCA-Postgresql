@@ -32,8 +32,8 @@ class conexionSYS
     function __construct()
     {
         $this->server = "localhost";
-        $this->user = "santamaria";
-        $this->password = "12345";
+        $this->user = "postgres";
+        $this->password = "kikokiko";
         $this->database = "sicmca";
         $this->port = "5432";
         $this->conexion = new PDO("pgsql:host=".$this->server.";port=".$this-> port.";dbname=".$this-> database,$this-> user,$this-> password) 
@@ -44,7 +44,7 @@ class conexionSYS
     
     public function obtenerDatos($qry)
     {
-        echo $qry;
+        //echo $qry;
         $result =  $this->conexion ->query($qry);
         $datos= $result->fetch();
         if ($datos) {
@@ -87,10 +87,10 @@ class conexionSYS
 
     public function obtenerRol($id)
     {
-        echo $qry = "select id_rol from rol_usuario where id_usuario ='$id'";
+         $qry = "select id_rol from rol_usuario where id_usuario ='$id'";
         $result =  $this->conexion ->query($qry);
         $datos= $result->fetch();
-        print_r($datos);
+       // print_r($datos);
         if ($datos) {
             return $datos;
         }
@@ -102,7 +102,7 @@ class conexionSYS
     public function validar($qry)
     {
         $result =  $this->conexion->query($qry)->rowCount();
-    // echo "numero de ROW=".$result;
+    //echo "numero de ROW=".$result;
       
         if ($result >= 1) {
             return 1;
@@ -196,8 +196,8 @@ class conexionSYS
     /********funciones actualizar datos***********************************************************/
     public function actualizarUsuario($id, $correo)
     {
-        echo "idusuario= " . $id;
-        echo "correo= " . $correo;
+        //echo "idusuario= " . $id;
+        //echo "correo= " . $correo;
         $qry = "UPDATE usuario set correo ='$correo' where id_usuario =$id";
       
 
@@ -237,7 +237,7 @@ class conexionSYS
         //$result = $this->conexion->query($qry);
 
         $filas = $this->conexion->query($qry)->rowCount();
-        echo "filas= " . $filas;
+       // echo "filas= " . $filas;
         if ($filas >= 1) {
             return  $filas;
         } else {
@@ -250,7 +250,7 @@ class conexionSYS
      
 
         $filas =    $filas = $this->conexion->query($qry)->rowCount();
-        echo "filas= " . $filas;
+        //echo "filas= " . $filas;
         if ($filas >= 1) {
             return  $filas;
         } else {
@@ -262,7 +262,7 @@ class conexionSYS
         $qry = "DELETE from persona where id_persona = $id_persona;";
 
         $filas =  $filas = $this->conexion->query($qry)->rowCount();
-        echo "filas= " . $filas;
+        //echo "filas= " . $filas;
         if ($filas >= 1) {
             return  $filas;
         } else {
@@ -288,7 +288,7 @@ class conexionSYS
        
         $filas = $this->conexion->query($qry)->rowCount();
       
-        echo "filas= " . $filas;
+        //echo "filas= " . $filas;
         if ($filas >= 1) {
             return  $filas;
         } else {
