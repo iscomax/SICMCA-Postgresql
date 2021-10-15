@@ -102,7 +102,7 @@ $conexionSYS = new conexionSYS;
                                // $query = "select * from curso where numero_cuenta=  $numero_cuenta";
                                 $reporte= $conexionSYS->verificarStatus($id_grupo, $id_curso, $numero_cuenta);
                                 // echo "numero_cuenta = " .$numero_cuenta;
-                                echo "vALOR = ". $reporte;
+                                //echo "vALOR = ". $reporte;
                                 if ($reporte ==1) {
                                     $estatus = "Concluido";
                                     $calificacion =0;

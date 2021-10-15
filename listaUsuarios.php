@@ -17,10 +17,10 @@ $rol=$_POST['rol'];
 $registro = new conexionSYS;
 $id_persona=$registro->insertPersona($nombre, $apellidos);
 $registro->insertUsuario($id, $correo, $contraseña, $id_persona);
-echo "id personas= ".$id_persona."<br>";
-echo "ROL= ". $rol."<br>";
+//echo "id personas= ".$id_persona."<br>";
+//echo "ROL= ". $rol."<br>";
 $filas = $registro->insertROL($rol, $id);
-echo "FILAS MOVIDAS ".$filas."<br>";
+//echo "FILAS MOVIDAS ".$filas."<br>";
 
 ?>
 

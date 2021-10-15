@@ -14,18 +14,18 @@ $calificacion = $_POST["calificacion"];
 $reporte =$_POST["estatus"];
 $id_grupo= $_POST["id_grupo"];
 //echo $cuenta .$nombre .$paterno .$materno .$cursoNombre .$grupo .$calificacion ;
-    echo  $alumno = $nombre .$paterno .$materno;
+    $alumno = $nombre .$paterno .$materno;
     $conexionB = new conexionSYS;
     $query= "INSERT into materia (id_moodle,id_grupo,nombre_curso,nombre_grupo,nombre_profesor,numero_cuenta,nombre_alumno,calificacion,estatus)
     values ('$idCurso','$id_grupo','$cursoNombre','$grupo', '$profesor', '$cuenta', '$alumno','$calificacion', 1 )";
-    echo $id_materia =$conexionB -> guardar($query);
-    echo"registro exitoso";
+    $id_materia =$conexionB -> guardar($query);
+    //echo"registro exitoso";
     $fechaActual = date('Y-m-d H:i:s');
     //echo $fechaActual;
     $query = "INSERT into bitacora (grupo,profesor,alumno,calificacion,fecha_hora,id_usuario,id_materia)values
     ('$grupo','$profesor','$alumno','$calificacion','$fechaActual','$id_usuario','$id_materia')";
     $resul= $conexionB->guardar($query);
-    echo "id Bitacora = ". $resul;
+    //echo "id Bitacora = ". $resul;
  /* unset($_POST["id_usuario"]);
   unset($_POST["idcurso"]);
   unset($_POST["profesor"]);

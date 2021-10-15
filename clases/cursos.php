@@ -172,7 +172,7 @@ class cursos extends conexion
     {
         $listaCursos = $this->listaCursos( $this->id_profesor );
          foreach ($listaCursos as $key => $curso) {
-                    echo $curso["instanceid"]."-". $curso["fullname"]."-".  $curso["firstname"]."-". $curso["lastname"]. "<br/>";
+                  //  echo $curso["instanceid"]."-". $curso["fullname"]."-".  $curso["firstname"]."-". $curso["lastname"]. "<br/>";
                 
         } 
             
