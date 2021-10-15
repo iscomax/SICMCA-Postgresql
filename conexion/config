@@ -2,7 +2,7 @@
     "conexion":{
         "server":"localhost",
         "user":"postgres",
-        "password":"kikokiko",
+        "password":"",
         "database":"prueba",
         "port":"5432"
 
