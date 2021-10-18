@@ -9,6 +9,7 @@ if(isset($_SESSION['login'])){
 }else{
   header("location: index.php");
 }
+
 $id_usuario= $_GET['id_profesor'];
 $id_grupo = $_GET['id_grupo'];
 $id_curso = $_GET['id_curso'];
@@ -20,7 +21,6 @@ $info_curso = $cursos->mostrarCurso($id_usuario,$id_grupo );
 //echo "profesor=".$id_usuario;
 //echo "idgrupo=".$id_grupo;
 //echo "idcurso=".$id_curso;
-
 //print_r($info_curso);
 
 foreach ($info_curso as $key => $info) {
@@ -31,11 +31,9 @@ foreach ($info_curso as $key => $info) {
 }
 $profesor =  $nombre_Profesor." ". $apellidos_Profesor;
 //echo "ID= ".$id_usuario;
-
 $conexionDGAE = new conexionDGAE;
-$query = "select * from alumnos";
-$listaAlumnos = $conexionDGAE->obtenerDatos($query);
-
+//$query = "select * from alumnos";
+//$listaAlumnos = $conexionDGAE->obtenerDatos($query);
 
 //print_r($lisCalificaiones);
 
@@ -43,6 +41,7 @@ $conexionSYS = new conexionSYS;
 //$query = "select *from curso";
 //$reporte= $conexionSYS->obtenerDatos($query);
 //print_r($reporte);
+
 
 ?>
 

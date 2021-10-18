@@ -2,7 +2,6 @@
 require('../conexion/conexionSYS.php');
 session_start();
 $conexion = new conexionSYS;
-
 if (empty($_POST["id"])) {
     $id_usuario = $_GET["id_usuario"];
     $id_persona = $_GET["id_persona"];
@@ -15,12 +14,10 @@ if (empty($_POST["id"])) {
         $correo = $dato['correo'];
         $id_rol = $dato['id_rol'];
         $nombre_rol = $dato['nombre_rol'];
-        
         //echo "usuario= " . $id_usuario;
         //echo "persona= " . $id_persona;
     }
-} else {
-    
+} else {   
     $id_persona = $_POST["id_persona"];
     $id_usuario = $_POST["id"];
     $nombre = $_POST["nombre"];
@@ -35,10 +32,6 @@ if (empty($_POST["id"])) {
   // header("location: ../adm.php");
   header("location: ../adm.php");
 }
-
-
-
-
 
 ?>
 <!DOCTYPE html>

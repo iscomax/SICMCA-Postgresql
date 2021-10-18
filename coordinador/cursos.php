@@ -1,27 +1,3 @@
-<?php 
-session_start();
-if (isset($_SESSION['login'])) {
-} else {
-    header("location: index.php");
-}
-require('./conexion/conexion.php');
-require('./clases/cursos.php');
-require('./conexion/conexionSYS.php');
-
-try {
-    $vista_Coord = new cursos;
-    $vista_Coord->totalCursos();
-    $listaCursos = $vista_Coord->totalCursos();
-
-    $conexionSYS = new conexionSYS();
-    //print_r($listaCursos);
-} catch (Exception $ex) {
-    //throw $th;
-}
-
-
-
-?>
 
 
 <!DOCTYPE html>

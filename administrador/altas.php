@@ -3,7 +3,7 @@ require_once('../clases/registro.php');
 session_start();
 if(isset($_SESSION['login'])){  
 }else{
-  header("location: index.php");  
+  header("location: ../index.php");  
 }
 
 $id = "";
