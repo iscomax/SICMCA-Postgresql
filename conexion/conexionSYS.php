@@ -31,9 +31,9 @@ class conexionSYS
 
     function __construct()
     {
-        $this->server = "localhost";
-        $this->user = "santamaria";
-        $this->password = "12345";
+        $this->server = "127.0.0.1";
+        $this->user = "sicma";
+        $this->password = "56enldfjs.atujrstHH";
         $this->database = "sicmca";
         $this->port = "5432";
         $this->conexion = new PDO("pgsql:host=".$this->server.";port=".$this-> port.";dbname=".$this-> database,$this-> user,$this-> password) 

@@ -1,9 +1,9 @@
 {
     "conexion":{
-        "server":"localhost",
-        "user":"postgres",
-        "password":"kikokiko",
-        "database":"prueba",
+        "server":"127.0.0.1",
+        "user":"moodle",
+        "password":"tnbf.nvawvjes967Tug",
+        "database":"moodle",
         "port":"5432"
 
     }

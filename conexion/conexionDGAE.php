@@ -24,9 +24,9 @@ class conexionDGAE
 
     function __construct()
     {
-        $this->server = "localhost";
-        $this->user = "postgres";
-        $this->password = "kikokiko";
+        $this->server = "127.0.0.1";
+        $this->user = "dgae";
+        $this->password = "56jtemn.BIUeryye";
         $this->database = "dgae";
         $this->port = "5432";
         $this->conexion = new PDO("pgsql:host=".$this->server.";port=".$this-> port.";dbname=".$this-> database,$this-> user,$this-> password) 
