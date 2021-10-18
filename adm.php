@@ -45,7 +45,7 @@ if (empty($_POST['id_moodle']))
       $filas = $registro->insertROL($rol, $id);
      // echo "FILAS MOVIDAS " . $filas . "<br>";
   
-    unset($_POST['id_moodle']);
+   unset($_POST['id_moodle']);
     unset( $_POST['nombre']);
     unset($_POST['apellidos']);
     unset($_POST['correo']);
@@ -57,7 +57,7 @@ if (empty($_POST['id_moodle']))
 
 }
 
-$conexion = new conexionSYS;
+//$conexion = new conexionSYS;
 $listaUsuarios = $conexion->listaUsuarios();
 
 

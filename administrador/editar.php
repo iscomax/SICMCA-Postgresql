@@ -33,7 +33,7 @@ if (empty($_POST["id"])) {
     //echo "usuario= " . $id_usuario;
    // echo "persona= " . $id_persona;
   // header("location: ../adm.php");
-  header("Location: ../adm.php");
+  header("location: ../adm.php");
 }
 
 
