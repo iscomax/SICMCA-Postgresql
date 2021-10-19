@@ -76,11 +76,11 @@ $conexionSYS = new conexionSYS;
                 <tr>
                     <th>Id Curso</th>
                     <th>Nombre del Curso</th>
-                    <th>Grupo</th>
-                    <th>Profesor</th>
+                    <th>Nombre del Grupo</th>
+                    <th>Nombre del Profesor</th>
                     <th>Número de Cuenta</th>
                     <th>Nombre del Alumno</th>
-                    <th>Calificación</th>
+                    <th>Calificación Final</th>
                     <th>Estatus</th>
                 </tr>
             </thead>

@@ -79,14 +79,14 @@ $conexionSYS = new conexionSYS;
                 <tr>
                     <th>Id Curso</th>
                     <th>Nombre del Curso</th>
-                    <th>Grupo</th>
-                    <th>Profesor</th>
+                    <th>Nombre del Grupo</th>
+                    <th>Nombre del Profesor</th>
                     <th>Número de Cuenta</th>
                     <th>Nombre del Alumno</th>
                     <th>Califiación Moodle</th>
                     <th>Califiación Final</th>
-                    <th>Aprobado</th>
-                    <th>Estatus</th>
+                    <th>Aprobado / <br>Reprobado</th>
+                    <th>Pendiente / Concluido</th>
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -255,7 +255,7 @@ $conexionSYS = new conexionSYS;
                             $dataP= base64_encode(serialize($cursoArray));
                             $dataP= urldecode($dataP);
                         ?>
-                    <a type="button" name="exportar" class="button " id="exportar" href="./reportesPDF/reporteGeneral.php?data=<?php echo $data?>&dataP=<?php echo $dataP?>" target="_blank">Exportar</a>
+                    <a type="button" name="exportar" class="button " id="exportar" href="#" target="">Exportar</a>
            
                     <button type="button" name="cerrar" class="button" id="cerrar">Cerrar</button>
                 </div>
@@ -319,7 +319,8 @@ $conexionSYS = new conexionSYS;
                             $dataP= base64_encode(serialize($cursoArray));
                             $dataP= urldecode($dataP);
                         ?>
-                    <a type="button" name="exportarA" class="button " id="exportarA" href="./reportesPDF/reporteAprobados.php?data=<?php echo $data?>&dataP=<?php echo $dataP?>"target="_blank">Exportar</a>
+                       <!--./reportesPDF/reporteAprobados.php?data=<?php echo $data?>&dataP=<?php echo $dataP?>-->  
+                    <a type="button" name="exportarA" class="button " id="exportarA" href="#" target="">Exportar</a>
                     <button type="button" name="salir" class="button" id="salir">Cerrar</button>
                 </div>
             </div>
@@ -381,7 +382,8 @@ $conexionSYS = new conexionSYS;
                             $dataP= base64_encode(serialize($cursoArray));
                             $dataP= urldecode($dataP);
                         ?>
-                    <a  style="text-decoration:none" type="button" name="exportarR" class="button " id="exportarR" href="./reportesPDF/reporteReprobados.php?data=<?php echo $data?>&dataP=<?php echo $dataP?>" target="_blank"  >Exportar</a>
+                        <!--./reportesPDF/reporteReprobados.php?data=<?php echo $data?>&dataP=<?php echo $dataP?>-->
+                    <a  style="text-decoration:none" type="button" name="exportarR" class="button " id="exportarR" href="#" target=""  >Exportar</a>
                     <button type="button" name="exit" class="button" id="exit">Cerrar</button>
                 </div>
             </div>

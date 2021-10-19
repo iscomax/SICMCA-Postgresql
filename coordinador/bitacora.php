@@ -50,9 +50,9 @@ if (isset($_POST['id_bitacora'])) {
                 <tr>
                     <th>Id Bitacora</th>
                     <th>Grupo</th>
-                    <th>Profesor</th>
-                    <th>Alumno</th>
-                    <th>Calificación</th>
+                    <th>Nombre del Profesor</th>
+                    <th>Nombre del Alumno</th>
+                    <th>Calificación <br>Final</th>
                     <th>Datos de Registro</th>
                     <th>Acción</th>
             </thead>

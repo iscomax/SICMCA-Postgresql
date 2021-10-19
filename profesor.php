@@ -62,9 +62,9 @@ try {
             <tr>
                 <th>Id Curso</th>
                 <th>Nombre del Curso</th>
-                <th>Grupo</th>
-                <th>Profesor</th>
-                <th>Pendientes</th>
+                <th>Nombre del Grupo</th>
+                <th>Nombre del Profesor</th>
+                <th>Pendientes por <br> Calificar</th>
                 <th>Calificados</th>
                 <th>Acción</th>
             </tr>
