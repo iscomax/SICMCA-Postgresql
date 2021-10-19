@@ -1,23 +1,32 @@
 
 $('#editar').click(function () {
 
-  var resultado = window.confirm('¿Está seguro de actualizar la calificación final?');
-  if (resultado === true) {
-    let calificacion2 = document.getElementById("calificacion2").value;
-    let calificacion = document.getElementById("calificacion").value;
-    var datos = document.getElementById("calificacion");
-    console.log(calificacion);
-    console.log(calificacion2);
-    if (calificacion == calificacion2) {
+  let calificacion2 = document.getElementById("calificacion2").value;
+  //console.log(calificacion2);
+  if (calificacion2<5||calificacion2>10) {
+    window.alert("El Rango de la calificación Final es de 5 a 10");
+    calificacion2.value=0;
+  } else {
+    var resultado = window.confirm('¿Está seguro de actualizar la calificación final?');
+    if (resultado === true) {
+      let calificacion2 = document.getElementById("calificacion2").value;
+      let calificacion = document.getElementById("calificacion").value;
+      var datos = document.getElementById("calificacion");
+      //console.log(calificacion);
+      //console.log(calificacion2);
+      if (calificacion == calificacion2) {
+  
+        calificacion = calificacion
+      } else {
+  
+        calificacion = calificacion2
+      }
+      datos.value = calificacion;
+    } 
+  
+  }
 
-      calificacion = calificacion
-    } else {
-
-      calificacion = calificacion2
-    }
-    datos.value = calificacion;
-  } 
-
+ 
 
 })
 
