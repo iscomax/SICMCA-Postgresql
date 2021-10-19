@@ -142,18 +142,26 @@ function Cargar(){
 function  searchByNumCuenta()
 {
   var num_cuenta= document.getElementById('num_cuenta').value; 
-  var ruta="num_cuenta="+num_cuenta;
-  console.log(ruta);
-  $.ajax
-  ({ url:'getAlumno.php',type:'POST', data : {
-    num_cuenta: num_cuenta
-  },})
-  .done(function(res){
-    console.log('resut =',res)
-    $('#respuesta').html(res);
-  })
-  .fail(function(){console.log('error');})
-  .always(function(){console.log('complete');});
+
+  var long = num_cuenta.length; 
+  console.log(long);
+  if (long<9 || long >9) {
+    window.alert("Un numero de cuenta es de 9 digitos");
+  } else {
+    var ruta="num_cuenta="+num_cuenta;
+    console.log(ruta);
+    $.ajax
+    ({ url:'getAlumno.php',type:'POST', data : {
+      num_cuenta: num_cuenta
+    },})
+    .done(function(res){
+      console.log('resut =',res)
+      $('#respuesta').html(res);
+    })
+    .fail(function(){console.log('error');})
+    .always(function(){console.log('complete');});
+  }
+ 
   
 }
 
@@ -161,7 +169,7 @@ function  searchByNumCuenta()
 
 function notificacionBuscar(){
   var elem = document.getElementById('noti');
-  elem.window.alert("Bienvenido a nuestro sitio web");
+  elem.window.alert("Bienvenido a nuestro sitio web 2");
 }
 
 

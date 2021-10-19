@@ -15,13 +15,20 @@ if (isset($_SESSION['login'])) {
 
 if (empty($_GET["num_cuenta"]))
 {
-    //echo "vacio";
+   //echo "vacio";
     $num_cuentaPOST="null";
 } 
 else
 {
     //echo "iniciar busqueda";
-    $num_cuentaPOST=$_GET["num_cuenta"];
+   $num_cuentaPOST=$_GET["num_cuenta"];
+   if (strlen( $num_cuentaPOST)<9 || strlen( $num_cuentaPOST)>9){
+    
+     //  echo "El número de cuenta es de 9 Digitos";
+        $validar = false;
+    }else{
+        $validar= true; 
+    }
 }
 
 $cursos = new cursos;
@@ -67,20 +74,38 @@ $conexionSYS = new conexionSYS;
   </div>
 
   <div class="titulos">
-      <h1>Búsqueda Individual</h1>
+      <h1>Búsqueda Individual 1</h1>
   </div>
 
     <div class="buscarbar" id="buscarbar">
         <form action="buscar.php" method="get">
         <label for="buscar">Buscar Alumno</label>
-        <input type="text" name="num_cuenta" id="num_cuenta" placeholder="Número de Cuenta" style="width: 15%;" value="">
+        <input type="text" minlength="9" maxlength="9" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" name="num_cuenta" id="num_cuenta" placeholder="Número de Cuenta" style="width: 15%;" value="">
       <!--  <button class="button" id="buscar" type="submit" >Buscar</button>-->
         <button class="button"  onclick="searchByNumCuenta()">Buscar</button>
         <?php echo" <a href='profesor.php?id_usuario=$id' class='button'  >Regresar</a>"?>
         </form>
     </div>
 
-    <?php if( $num_cuentaPOST!="null"): ?>
+    <?php if( $num_cuentaPOST!="null" and $validar==true): ?>
+        <?php
+            $numero_Cuenta = $num_cuentaPOST;
+            if ($numero_Cuenta !="null" ):
+            $alumno = $conexionDGAE->getAlumnoby($numero_Cuenta);
+            $alumnoCorrreo = $alumno['correo'];
+            if ($alumnoCorrreo==null) {
+                echo '<script type="text/javascript">
+                window.alert("Numero de cuenta no registrado en la BD");
+                window.location="buscar.php";
+                </script>';
+                // header("location: buscar.php");
+                // die();
+                
+            }else{
+                $busqueda = $cursos->getListaBy($alumnoCorrreo);
+            }
+            
+        ?>
     <div class="containerTAB">
         <table class="paleBlueRows" id="datatable" >
             <thead>
@@ -98,24 +123,7 @@ $conexionSYS = new conexionSYS;
                 </tr>
             </thead>
             <tbody>
-                <?php
-                    $numero_Cuenta = $num_cuentaPOST;
-                    if ($numero_Cuenta !="null" ):
-                    $alumno = $conexionDGAE->getAlumnoby($numero_Cuenta);
-                    $alumnoCorrreo = $alumno['correo'];
-                    if ($alumnoCorrreo==null) {
-                        echo '<script type="text/javascript">
-                        window.alert("Bienvenido a nuestro sitio web");
-                        
-                        </script>';
-                       // header("location: buscar.php");
-                        die();
-                        
-                    }else{
-                        $busqueda = $cursos->getListaBy($alumnoCorrreo);
-                    }
-                    
-                ?>
+               
                 <?php   foreach ($busqueda  as $key => $curso): ?>
                 
                 <?php 
