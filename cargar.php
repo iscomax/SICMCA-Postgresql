@@ -122,7 +122,7 @@ $alumno = $nombre . " " . $paterno . " " . $materno;
         <div class="modal-body">
           <form action="" method="post">
             <label for="lname">Calificación</label>
-            <input type="text" id="calificacion2" name="calificacion2" value="<?php echo $format_number1 = round($calificacion, 2) ; ?>">
+            <input maxlength="2",   required autocomplete="off"  min="5"   max="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" type="text" id="calificacion2" name="calificacion2" value="<?php echo $format_number1 = round($calificacion, 2) ; ?>">
             <button id="editar" name="editar" class="button" type="button" onclick="" > Actualizar</button>
             <button type="button" name="cancelar" class="button" id="cancelar">Cancelar</button>
 
