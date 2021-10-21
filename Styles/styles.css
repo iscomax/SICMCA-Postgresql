@@ -1,7 +1,7 @@
 body{
   margin: 0;
 }
-
+.error {color: #FF0000;}
 #navbar ul {
   list-style-type: none;
   margin: 0;

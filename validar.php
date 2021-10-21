@@ -1,6 +1,5 @@
 <?php
-require("./conexion/conexionSYS.php");
-
+/*require("./conexion/conexionSYS.php");
 $conexion = new conexionSYS;
 $error = "";
 try {
@@ -51,8 +50,27 @@ try {
         }
     } else {
        // header("location: index.php");
-       // echo "vacio";
+        //echo "vacio";
     }
 } catch (Exception $e) {
     die("error:" . $e->getMessage());
+}*/
+
+
+function validarCorreo($correo){
+
+   
+    if(filter_var($correo, FILTER_VALIDATE_EMAIL) === FALSE){
+        return false;
+     }else{
+        return true;
+     }
+   
 }
+
+
+
+
+
+
+?>
