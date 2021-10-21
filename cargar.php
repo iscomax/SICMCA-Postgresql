@@ -62,9 +62,9 @@ $alumno = $nombre . " " . $paterno . " " . $materno;
   <!-- barra de navegacion ---------------------------------------------------------------------------------->
   <div id="navbar">
     <ul>
-      <li><?php echo " <a href='profesor.php?id_usuario=$id'>Inicio</a>" ?></li>
-      <li><?php echo " <a href='profesor.php?id_usuario=$id'>Grupos</a>" ?></li>
-      <li><?php echo " <a href='lista.php?id_curso=$idCurso&id_grupo=$id_grupo'>Grupo</a>" ?></li>
+      <li><?php echo " <a href='profesor.php?id_usuario=$id'>Cursos</a>" ?></li>
+      <li><?php echo " <a href='lista.php?id_curso=$idCurso&id_grupo=$id_grupo'>Grupos</a>" ?></li>
+      <li><?php echo " <a href='buscar.php'>Buscar</a>" ?></li>
       <li style="float:right"><a class="active" href="./clases/destroy.php">Cerrar Sesión</a></li>
     </ul>
   </div>
@@ -79,7 +79,7 @@ $alumno = $nombre . " " . $paterno . " " . $materno;
       <label for="fname">Número de Cuenta</label>
       <input type="text" id="cuenta" name="cuenta" value="<?php echo $cuenta ?>" disabled>
 
-      <label for="lname">Nombre</label>
+      <label for="lname">Nombre(s)</label>
       <input type="text" id="nombre" name="nombre" value="<?php echo $nombre ?>" disabled>
 
 
@@ -101,12 +101,12 @@ $alumno = $nombre . " " . $paterno . " " . $materno;
 
     
      <?php
-      echo "<a href='lista.php?id_curso=$idCurso&id_grupo=$id_grupo' type='button' class='button'  id='Enviar' name='enviar'  onclick='enviarDatos()' >Registrar</a>";
+      echo "<a href='lista.php?id_curso=$idCurso&id_grupo=$id_grupo' type='button' class='button buttonRegistrar'  id='Enviar' name='enviar'  onclick='enviarDatos()' >Registrar</a>";
       ?>
         <!-- abrir modal -->
         <button type="button" class="button" id="myBtn">Editar</button>
       <?php
-      echo "<a href='lista.php?id_curso=$idCurso&id_grupo=$id_grupo'    class='button' type='button'>Cancelar</a>";
+      echo "<a href='lista.php?id_curso=$idCurso&id_grupo=$id_grupo'    class='button buttonCancelar' type='button'>Cancelar</a>";
       ?>
 
 

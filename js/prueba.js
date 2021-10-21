@@ -33,7 +33,7 @@ $('#editar').click(function () {
 /*****************************************************/
 function eliminarB(id_bitacora) {
   // window.alert("id_bitacora = "+ id_bitacora);
-  var resultado = window.confirm('¿Está seguro que desea eliminar a este usuario?');
+  var resultado = window.confirm('¿Está seguro que desea eliminar este registro?');
 
   if (resultado === true) {
     var ruta = "id_bitacora=" + id_bitacora;

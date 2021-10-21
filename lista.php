@@ -65,7 +65,7 @@ $conexionSYS = new conexionSYS;
     <div id="navbar">
         <ul>
             <li><?php echo " <a href='profesor.php?id_usuario=$id_usuario'>Cursos</a>" ?></li>
-            <li><a href="#news">Filtrar</a></li>
+            <li><a href="#news">Grupos</a></li>
             <li><?php echo " <a href='buscar.php?id_usuario=$id_usuario&id_grupo=$id_grupo&id_curso=$id_curso'>Buscar</a>" ?></li>
             <li style="float:right"><a class="active" href="./clases/destroy.php">Cerrar Sesión</a></li>
         </ul>
@@ -181,14 +181,15 @@ $conexionSYS = new conexionSYS;
         <div>
             <!-----------Botones ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
             <?php
-            echo "<a href='profesor.php?id_usuario=$id_usuario' class='button' type=''>Regresar</a>";
+            echo "<a href='profesor.php?id_usuario=$id_usuario' class='button buttonRegresar' type='button'> Regresar</a>";
             ?>
+            
             <!-- abrir modal -->
-            <button type="button" class="button" id="myBtn">Generar Reporte</button>
+            <button type="button" class="button" id="myBtn">Reporte General</button>
             <!-- abrir modal -->
-            <button type="button" class="button" id="lista">Aprobados</button>
+            <button type="button" class="button" id="lista">Reporte  Aprobados</button>
             <!-- abrir modal -->
-            <button type="button" class="button" id="listaR">Reprobados</button>
+            <button type="button" class="button" id="listaR">Reporte Reprobados </button>
 
             <link rel="" href="">
 
@@ -201,7 +202,7 @@ $conexionSYS = new conexionSYS;
         <div class="modal-content-reporte">
             <div class="modal-header">
                 <span class="close ">&times;</span>
-                <h2 style="text-align: center;">Reporte Generar de Calificaciones</h2>
+                <h2 style="text-align: center;">Reporte General de Calificaciones</h2>
             </div>
             <div class="modal-body">
            
@@ -286,7 +287,7 @@ $conexionSYS = new conexionSYS;
                             <td><?php echo $cursoNombre ?></td>
                         </tr>
                         <tr>
-                            <td>Nombre Grupo</td>
+                            <td>Nombre del Grupo</td>
                             <td><?php echo $grupo ?></td>
                         </tr>
                     </tbody>
@@ -294,8 +295,8 @@ $conexionSYS = new conexionSYS;
                 <table class="paleBlueRows" id="datatable" style="margin-top: 4%;">
                     <tbody>
                         <tr>
-                            <td><strong>Número de cuenta</strong></td>
-                            <td> <strong>Nombre</strong> <strong></strong> </td>
+                            <td><strong>Número de Cuenta</strong></td>
+                            <td> <strong>Nombre del Alumno</strong> <strong></strong> </td>
                             <td> <strong>Calificación Moodle</strong> <strong></strong> </td>
                             <td> <strong>Califiación Final</strong><strong></strong> </td>
                         </tr>
@@ -349,7 +350,7 @@ $conexionSYS = new conexionSYS;
                             <td><?php echo $cursoNombre ?></td>
                         </tr>
                         <tr>
-                            <td>Nombre Grupo</td>
+                            <td>Nombre del Grupo</td>
                             <td><?php echo $grupo ?></td>
                         </tr>
                     </tbody>
@@ -357,8 +358,8 @@ $conexionSYS = new conexionSYS;
                 <table class="paleBlueRows" id="datatable" style="margin-top: 4%;">
                     <tbody>
                         <tr>
-                            <td><strong>Número de cuenta</strong></td>
-                            <td> <strong>Nombre</strong> <strong></strong> </td>
+                            <td><strong>Número de Cuenta</strong></td>
+                            <td> <strong>Nombre del Alumno</strong> <strong></strong> </td>
                             <td> <strong>Califiación Moodle</strong> <strong></strong> </td>
                             <td> <strong>Califiación Final</strong><strong></strong> </td>
                         </tr>

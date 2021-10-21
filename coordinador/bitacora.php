@@ -49,7 +49,7 @@ if (isset($_POST['id_bitacora'])) {
             <thead>
                 <tr>
                     <th>Id Bitacora</th>
-                    <th>Grupo</th>
+                    <th>Nombre del Grupo</th>
                     <th>Nombre del Profesor</th>
                     <th>Nombre del Alumno</th>
                     <th>Calificación <br>Final</th>

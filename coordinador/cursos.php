@@ -15,7 +15,7 @@
             <li>Coordinador</li>
             <li><?php echo " <a href=''>Cursos</a>" ?></li>
             <li><?php echo " <a href='../coordinador.php'>Grupos</a>" ?></li>
-            <li><a href="./coordinador/bitacora.php">Bitácora</a></li>
+            <li><a href="bitacora.php">Bitácora</a></li>
             <li style="float:right"><a class="active" href="../clases/destroy.php">Cerrar Sesión</a></li>
         </ul>
     </div>

@@ -67,14 +67,14 @@ $conexionSYS = new conexionSYS;
     <div id="navbar">
     <ul>
       <li ><?php echo" <a href='profesor.php?id_usuario=$id'>Cursos</a>"?></li>
-      <li><a href="#news">Filtrar</a></li>
+      <li><a href="#news">Grupos</a></li>
       <li ><?php echo" <a href='buscar.php?id_usuario=$id'>Buscar</a>"?></li>
       <li style="float:right"><a class="active" href="./clases/destroy.php">Cerrar Sesión</a></li>
     </ul>
   </div>
 
   <div class="titulos">
-      <h1>Búsqueda Individual 1</h1>
+      <h1>Búsqueda Individual</h1>
   </div>
 
     <div class="buscarbar" id="buscarbar">
@@ -83,7 +83,7 @@ $conexionSYS = new conexionSYS;
         <input type="text" minlength="9" maxlength="9" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" name="num_cuenta" id="num_cuenta" placeholder="Número de Cuenta" style="width: 15%;" value="">
       <!--  <button class="button" id="buscar" type="submit" >Buscar</button>-->
         <button class="button"  onclick="searchByNumCuenta()">Buscar</button>
-        <?php echo" <a href='profesor.php?id_usuario=$id' class='button'  >Regresar</a>"?>
+        <?php echo" <a href='profesor.php?id_usuario=$id' class='button buttonRegresar'  >Regresar</a>"?>
         </form>
     </div>
 
@@ -165,7 +165,7 @@ $conexionSYS = new conexionSYS;
                         <td id="calificacion_final" ><?php echo $format_number1 = round($calificacion, 2)?></td>
                         <td id="estatus" ><?php echo $estatus?></td>
                         <td id="buttonEnviar" >
-                            <?php echo'<a href="cargar.php?id_curso='.$id_curso.'&id_grupo='.$id_grupo.'&numero_cuenta='.$numero_Cuenta.'&cal='.$calfinal.'&r='.$reporte.'"class="button buttonBuscar" type="button">Subir Califiación</a>' ?>
+                            <?php echo'<a href="cargar.php?id_curso='.$id_curso.'&id_grupo='.$id_grupo.'&numero_cuenta='.$numero_Cuenta.'&cal='.$calfinal.'&r='.$reporte.'"class="button buttonBuscar" type="button">Subir Calificación</a>' ?>
                         
                         </td>
                     </tr>
@@ -176,9 +176,9 @@ $conexionSYS = new conexionSYS;
         </table>
         <div>
             <?php
-            echo "<a href='profesor.php?id_usuario=$id' class='button' type=''>Regresar</a>";
+            echo "<a href='profesor.php?id_usuario=$id' class='button buttonRegresar' type=''>Regresar</a>";
             ?>
-            <a href='profesor.php?id_usuario=$id_usuario' class='button' type=''>Generar Reporte</a>
+            <a href='profesor.php?id_usuario=$id_usuario' class='button buttonRegresar' type=''>Reporte General</a>
         </div>
     </div>
     <?php endif;?>
