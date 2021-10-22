@@ -87,7 +87,7 @@ $conexionSYS = new conexionSYS;
         </form>
     </div>
 
-    <?php if( $num_cuentaPOST!="null" and $validar==true): ?>
+    <?php if( $num_cuentaPOST!="null" and $validar==true):?>
         <?php
             $numero_Cuenta = $num_cuentaPOST;
             if ($numero_Cuenta !="null" ):

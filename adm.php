@@ -1,6 +1,7 @@
 <?php
 //require("./clases/registro.php");
 require('./conexion/conexionSYS.php');
+
 session_start();
 if (isset($_SESSION['login'])) {
 } else {
@@ -23,7 +24,7 @@ if (empty($_POST['id_moodle']))
         $conexion->eliminarRol($id_usuario);
         $conexion->eliminarUsuario($id_usuario);
         $conexion->eliminarPersona($id_persona);
-        header("Location: adm.php");
+        header("location: ./adm.php");
         
     }
 
@@ -64,7 +65,7 @@ if (empty($_POST['id_moodle']))
      unset($_POST['rol']);
 
    // echo "insertar";
-   header("Location: adm.php");
+   header("location: ./adm.php");
 
 }
 
