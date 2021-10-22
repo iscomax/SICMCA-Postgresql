@@ -14,7 +14,7 @@ try {
         {
             $error="";
             $login = $_POST["email"]; 
-            $pwd = $_POST["pwd"];
+           echo  $pwd = $_POST["pwd"];
            
             $formato = validarCorreo($login);
             if ($formato ==true) {
@@ -26,11 +26,12 @@ try {
                 $error2 ="Formato del correo Invalido";
             }
 
-            $query= "select * from usuario where correo ='$login' and contraseña='$pwd'";
-            $qry="select * from usuario where contraseña='$pwd'";
+            $query= "select * from usuario where correo ='$login'";
             $valdiar = $conexion->validar($query);
-          
-            if ($valdiar >=1) {
+            $datos = $conexion->obtenerDatos($query);
+            $contraseña = $datos['contraseña'];
+           //&&  password_verify($pwd,$contraseña)
+            if ($valdiar >=1 &&  password_verify($pwd,$contraseña) ) {
                 session_start();
                 $result= $conexion->obtenerDatos($query);
 
@@ -96,7 +97,7 @@ try {
         <input type="text"  name="email" value="" Required>
         <label for="">Contraseña</label>
         <span class="error">* <?php  ?></span>
-        <input type="password"  minlength="5" maxlength="8" name="pwd" value=""  Required>
+        <input type="password"  minlength="5" maxlength="12" name="pwd" value=""  Required>
         <input type="submit" name="submit" class="button loginB"  value="Ingresar">
     </form>
    </div>

@@ -56,7 +56,6 @@ try {
     die("error:" . $e->getMessage());
 }*/
 
-
 function validarCorreo($correo){
 
    
@@ -68,9 +67,34 @@ function validarCorreo($correo){
    
 }
 
+/*require("./conexion/conexionSYS.php");
 
 
+$conexion = new conexionSYS;
+$correo= "profesor2@comunidad.unam.mx";
+$cont= "Profesor&123";
+$encritada = password_hash($cont, PASSWORD_DEFAULT);
+
+$query= "select * from usuario where correo ='$correo'";
+            $valdiar = $conexion->obtenerDatos($query);
+$psd = $valdiar['contraseña'];
+
+echo $psd;
+
+if (password_verify($cont , $psd)) {
+    echo "Entro12312";
+} else {
+    echo "no entro";
+}
 
 
+$long= strlen($encritada);
+
+
+if ($long >10) {
+   echo "no encripta";
+} else{
+    echo "si encripta";
+}*/
 
 ?>

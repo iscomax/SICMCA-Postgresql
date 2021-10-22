@@ -23,18 +23,29 @@ if (empty($_POST['id_moodle']))
         $conexion->eliminarRol($id_usuario);
         $conexion->eliminarUsuario($id_usuario);
         $conexion->eliminarPersona($id_persona);
+        header("Location: adm.php");
         
     }
 
 } else 
 {
-   
+  // echo "entro else";
       //registro de usuarios
       $id = $_POST['id_moodle'];
       $nombre = $_POST['nombre'];
       $apellidos = $_POST['apellidos'];
       $correo = $_POST['correo'];
       $contraseña = $_POST['contra'];
+        $long= strlen($contraseña);
+        if ($long >12) {
+            //echo "no encripta";
+            $contraseña = $_POST['contra'];
+        } else{
+            //echo "si encripta";
+            $contraseña = password_hash($contraseña, PASSWORD_DEFAULT);    
+        }
+    
+
       $rol = $_POST['rol'];
       //conectamos a la base  dedatos
       $registro = new conexionSYS;
@@ -53,7 +64,7 @@ if (empty($_POST['id_moodle']))
      unset($_POST['rol']);
 
    // echo "insertar";
-    header("Location: adm.php");
+   header("Location: adm.php");
 
 }
 

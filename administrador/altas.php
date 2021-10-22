@@ -24,6 +24,7 @@ if (empty($_POST["correo"]))
     $nombre = $datos['firstname'];
     $apellidos = $datos['lastname'];
     $correo = $datos['email'];
+    $contra = $datos['password'];
 }
 
 ?>
@@ -75,7 +76,7 @@ if (empty($_POST["correo"]))
       <input type="text" id="correo" name="correo" value="<?php echo $correo ?>" >
       
       <label for="fname">Contraseña</label>
-      <input type="text" id="contra" name="contra" value="">
+      <input type="text" id="contra" name="contra" value="<?php echo $contra?>">
 
       <label for="fname">Tipo de Usuario</label>
        <input type="hidden" name="rol" size="30"><br>

@@ -8,7 +8,7 @@ class registro extends conexion
     public function buscarDatos($correo)
     {
         $this->correo= $correo;
-        $query = "SELECT  mdl_user.id,  mdl_user.firstname, mdl_user.lastname,  mdl_user.email from mdl_user where  mdl_user.email = '$this->correo'";
+        $query = "SELECT  mdl_user.id,  mdl_user.firstname, mdl_user.lastname,  mdl_user.email, mdl_user.password  from mdl_user where  mdl_user.email = '$this->correo'";
         $datos = parent::buscarDatos($query);
        // print_r($datos);
         return $datos;
