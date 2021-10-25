@@ -50,7 +50,7 @@ try {
                     header("location: coordinador.php");
                 }elseif($rol==3){
                  
-                   header("location: profesor.php");
+                   header("location: ./profesor/cursos.php");
                 }else{
                   //  echo "rol no identificado = ". $rol;
                   
@@ -73,9 +73,6 @@ try {
 } catch (Exception $e) {
     die("error:" . $e->getMessage());
 }
-
-
-
 
 ?>
 <!DOCTYPE html>

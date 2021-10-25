@@ -17,11 +17,10 @@ function validarForm(nombre, apellidos, correo){
          return false; 
     }
      
-    if (appelidos.length<3) { 
+    if (apellidos.length<3) { 
         alert("El campo Apellidos es muy corto");
          return false; 
     }
-  
     var expRegNombre= /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/
     var expRegApellidos=/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     if (!expRegNombre.exec(nombre))
@@ -54,6 +53,8 @@ function validarForm(nombre, apellidos, correo){
 
 
 
+  
+
      return true;
 }
 
@@ -70,6 +71,7 @@ function validarForm(nombre, apellidos, correo){
             var apellidos = document.getElementById('apellidos').value;
             var correo = document.getElementById('correo').value;
             var roles = document.getElementById('roles').value;
+
             var validar= validarForm(nombre, apellidos, correo);
            
             if (validar ===true) {

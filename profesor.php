@@ -46,15 +46,16 @@ try {
 <body>
     <div id="navbar">
     <ul>
-      <li ><?php echo" <a href='profesor.php?id_usuario=$id'>Cursos</a>"?></li>
-      <li><a href="#news">Grupos</a></li>
+    <li><?php echo" <a href='./profesor/cursos.php?id_usuario=$id'>Cursos</a>"?></li>
+      <li ><?php echo" <a href='profesor.php?id_usuario=$id'>Grupos</a>"?></li>
+   
       <li ><?php echo" <a href='buscar.php?id_usuario=$id'>Buscar</a>"?></li>
       <li style="float:right"><a class="active" href="./clases/destroy.php">Cerrar Sesión</a></li>
     </ul>
   </div>
 
 <div class="titulos">
-    <h1>Cursos</h1>
+    <h1>Grupos</h1>
 </div>
   <div class="containerTAB" >
   <table class="paleBlueRows" id="datatable" >

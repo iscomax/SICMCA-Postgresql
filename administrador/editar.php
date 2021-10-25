@@ -109,8 +109,6 @@ if (empty($_POST["id"])) {
     <div id="respuesta">
 
     </div>
-    <button class="button"  onclick="hola()">Buscar</button>
-
   
 
             

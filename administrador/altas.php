@@ -48,12 +48,8 @@ if (empty($_POST["correo"]))
        <li><a href="../ip.php">Datos Conexión</a></li>
       <li style="float:right"><a class="active" href="../clases/destroy.php">Cerrar Sesión</a></li>
     </ul>
-  </div>
+</div>
 
-
-
-
-    
     <div class="container admform">
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post" id="buscar" name="buscar">
@@ -64,19 +60,19 @@ if (empty($_POST["correo"]))
     <!-- mandamos info a adm.php texto. -->
     <form action="../adm.php" method="post" id="for1" name="for1">
       <label for="fname">Id Moodle</label>
-      <input type="text" id="id_moodle" name="id_moodle" value="<?php echo $id ?>" >
+      <input type="text" id="id_moodle" name="id_moodle" value="<?php echo $id ?>" disabled>
       
       <label for="fname">Nombre (s)</label>
-      <input type="text" id="nombre" name="nombre" value="<?php echo $nombre ?>" >
+      <input type="text" id="nombre" name="nombre" value="<?php echo $nombre ?>"disabled >
 
       <label for="fname">Apellidos</label>
-      <input type="text" id="apellidos" name="apellidos" value="<?php echo $apellidos?>" >
+      <input type="text" id="apellidos" name="apellidos" value="<?php echo $apellidos?>" disabled>
 
       <label for="fname">Correo Institucional</label>
-      <input type="text" id="correo" name="correo" value="<?php echo $correo ?>" >
+      <input type="text" id="correo" name="correo" value="<?php echo $correo ?>"disabled >
       
       <label for="fname">Contraseña</label>
-      <input type="text" id="contra" name="contra" value="<?php echo $contra?>">
+      <input type="text" id="contra" name="contra" value="<?php echo $contra?>"disabled>
 
       <label for="fname">Tipo de Usuario</label>
        <input type="hidden" name="rol" size="30"><br>

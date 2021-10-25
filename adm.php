@@ -15,7 +15,7 @@ if (empty($_POST['id_moodle']))
     $listaUsuarios = $conexion->listaUsuarios();
     //print_r($listaUsuarios);
    // echo "vacio ";
-   
+  
     if ( isset($_POST['id_usuario']) && isset($_POST['id_persona'])) {
         $id_persona = $_POST['id_persona'];
         $id_usuario = $_POST['id_usuario'];
@@ -30,6 +30,7 @@ if (empty($_POST['id_moodle']))
 
 } else 
 {
+    echo '<script type="text/javascript"> window.alert("prueba de notificacion"); </script>';
   // echo "entro else";
       //registro de usuarios
       $id = $_POST['id_moodle'];
@@ -38,6 +39,10 @@ if (empty($_POST['id_moodle']))
       $correo = $_POST['correo'];
       $contraseña = $_POST['contra'];
         $long= strlen($contraseña);
+
+
+
+
         if ($long >12) {
             //echo "no encripta";
             $contraseña = $_POST['contra'];
