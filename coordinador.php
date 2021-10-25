@@ -29,6 +29,11 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coordinador</title>
     <link rel="stylesheet" href="./Styles/styles.css">
+    <style>
+        table th {
+  text-align: center;
+}
+    </style>
 </head>
 
 <body>
@@ -45,10 +50,10 @@ try {
     <h1>Grupos</h1>
     </div>
     <div class="containerTAB">
-        <table class="paleBlueRows" id="datatable">
-            <thead>
+        <table class="paleBlueRows"  id="datatable">
+            <thead >
                 <tr>
-                    <th>Id Curso</th>
+                    <th >Id Curso</th>
                     <th>Nombre del Curso</th>
                     <th>Nombre del Grupo</th>
                     <th>Nombre del Profesor</th>
