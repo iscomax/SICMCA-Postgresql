@@ -47,7 +47,7 @@ try {
     <li><?php echo" <a href='cursos.php?id_usuario=$id'>Cursos</a>"?></li>
       <li ><?php echo" <a href='../profesor.php?id_usuario=$id'>Grupos</a>"?></li>
    
-      <li ><?php echo" <a href='buscar.php?id_usuario=$id'>Buscar</a>"?></li>
+      <li ><?php echo" <a href='../buscar.php?id_usuario=$id'>Buscar</a>"?></li>
       <li style="float:right"><a class="active" href="../clases/destroy.php">Cerrar Sesión</a></li>
     </ul>
   </div>

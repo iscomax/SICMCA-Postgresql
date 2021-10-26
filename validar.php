@@ -73,7 +73,7 @@ function validarCorreo($correo){
 $conexion = new conexionSYS;
 $correo= "profesor2@comunidad.unam.mx";
 $cont= "Profesor&123";
-$encritada = password_hash($cont, PASSWORD_DEFAULT);
+//$encritada = password_hash($cont, PASSWORD_DEFAULT);
 
 $query= "select * from usuario where correo ='$correo'";
             $valdiar = $conexion->obtenerDatos($query);
@@ -81,7 +81,7 @@ $psd = $valdiar['contraseña'];
 
 echo $psd;
 
-if (password_verify($cont , $psd)) {
+if (password_verify($cont,$psd)) {
     echo "Entro12312";
 } else {
     echo "no entro";

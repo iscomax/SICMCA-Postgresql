@@ -10,7 +10,7 @@ if (isset($_SESSION['login'])) {
 /*******************************************/
 
 if (empty($_POST['id_moodle']))
-{
+{  
     $conexion = new conexionSYS;
     $listaUsuarios = $conexion->listaUsuarios();
     //print_r($listaUsuarios);
@@ -30,18 +30,16 @@ if (empty($_POST['id_moodle']))
 
 } else 
 {
-    echo '<script type="text/javascript"> window.alert("prueba de notificacion"); </script>';
-  // echo "entro else";
+
+
       //registro de usuarios
       $id = $_POST['id_moodle'];
       $nombre = $_POST['nombre'];
       $apellidos = $_POST['apellidos'];
       $correo = $_POST['correo'];
       $contraseña = $_POST['contra'];
-        $long= strlen($contraseña);
-
-
-
+      $rol=$_POST['rol'];
+    $long= strlen($contraseña);
 
         if ($long >12) {
             //echo "no encripta";
@@ -50,9 +48,7 @@ if (empty($_POST['id_moodle']))
             //echo "si encripta";
             $contraseña = password_hash($contraseña, PASSWORD_DEFAULT);    
         }
-    
-
-      $rol = $_POST['rol'];
+      
       //conectamos a la base  dedatos
       $registro = new conexionSYS;
       $id_persona = $registro->insertPersona($nombre, $apellidos);
@@ -74,9 +70,10 @@ if (empty($_POST['id_moodle']))
 
 }
 
+
 //$conexion = new conexionSYS;
 $listaUsuarios = $conexion->listaUsuarios();
-
+//print_r($listaUsuarios);
 
 
 

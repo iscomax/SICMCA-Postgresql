@@ -21,7 +21,7 @@ if (empty($_POST["id"])) {
 } else {   
 
     $id_persona = $_POST["id_persona"];
-    $id_usuario = $_POST["id"];
+    $id_usuario = $_POST["id"];;
     $nombre = $_POST["nombre"];
     $apellidos = $_POST["apellidos"];
     $correo = $_POST["correo"];
@@ -29,7 +29,7 @@ if (empty($_POST["id"])) {
     $errorN="";
     if ( empty($nombre)) {
       
-        
+        echo "nombre vacio";
     }else{
 
         $conexion->actualizarUsuario($id_usuario, $correo);
@@ -73,9 +73,9 @@ if (empty($_POST["id"])) {
 
         
     <div class="containerEditar admform">
-        <input type="hidden" id="id_persona" name="id_persona" value="<?php echo $id_persona ?>" required >
+        <input type="hidden" id="id_persona" name="id_persona" value="<?php echo $id_persona ?>" >
         <label for="fname">Id Moodle</label>
-        <input type="text" id="id_moodle" name="id_moodle" value="<?php echo $id ?>"disabled required>
+        <input type="text" id="id_moodle" name="id_moodle" value="<?php echo $id ?>"disabled>
 
         <label for="fname"> Nombre</label>
         <span  id="datos" class="error">* <?php  echo $e_Nombre?></span>

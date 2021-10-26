@@ -47,7 +47,7 @@ function validarForm(nombre, apellidos, correo){
 
 
     if (correo.indexOf(".unam.mx")==-1) {
-        alert("El campo correo no tiene que ser unam.mx")
+        alert("El dominio del correo debe ser unam.mx")
         return false;
     } 
 
@@ -66,14 +66,14 @@ function validarForm(nombre, apellidos, correo){
         var resultado = window.confirm('¿Estas seguro de actualizar los datos?');
         if (resultado === true) {
             var id = document.getElementById('id_moodle').value;
-            var id_persona = '<?php echo $id_persona; ?>';
+            var id_persona = document.getElementById('id_persona').value;
             var nombre = document.getElementById('nombre').value;
             var apellidos = document.getElementById('apellidos').value;
             var correo = document.getElementById('correo').value;
             var roles = document.getElementById('roles').value;
 
             var validar= validarForm(nombre, apellidos, correo);
-           
+        
             if (validar ===true) {
                 var ruta = "id=" + id + "&nombre=" + nombre + "&apellidos=" + apellidos + "&correo=" + correo + "&roles=" + roles + "&id_persona=" + id_persona;
             console.log(ruta);

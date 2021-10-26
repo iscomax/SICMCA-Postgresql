@@ -8,15 +8,15 @@ try {
     {
         if (empty($_POST["email"]) || empty($_POST["pwd"])) 
         {
-            $error="Debe ingresar una contraseña y/o un correo institucional validos";
+            $error="vaciio";
             echo $error;
         } else 
         {
             $error="";
-            $login = $_POST["email"]; 
-           echo  $pwd = $_POST["pwd"];
+           $login = $_POST["email"]; 
+           $pwd = $_POST["pwd"];
            
-            $formato = validarCorreo($login);
+            echo $formato = validarCorreo($login);
             if ($formato ==true) {
                 $buscar_Dominio = strpos($login,'unam.mx');
                 if ($buscar_Dominio === false) {
@@ -27,10 +27,10 @@ try {
             }
 
             $query= "select * from usuario where correo ='$login'";
-            $valdiar = $conexion->validar($query);
+          echo   $valdiar = $conexion->validar($query);
             $datos = $conexion->obtenerDatos($query);
-            $contraseña = $datos['contraseña'];
-           //&&  password_verify($pwd,$contraseña)
+             $contraseña = $datos['contraseña'];
+           echo  password_verify($pwd,$contraseña);
             if ($valdiar >=1 &&  password_verify($pwd,$contraseña) ) {
                 session_start();
                 $result= $conexion->obtenerDatos($query);

@@ -259,7 +259,7 @@ class conexionSYS
     }
     public function eliminarPersona($id_persona)
     {
-        $qry = "DELETE from persona where id_persona = $id_persona;";
+        $qry = "DELETE from persona where id_persona = '$id_persona';";
 
         $filas =  $filas = $this->conexion->query($qry)->rowCount();
         //echo "filas= " . $filas;
