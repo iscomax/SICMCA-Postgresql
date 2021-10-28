@@ -12,8 +12,8 @@ $('#editar').click(function () {
       let calificacion2 = document.getElementById("calificacion2").value;
       let calificacion = document.getElementById("calificacion").value;
       var datos = document.getElementById("calificacion");
-      //console.log(calificacion);
-      //console.log(calificacion2);
+      console.log(calificacion);
+      console.log(calificacion2);
       if (calificacion == calificacion2) {
   
         calificacion = calificacion
@@ -21,11 +21,17 @@ $('#editar').click(function () {
   
         calificacion = calificacion2
       }
-      datos.value = calificacion;
-    } 
-  
+     
+      datos.value = calificacion;  
+          if (calificacion % 1 == 0) {
+            alert ("El formato de la calificacion es correcto");
+        } else {
+            alert ("La calificacón  Actual Es un numero decimal no podras realizar el registro");
+        }
+     } 
+      
   }
-
+ 
  
 
 })
@@ -74,7 +80,7 @@ function enviarDatos() {
   var estatus = document.getElementById('reporte').value;
   var calificacion = document.getElementById('calificacion').value;
   console.log(profesor);
-  if(Number.isInteger(calificacion)) {
+  if( calificacion % 1 == 0) {
     if (estatus >= 1) {
       window.alert("Esta calificacion ya esta registrada en el sistema DGAE");
       location.reload();
@@ -104,7 +110,7 @@ function enviarDatos() {
    
   }else
   {
-    window.alert("El registro de la calificación debe ser un entero");
+    window.alert("El registro de la calificación debe ser un Número entero");
   }
 
  
