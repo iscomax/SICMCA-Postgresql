@@ -74,32 +74,41 @@ function enviarDatos() {
   var estatus = document.getElementById('reporte').value;
   var calificacion = document.getElementById('calificacion').value;
   console.log(profesor);
-  if (estatus >= 1) {
-    window.alert("Esta calificacion ya esta registrada en el sistema DGAE");
-    location.reload();
-
-  } else {
-    var ruta = "profesor=" + profesor + "&idcurso=" + idcurso + "&cuenta=" + cuenta + "&nombre=" + nombre + "&paterno="
-      + paterno + "&materno=" + materno + "&cursoNombre=" + curso + "&grupo=" + grupo + "&calificacion=" + calificacion + "&estatus=" + estatus + "&id_usuario=" + id_usuario + "&id_grupo=" + id_grupo;
-    console.log(ruta);
-    $.ajax
-      ({
-        url: "insert.php",
-        type: 'POST',
-        data: ruta,
-      })
-      .done(function (res) {
-        $('#respuesta').html(res);
-
-      })
-      .fail(function () {
-        console.log("error");
-      })
-      .always(function () {
-        console.log("complete");
-      });
-   location.reload();
+  if(Number.isInteger(calificacion)) {
+    if (estatus >= 1) {
+      window.alert("Esta calificacion ya esta registrada en el sistema DGAE");
+      location.reload();
+  
+    } else {
+      var ruta = "profesor=" + profesor + "&idcurso=" + idcurso + "&cuenta=" + cuenta + "&nombre=" + nombre + "&paterno="
+        + paterno + "&materno=" + materno + "&cursoNombre=" + curso + "&grupo=" + grupo + "&calificacion=" + calificacion + "&estatus=" + estatus + "&id_usuario=" + id_usuario + "&id_grupo=" + id_grupo;
+      console.log(ruta);
+      $.ajax
+        ({
+          url: "insert.php",
+          type: 'POST',
+          data: ruta,
+        })
+        .done(function (res) {
+          $('#respuesta').html(res);
+  
+        })
+        .fail(function () {
+          console.log("error");
+        })
+        .always(function () {
+          console.log("complete");
+        });
+     location.reload();
+    }
+   
+  }else
+  {
+    window.alert("El registro de la calificación debe ser un entero");
   }
+
+ 
+
 }
 /**************************************************************************/
 function enviarAlumno()
