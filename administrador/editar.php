@@ -82,9 +82,11 @@ if (empty($_POST["id"])) {
         <input type="text" id="nombre" name="nombre"   minlength="6" maxlength="40" onkeypress="return (event.charCode < 33 || event.charCode > 64)"     value="<?php echo $nombre ?>">
 
         <label for="fname">Apellidos</label>
+        <span  id="datos" class="error">* <?php ?></span>
         <input type="text" id="apellidos" name="apellidos"  minlength="6" maxlength="40" onkeypress="return (event.charCode < 33 || event.charCode > 64)" value="<?php echo $apellidos ?>" required>
 
         <label for="fname">Correo Institucional</label>
+        <span  id="datos" class="error">* <?php ?></span>
         <input type="text" id="correo" name="correo" value="<?php echo $correo ?>" Required>
 
 
