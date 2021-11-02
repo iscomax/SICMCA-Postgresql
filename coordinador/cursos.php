@@ -64,9 +64,7 @@ try {
                         <td> <?php echo $curso['firstname']." ".$curso['lastname'] ?> </td>   
                     </tr>
                   <?php endforeach?>
-
                 <?php endif ?>
-
             </tbody>
         </table>
     </div>

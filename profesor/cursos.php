@@ -53,7 +53,7 @@ try {
   </div>
 
 <div class="titulos">
-    <h1>Grupos</h1>
+    <h1>Cursos</h1>
 </div>
   <div class="containerTAB" >
   <table class="paleBlueRows" id="datatable" >

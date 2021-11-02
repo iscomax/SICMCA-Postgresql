@@ -24,16 +24,12 @@ $('#editar').click(function () {
      
       datos.value = calificacion;  
           if (calificacion % 1 == 0) {
-            alert ("El formato de la calificacion es correcto");
+            alert ("El formato de la calificación es correcto");
         } else {
-            alert ("La calificacón  Actual Es un numero decimal no podras realizar el registro");
+            alert ("La calificación actual es un número decimal no podrás realizar el registro");
         }
-     } 
-      
+     }    
   }
- 
- 
-
 })
 
 /*****************************************************/
@@ -110,7 +106,7 @@ function enviarDatos() {
    
   }else
   {
-    window.alert("El registro de la calificación debe ser un Número entero");
+    window.alert("El registro de la calificación debe ser un número entero");
   }
 
  
