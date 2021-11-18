@@ -62,9 +62,9 @@ $conexionSYS = new conexionSYS;
    
 <div id="navbar">
     <ul>
-      <li ><?php echo" <a href='coordinador.php?id_usuario=$id_usuario'>Inicio</a>"?></li>
+     <li><?php echo " <a href='./coordinador/cursos.php'>Cursos</a>" ?></li>
       <li ><?php echo" <a href='coordinador.php?id_usuario=$id_usuario'>Grupos</a>"?></li>
-      <li ><a href="#contact">Contacto</a></li>
+      <li><a href="./coordinador/bitacora.php">Bitácora</a></li>
       <li style="float:right"><a class="active" href="./clases/destroy.php">Cerrar Sesión</a></li>
     </ul>
  </div>

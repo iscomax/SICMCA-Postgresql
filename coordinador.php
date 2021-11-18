@@ -19,10 +19,8 @@ try {
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,15 +29,15 @@ try {
     <link rel="stylesheet" href="./Styles/styles.css">
     <style>
         table th {
-  text-align: center;
-}
+                 text-align: center;
+        }
     </style>
 </head>
 
 <body>
     <div id="navbar">
         <ul>
-            <li>Coordinador</li>
+            <li></li>
             <li><?php echo " <a href='./coordinador/cursos.php'>Cursos</a>" ?></li>
             <li><?php echo " <a href='coordinador.php'>Grupos</a>" ?></li>
             <li><a href="./coordinador/bitacora.php">Bitácora</a></li>

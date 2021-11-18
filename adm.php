@@ -30,8 +30,6 @@ if (empty($_POST['id_moodle']))
 
 } else 
 {
-
-
       //registro de usuarios
       $id = $_POST['id_moodle'];
       $nombre = $_POST['nombre'];
@@ -95,7 +93,7 @@ $listaUsuarios = $conexion->listaUsuarios();
         <ul>
             <li><?php echo "<a href='#'>Inicio</a>" ?></li>
             <li><a href="./administrador/altas.php">Altas</a></li>
-            <li><a href="#contact">Documentación</a></li>
+            <li><a href="./administrador/docu.php">Documentación</a></li>
             <li><a href="ip.php">Datos Conexión</a></li>
             <li style="float:right"><a class="active" href="./clases/destroy.php">Cerrar Sesión</a></li>
         </ul>

@@ -16,7 +16,7 @@ try {
            $login = $_POST["email"]; 
            $pwd = $_POST["pwd"];
            
-            echo $formato = validarCorreo($login);
+            $formato = validarCorreo($login);
             if ($formato ==true) {
                 $buscar_Dominio = strpos($login,'unam.mx');
                 if ($buscar_Dominio === false) {
@@ -27,10 +27,10 @@ try {
             }
 
             $query= "select * from usuario where correo ='$login'";
-          echo   $valdiar = $conexion->validar($query);
+          $valdiar = $conexion->validar($query);
             $datos = $conexion->obtenerDatos($query);
              $contraseña = $datos['contraseña'];
-           echo  password_verify($pwd,$contraseña);
+           password_verify($pwd,$contraseña);
             if ($valdiar >=1 &&  password_verify($pwd,$contraseña) ) {
                 session_start();
                 $result= $conexion->obtenerDatos($query);
@@ -47,7 +47,7 @@ try {
                     header("location: adm.php");
                 } else if($rol==2){
 
-                    header("location: coordinador.php");
+                    header("location: ./coordinador/cursos.php");
                 }elseif($rol==3){
                  
                    header("location: ./profesor/cursos.php");

@@ -106,7 +106,7 @@ if(!empty($_POST["enviar"])) {
     <ul>
       <li><a href="../adm.php">Inicio</a></li>
       <li><a href="#">Altas</a></li>
-      <li ><a href="#">Documentación</a></li>
+      <li ><a href="docu.php">Documentación</a></li>
        <li><a href="../ip.php">Datos Conexión</a></li>
       <li style="float:right"><a class="active" href="../clases/destroy.php">Cerrar Sesión</a></li>
     </ul>

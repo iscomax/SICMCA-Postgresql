@@ -39,13 +39,7 @@ if (empty($_POST["id"])) {
         // echo "persona= " . $id_persona;
         // header("location: ../adm.php");
         header("location: ../adm.php");
-    }
-
-
-
-
-
-    
+    }    
 }
 
 ?>
@@ -64,9 +58,10 @@ if (empty($_POST["id"])) {
 <body>
     <div id="navbar">
         <ul>
-            <li><a href="../adm.php">Inicio</a></li>
-            <li><a href="#news"></a></li>
-            <li><a href="#contact">Contacto</a></li>
+             <li><a href="../adm.php">Inicio</a></li>
+            <li><a href="altas.php">Altas</a></li>
+            <li ><a href="docu.php">Documentación</a></li>
+            <li><a href="../ip.php">Datos Conexión</a></li>
             <li style="float:right"><a class="active" href="../clases/destroy.php">Cerrar Sesión</a></li>
         </ul>
     </div>

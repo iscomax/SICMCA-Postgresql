@@ -33,7 +33,7 @@ if (isset($_POST['id_bitacora'])) {
 <body>
 <div id="navbar">
         <ul>
-            <li>Coordinador</li>
+            <li></li>
             <li><?php echo " <a href='./cursos.php'>Cursos</a>" ?></li>
             <li><?php echo " <a href='../coordinador.php'>Grupos</a>" ?></li>
             <li><?php echo " <a href=''>Bitácora</a>" ?></li>

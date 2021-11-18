@@ -30,7 +30,7 @@ try {
 <body>
 <div id="navbar">
         <ul>
-            <li>Coordinador</li>
+            <li></li>
             <li><?php echo " <a href=''>Cursos</a>" ?></li>
             <li><?php echo " <a href='../coordinador.php'>Grupos</a>" ?></li>
             <li><a href="bitacora.php">Bitácora</a></li>

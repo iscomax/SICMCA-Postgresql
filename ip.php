@@ -32,7 +32,7 @@ $fecha = date('Y-m-d H:i:s');
         <ul>
             <li><?php echo " <a href='adm.php'>Inicio</a>" ?></li>
             <li><a href="./administrador/altas.php">Altas</a></li>
-            <li><a href="#contact">Documentación</a></li>
+            <li><a href="./administrador/docu.php">Documentación</a></li>
             <li><a href="ip.php">Datos Conexión</a></li>
             <li style="float:right"><a class="active" href="./clases/destroy.php">Cerrar Sesión</a></li>
         </ul>

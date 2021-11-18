@@ -236,3 +236,25 @@ table.paleBlueRows tfoot td {
   .titulos{
     text-align: center;
   }
+
+  .containerDocu{
+    width: 30%;
+    height: 40%;
+    border-radius: 5px;
+    padding: 30px;
+    padding-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 35%;
+    background-color: #f2f2f2;
+}
+
+  .enlace{
+    margin: 10px;
+    padding: 5px;
+    font-size: 22px;
+    display: block;
+  }
+
+  .enlace:hover {
+    color: #D59F0F;
+  }
