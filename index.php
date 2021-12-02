@@ -85,7 +85,7 @@ try {
     <link rel="stylesheet" href="./Styles/styles.css">
 </head>
 <body>
-
+<!-- formulario de Inicio de sesion -->
    <div class="containerLog login">
    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
         <span class="error">* <?php echo $error ?></span><br>
