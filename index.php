@@ -94,7 +94,7 @@ try {
         <input type="text"  name="email" value="" Required>
         <label for="">Contraseña</label>
         <span class="error">* <?php  ?></span>
-        <input type="password"  minlength="5" maxlength="12" name="pwd" value=""  Required>
+        <input type="password"  minlength="5" maxlength="25" name="pwd" value=""  Required>
         <input type="submit" name="submit" class="button loginB"  value="Ingresar">
     </form>
    </div>
