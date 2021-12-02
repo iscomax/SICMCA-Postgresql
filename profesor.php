@@ -46,6 +46,7 @@ try {
     <title>Document</title>
 </head>
 <body>
+    <!-- barra de navegacion -->
     <div id="navbar">
     <ul>
     <li><?php echo" <a href='./profesor/cursos.php?id_usuario=$id'>Cursos</a>"?></li>
