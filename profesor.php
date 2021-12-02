@@ -2,10 +2,11 @@
 //include 'scope/nvar.php';
 session_start();
 
-
+//condicionamos el inicio de sesion
 if(isset($_SESSION['login'])){ 
     $id = $_SESSION['id_usuario']; 
 }else{
+    //redireccionamos si no hay sesion
   header("location: index.php");
 }
 
@@ -21,8 +22,9 @@ try {
        $id = $_SESSION['id_usuario'];
        //echo "session";
     }
-  
+  //instanciamos la clase
     $cursos = new cursos();
+    //asignamos a variable 
     $listaCursos = $cursos->listaCursos($id);
     //print_r($listaCursos);
 
