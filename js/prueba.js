@@ -3,9 +3,9 @@ $('#editar').click(function () {
 
   let calificacion2 = document.getElementById("calificacion2").value;
   //console.log(calificacion2);
-  if (calificacion2<5||calificacion2>10) {
+  if (calificacion2 < 5 || calificacion2 > 10) {
     window.alert("El Rango de la calificación Final es de 5 a 10");
-    calificacion2.value=0;
+    calificacion2.value = 0;
   } else {
     var resultado = window.confirm('¿Está seguro de actualizar la calificación final?');
     if (resultado === true) {
@@ -15,20 +15,25 @@ $('#editar').click(function () {
       console.log(calificacion);
       console.log(calificacion2);
       if (calificacion == calificacion2) {
-  
+
         calificacion = calificacion
       } else {
-  
+
         calificacion = calificacion2
       }
-     
-      datos.value = calificacion;  
-          if (calificacion % 1 == 0) {
-            alert ("El formato de la calificación es correcto");
-        } else {
-            alert ("La calificación actual es un número decimal no podrás realizar el registro");
-        }
-     }    
+      datos.value = calificacion;
+      if (calificacion % 1 == 0) {
+        alert('El formato de la calificación es correcto ');
+      } else if (calificacion == "NA") {
+        alert('El formato de la calificación es correcto "NA"');
+      }
+      else if (calificacion == "NP") {
+        alert('El formato de la calificación es correcto "NP"');
+      }
+      else {
+        alert("La calificación actual es un número decimal no podrás realizar el registro");
+      }
+    }
   }
 })
 
@@ -75,13 +80,13 @@ function enviarDatos() {
   var grupo = document.getElementById('grupo').value;
   var estatus = document.getElementById('reporte').value;
   var calificacion = document.getElementById('calificacion').value;
-  console.log(profesor);
-  if( calificacion % 1 == 0) {
+  console.log(calificacion);
+  if (calificacion % 1 == 0 || calificacion == "NA" || calificacion == "NP") {
     if (estatus >= 1) {
       window.alert("Esta calificacion ya esta registrada en el sistema DGAE");
-      location.reload();
-  
-    } else {
+      //location.reload();
+
+    } else if (calificacion >= 5 ||  calificacion == "NA" || calificacion == "NP") {
       var ruta = "profesor=" + profesor + "&idcurso=" + idcurso + "&cuenta=" + cuenta + "&nombre=" + nombre + "&paterno="
         + paterno + "&materno=" + materno + "&cursoNombre=" + curso + "&grupo=" + grupo + "&calificacion=" + calificacion + "&estatus=" + estatus + "&id_usuario=" + id_usuario + "&id_grupo=" + id_grupo;
       console.log(ruta);
@@ -93,7 +98,7 @@ function enviarDatos() {
         })
         .done(function (res) {
           $('#respuesta').html(res);
-  
+
         })
         .fail(function () {
           console.log("error");
@@ -101,84 +106,87 @@ function enviarDatos() {
         .always(function () {
           console.log("complete");
         });
-     location.reload();
+     //location.reload();
+    } else {
+      window.alert("El Rango de la calificación Final es de 5 a 10");
     }
-   
-  }else
-  {
+
+  } else {
     window.alert("El registro de la calificación debe ser un número entero");
   }
 
- 
+
 
 }
 /**************************************************************************/
-function enviarAlumno()
-{
-  var id_curso = $('#datatable').find("#id_curso").html(); 
-  var cuentas= $('#datatable').find("#numero_Cuenta").html(); 
+function enviarAlumno() {
+  var id_curso = $('#datatable').find("#id_curso").html();
+  var cuentas = $('#datatable').find("#numero_Cuenta").html();
   console.log(id_curso);
   $.ajax
-  ({ url:'cargar.php',type:'POST', data : {
-    id_curso: id_curso,
-    cuenta:cuentas
-  },})
-  .done(function(res){
-    console.log('resut =',res)
-    $('#respuesta').html(res);
-   // window.location.href="cargar.php"
-  })
-  .fail(function(){console.log('error');})
-  .always(function(){console.log('complete');});
- // location.href ="cargar.php";
+    ({
+      url: 'cargar.php', type: 'POST', data: {
+        id_curso: id_curso,
+        cuenta: cuentas
+      },
+    })
+    .done(function (res) {
+      console.log('resut =', res)
+      $('#respuesta').html(res);
+      // window.location.href="cargar.php"
+    })
+    .fail(function () { console.log('error'); })
+    .always(function () { console.log('complete'); });
+  // location.href ="cargar.php";
 }
-function Cargar(){
-  var url="cargar.php";
-  var id_curso = $('#datatable').find("#id_curso").html(); 
-  var cuentas= $('#datatable').find("#numero_Cuenta").html(); 
+function Cargar() {
+  var url = "cargar.php";
+  var id_curso = $('#datatable').find("#id_curso").html();
+  var cuentas = $('#datatable').find("#numero_Cuenta").html();
 
   $.ajax({
-      type: "POST",
-      url:url,
-      data:{
-        id_curso: id_curso,
-        cuenta:cuentas
-      },
-      success: function(datos){
-          $('#contenido').html(datos);
-      }
+    type: "POST",
+    url: url,
+    data: {
+      id_curso: id_curso,
+      cuenta: cuentas
+    },
+    success: function (datos) {
+      $('#contenido').html(datos);
+    }
   });
 }
 /*****************************************************/
-function  searchByNumCuenta()
-{
-  var num_cuenta= document.getElementById('num_cuenta').value; 
+function searchByNumCuenta() {
+  var num_cuenta = document.getElementById('num_cuenta').value;
 
-  var long = num_cuenta.length; 
+  var long = num_cuenta.length;
   console.log(long);
-  if (long<9 || long >9) {
+  if (long < 9 || long > 9) {
     window.alert("Un numero de cuenta es de 9 digitos");
   } else {
-    var ruta="num_cuenta="+num_cuenta;
+    var ruta = "num_cuenta=" + num_cuenta;
     console.log(ruta);
     $.ajax
-    ({ url:'getAlumno.php',type:'POST', data : {
-      num_cuenta: num_cuenta
-    },})
-    .done(function(res){
-      console.log('resut =',res)
-      $('#respuesta').html(res);
-    })
-    .fail(function(){console.log('error');})
-    .always(function(){console.log('complete');});
+      ({
+        url: 'getAlumno.php', type: 'POST', data: {
+          num_cuenta: num_cuenta
+        },
+      })
+      .done(function (res) {
+        console.log('resut =', res)
+        $('#respuesta').html(res);
+      })
+      .fail(function () { console.log('error'); })
+      .always(function () { console.log('complete'); });
   }
- 
-  
+
+
 }
 
 /*****************************************************/
 
-function notificacionBuscar(){
+function notificacionBuscar() {
   var elem = document.getElementById('noti');
   elem.window.alert("Bienvenido a nuestro sitio web 2");
 }

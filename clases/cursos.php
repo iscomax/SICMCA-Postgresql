@@ -9,6 +9,7 @@ class cursos extends conexion
     private $profesor;
     private $id_profesor;
     private $nombre_Grupo;
+    private $id_grupo;
     //metodos get y set
     public function setNombreCurso($nombre)
     {
@@ -49,25 +50,29 @@ class cursos extends conexion
     }*/
     //funciones de las clase
 
+    public function getCarreraCurso($id_curso){
+        $query="SELECT  mdl_customfield_data.instanceid as id_curso, mdl_customfield_data.value 
+        from mdl_customfield_data where  mdl_customfield_data.instanceid=$id_curso order by fieldid";
+        $datos = parent::obtenerDatos($query);
+       // print_r($datos[1]);
+        $carrera =$datos[1]['value'];
+        return $carrera;
+
+    }
+
     public function listaCursos($id)
     {
         $this->id_profesor = $id;
-        $pagina=1;
-        $inicio =0;
-        $cantidad =10;//numero de registros a mostrar
-
-        if ($pagina>1) {
-            $inicio = ($cantidad*($pagina-1))+1;
-            $cantidad = $cantidad*$pagina;
-        }
         //ver mayusculas
-        $query ="select mdl_context.instanceid, mdl_course.fullname,mdl_groups.id, mdl_user.firstname, 
-        mdl_user.lastname, mdl_groups.name from  mdl_user, mdl_course, mdl_context, mdl_role_assignments, mdl_groups
-        where    mdl_role_assignments.roleid=3 and mdl_role_assignments.contextid=mdl_context.id
-                     and mdl_context.instanceid=mdl_course.id
-                     and mdl_course.id = mdl_groups.courseid
-                     and mdl_role_assignments.userid=mdl_user.id
-                     and mdl_user.id=$this->id_profesor ";
+        $query ="SELECT mdl_context.instanceid, mdl_course_categories.name as facultad,  mdl_course.fullname,mdl_groups.id, 
+        mdl_user.firstname,mdl_user.lastname, mdl_groups.name ,mdl_course.summary as carrera
+        from  mdl_user, mdl_course, mdl_context, mdl_role_assignments, mdl_groups, mdl_course_categories
+                where    mdl_role_assignments.roleid=3 and mdl_role_assignments.contextid=mdl_context.id
+                             and mdl_context.instanceid=mdl_course.id
+                             and mdl_course.id = mdl_groups.courseid
+                             and mdl_role_assignments.userid=mdl_user.id
+                             AND mdl_course_categories.id = mdl_course.category
+                              and mdl_user.id=$this->id_profesor ";
         
         $datos = parent::obtenerDatos($query);
       
@@ -77,16 +82,42 @@ class cursos extends conexion
 
     public function mostrarCurso($id_profesor,$curso)
     {
-        $this->id_profesor = $id_profesor;
-        $this->id_curso =$curso;
+       $this->id_profesor = $id_profesor;
+      $this->id_grupo =$curso;
         //ver mayusculas
-        $query ="SELECT mdl_context.instanceid, mdl_course.fullname, mdl_user.firstname, mdl_user.lastname,  mdl_groups.id, mdl_groups.name
-        from  mdl_user, mdl_course, mdl_context, mdl_role_assignments, mdl_groups
+        $query ="SELECT mdl_context.instanceid, mdl_course.fullname, mdl_user.firstname, mdl_user.lastname,  mdl_groups.id, mdl_groups.name,
+		mdl_course_categories.name as facultad, mdl_course.summary as carrera
+        from  mdl_user, mdl_course, mdl_context, mdl_role_assignments, mdl_groups,mdl_course_categories
         where    mdl_role_assignments.roleid=3 and mdl_role_assignments.contextid=mdl_context.id
                      and mdl_context.instanceid=mdl_course.id
                      and mdl_course.id = mdl_groups.courseid
                      and mdl_role_assignments.userid=mdl_user.id
-                     and mdl_user.id=$this->id_profesor and mdl_groups.id =$this->id_curso; ";
+                      AND mdl_course_categories.id = mdl_course.category
+                     and mdl_user.id= $this->id_profesor and mdl_groups.id = $this->id_grupo";
+        
+       $datos = parent::obtenerDatos($query);
+        foreach ($datos as $key => $info) {
+            $this->nombre_curso = $info['fullname'];
+            $this->nombre_Grupo =$info['name'];
+            $this->profesor= $info['firstname']." ". $info['lastname'];
+
+        }
+        return $datos;
+    }
+    public function mostrarGrupos($id_profesor,$curso)
+    {
+       $this->id_profesor = $id_profesor;
+      $this->id_curso =$curso;
+        //ver mayusculas
+        $query ="SELECT mdl_context.instanceid, mdl_course.fullname, mdl_user.firstname, mdl_user.lastname,  mdl_groups.id, mdl_groups.name,
+		mdl_course_categories.name as facultad, mdl_course.summary as carrera
+        from  mdl_user, mdl_course, mdl_context, mdl_role_assignments, mdl_groups,mdl_course_categories
+        where    mdl_role_assignments.roleid=3 and mdl_role_assignments.contextid=mdl_context.id
+                     and mdl_context.instanceid=mdl_course.id
+                     and mdl_course.id = mdl_groups.courseid
+                     and mdl_role_assignments.userid=mdl_user.id
+                      AND mdl_course_categories.id = mdl_course.category
+                     and mdl_user.id= $this->id_profesor and  mdl_context.instanceid = $this->id_curso";
         
        $datos = parent::obtenerDatos($query);
         foreach ($datos as $key => $info) {
@@ -99,16 +130,55 @@ class cursos extends conexion
     }
     public function totalCursos()
     {
-        $qry="SELECT mdl_context.instanceid, mdl_course.fullname,mdl_user.id AS idp, mdl_user.firstname, mdl_user.lastname, mdl_user.email,mdl_groups.id, mdl_groups.name
-        from  mdl_user, mdl_course, mdl_context, mdl_role_assignments, mdl_groups
+        $qry="SELECT mdl_context.instanceid, mdl_course.fullname,mdl_user.id AS idp, mdl_user.firstname, mdl_user.lastname, mdl_user.email,mdl_groups.id, mdl_groups.name,
+        mdl_course_categories.name as facultad, mdl_course.summary as carrera
+        from  mdl_user, mdl_course, mdl_context, mdl_role_assignments, mdl_groups, mdl_course_categories
         where    mdl_role_assignments.roleid=3 and mdl_role_assignments.contextid=mdl_context.id
                      and mdl_context.instanceid=mdl_course.id
                      and mdl_course.id = mdl_groups.courseid
+                     AND mdl_course_categories.id = mdl_course.category
                      and mdl_role_assignments.userid=mdl_user.id";
+     
 
         $datos = parent::obtenerDatos($qry);
 
         return $datos;
+    }
+
+    public function cursosMoodle(){
+        $qry="SELECT  mdl_course.id, mdl_course.fullname,mdl_user.id as id_usuario, mdl_user.firstname, mdl_user.lastname,
+        mdl_course_categories.name as facultad, mdl_course.summary as carrera
+       from   mdl_user, mdl_course, mdl_context, mdl_role_assignments,mdl_course_categories
+       where   mdl_role_assignments.roleid=3
+       and mdl_role_assignments.contextid=mdl_context.id
+                    and mdl_context.instanceid=mdl_course.id
+                    AND mdl_course_categories.id = mdl_course.category
+                    and mdl_role_assignments.userid=mdl_user.id and mdl_course.id <> 1";
+     
+
+        $datos = parent::obtenerDatos($qry);
+
+        return $datos;
+
+    }
+    public function mostrarCursos($id)
+    {
+        $this->id_profesor = $id;
+
+        $query ="SELECT mdl_context.instanceid, mdl_course.fullname, mdl_user.firstname, mdl_user.lastname,
+        mdl_course_categories.name as facultad, mdl_course.summary as carrera
+       from  mdl_user, mdl_course, mdl_context, mdl_role_assignments,mdl_course_categories
+       where    mdl_role_assignments.roleid=3
+       and mdl_role_assignments.contextid=mdl_context.id
+                    and mdl_context.instanceid=mdl_course.id
+                    and mdl_role_assignments.userid=mdl_user.id
+                    AND mdl_course_categories.id = mdl_course.category
+                    and mdl_user.id= $this->id_profesor ";
+        
+        $datos = parent::obtenerDatos($query);
+        
+        return $datos;
+
     }
 
     public function listaCalificaciones($id)
@@ -122,8 +192,9 @@ class cursos extends conexion
             $cantidad = $cantidad*$pagina;
         }
         $query = "SELECT mdl_grade_items.courseid, mdl_course.fullname, mdl_groups.id, mdl_groups.name, 
-        mdl_user.firstname, mdl_user.lastname, mdl_user.email, mdl_grade_grades.finalgrade
-        from  mdl_grade_items,mdl_grade_grades,mdl_course, mdl_groups, mdl_user, mdl_groups_members
+        mdl_user.firstname, mdl_user.lastname, mdl_user.email, mdl_grade_grades.finalgrade,
+         mdl_course_categories.name as facultad, mdl_course.summary as carrera
+        from  mdl_grade_items,mdl_grade_grades,mdl_course, mdl_groups, mdl_user, mdl_groups_members, mdl_course_categories
         where mdl_groups.courseid= mdl_course.id
         AND mdl_grade_grades.itemid = mdl_grade_items.id
         AND mdl_grade_grades.userid = mdl_user.id
@@ -133,7 +204,8 @@ class cursos extends conexion
         AND (mdl_user.deleted = 0)
         AND  mdl_groups.courseid = mdl_grade_items.courseid      
         AND mdl_groups_members.groupid= mdl_groups.id
-        AND mdl_user.id = mdl_groups_members.userid 
+		AND mdl_course_categories.id = mdl_course.category
+        AND mdl_user.id = mdl_groups_members.userid
         AND mdl_course.id= $this->id_curso ";	
         
         $datos = parent::obtenerDatos($query);
@@ -168,17 +240,7 @@ class cursos extends conexion
         return $datos;
     }
 
-    public function mostrarCursos()
-    {
-        $listaCursos = $this->listaCursos( $this->id_profesor );
-         foreach ($listaCursos as $key => $curso) {
-                  //  echo $curso["instanceid"]."-". $curso["fullname"]."-".  $curso["firstname"]."-". $curso["lastname"]. "<br/>";
-                
-        } 
-            
-
-       
-    }
+  
 
     public function numeroAlumnos($id_grupo, $id_curso)
     {
@@ -198,7 +260,7 @@ class cursos extends conexion
         AND  mdl_groups.courseid = mdl_grade_items.courseid      
         AND mdl_groups_members.groupid= mdl_groups.id
         AND mdl_user.id = mdl_groups_members.userid 
-        AND mdl_course.id= $id_curso AND   mdl_groups.id= $id_grupo; ";
+        AND mdl_course.id= $id_curso AND   mdl_groups.id= $id_grupo";
            
         $numero = parent::alumnosGrupo($query);
         

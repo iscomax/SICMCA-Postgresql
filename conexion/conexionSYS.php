@@ -29,6 +29,13 @@ class conexionSYS
     public function setReprobadosArray($reprobadosArray) {$this->reprobadosArray= $reprobadosArray;}
     public function getReprobadosArray(){return $this->reprobadosArray;}
 
+    /* variables de encriptacion 
+    const METHOD ="AES-256-CBC";
+    const  SECRET_KEY='%Sw^VTRbN%uv';
+    const SECRET_IV ='85678431';*/
+
+
+
     function __construct()
     {
         $this->server = "127.0.0.1";
@@ -57,30 +64,30 @@ class conexionSYS
     
     }
     public function verificarStatus($id_grupo,$id_curso, $numero_cuenta)
-    {        // echo"parametro = ".$profesor."/";
-       $status =false;
+    { 
+        $status =false;
         $qry = "SELECT * from materia where numero_cuenta='$numero_cuenta'";
-        $cont =  $this->conexion->query($qry)->rowCount();
-       
-        if ( $cont  >= 1) {
-           
-            $result = $this->conexion->query($qry); 
-            $resultArray = array();
-            foreach ($result as $key) {
-              $resultArray[] = $key;
-            }
-            foreach ($resultArray as $key => $dato) {
-                $g = $dato['id_grupo'];//id_grupo
-              $c = $dato['id_moodle'];//id_moodle
-                if ($id_grupo == $g && $id_curso == $c) {
+        $cont= intval( $this->conexion->query($qry)->rowCount());
 
-                   // echo "entro";
-                   $status =true;
+            if ( $cont  >= 1) {
+          
+                $result = $this->conexion->query($qry); 
+                $resultArray = array();
+                foreach ($result as $key) {
+                  $resultArray[] = $key;
                 }
+                foreach ($resultArray as $key => $dato) {
+                    $g = $dato['id_grupo'];//id_grupo
+                  $c = $dato['id_moodle'];//id_moodle
+                    if ($id_grupo == $g && $id_curso == $c) {
+                       // echo "entro";
+                       $status =true;
+                    }
+                }
+            } else {
+                $status = false;
             }
-        } else {
-            $status = false;
-        }
+        
         return $status ;
     }
 
@@ -299,9 +306,10 @@ class conexionSYS
 
     public function actualizarCalificacion($id_grupo,$id_curso, $numero_cuenta)
     {
-        //echo "parametro = ".$profesor."/";
+        //echo $id_grupo . $id_curso. $numero_cuenta;
         $qry = "SELECT * from materia where numero_cuenta='$numero_cuenta'";
         $result =  $this->conexion->query($qry);
+       // print_r($result);
         $resultArray = array();
         foreach ($result as $key) {
             $resultArray[] = $key;
@@ -313,11 +321,13 @@ class conexionSYS
             if ($id_curso == $curso && $grupo == $id_grupo) {
 
                 $calificacion = $dato['calificacion'];
+                $tipo_calificacion = $dato['tipo_calificacion'];
             }
         }
         //print_r($resultArray);
-        return $calificacion;
+        return array($calificacion, $tipo_calificacion);
     }
+  
 
     public function numeroCalificados($id_grupo)
     {
@@ -360,4 +370,30 @@ class conexionSYS
 
         return $this->promedio_Curso;
     }
+    public function getStatusRegistro($id_grupo, $numero_cuenta)
+    {
+        $qry = "SELECT * from materia where id_grupo =$id_grupo and numero_cuenta = $numero_cuenta";
+       
+        $filas = $this->conexion->query($qry)->rowCount();
+      
+        //echo "filas= " . $filas;
+        if ($filas >= 1) {
+            return  $filas;
+        } else {
+            return 0;
+        }
+    }
+
+
+
+
+
+/*     public function encryption($string){
+        $output=false;
+    $key = hash ('sha256', SECRET_KEY);
+        $iv= substr(hash('sha256',SECRET_IV), 0, 16);
+        $output = openssl_encrypt($string, METHOD, $key, 0, $iv);
+        $output = base64_encode($output);
+        return $output;
+    } */
 }

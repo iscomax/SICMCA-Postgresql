@@ -43,12 +43,13 @@ foreach ($listaCursos as $key) {
 $datos_Profesor = $cursos->obtenerProfesor($id);
 
 foreach ($datos_Profesor as $key => $dato) {
-    $nombre = $dato['firstname'];
+    $nombreP = $dato['firstname'];
     $apellido = $dato['lastname'];
 }
-$nombre_Profesor = $nombre . " " . $apellido;
+$nombre_Profesor = $nombreP . " " . $apellido;
 $conexionDGAE = new conexionDGAE;
 $conexionSYS = new conexionSYS;
+$nombre = $nombre_Profesor;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -57,36 +58,81 @@ $conexionSYS = new conexionSYS;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SICMCA-Busquedas</title>
+ <!-- iconos -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--bootstrap 5 local-->
+    <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+    <script src="./js/bootstrap/popper.min.js"></script>
+    
+    <!-- data Table-->
+    <link rel="stylesheet" href="./dataTable/datatables.css">
+    <script src="./dataTable/datatables.js"></script>
+    
+    <!--data datle bootstrap 5 -->
+    <link rel="stylesheet" href="./dataTable/DataTables-1.11.3/css/dataTables.bootstrap5.css">
+    <script src="./dataTable/DataTables-1.11.3/js/dataTables.bootstrap5.js"></script>
+
+    <!-- styles propios -->
+    <link rel="stylesheet" href="./Styles/navbar.css">
     <link rel="stylesheet" href="./Styles/styles.css">
+  
+
+    <!-- botones  -->
+    <script src="./dataTable/Buttons-2.1.1/js/dataTables.buttons.js"></script>
+    <script src="./dataTable/JSZip-2.5.0/jszip.js"></script>
+    <script src="./dataTable/pdfmake-0.1.36/pdfmake.js"></script>
+    <script src="./dataTable/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="./dataTable/Buttons-2.1.1/js/buttons.html5.js"></script>
 </head>
 
 <body>
-  
-<div id="navbar">
-    <ul>
-    <li><?php echo" <a href='./profesor/cursos.php?id_usuario=$id'>Cursos</a>"?></li>
-      <li ><?php echo" <a href='profesor.php?id_usuario=$id'>Grupos</a>"?></li>
-   
-      <li ><?php echo"<a href='buscar.php?id_usuario=$id'>Buscar</a>"?></li>
-      <li style="float:right"><a class="active" href="./clases/destroy.php">Cerrar Sesión</a></li>
-    </ul>
-  </div>
+<?php
+    $ruta1 = './profesor/cursos.php';
+    $ruta2 = 'profesor.php';
+    $ruta3 = 'buscar.php'; 
+    $ruta4 = './clases/destroy.php';
+    $rutLogo='./img/logo-unam.png';
+    $rutLogoF='./img/logo-dgtic.png';
+?>
+  <?php include('./components/navbar.php');?>
 
-  <div class="titulos">
-      <h1>Búsqueda Individual</h1>
-  </div>
-
-    <div class="buscarbar" id="buscarbar">
-        <form action="buscar.php" method="get">
-        <label for="buscar">Buscar Alumno</label>
-        <input type="text" minlength="9" maxlength="9" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" name="num_cuenta" id="num_cuenta" placeholder="Número de Cuenta" style="width: 15%;" value="">
-      <!--  <button class="button" id="buscar" type="submit" >Buscar</button>-->
-        <button class="button"  onclick="searchByNumCuenta()">Buscar</button>
-        <?php echo" <a href='profesor.php?id_usuario=$id' class='button buttonRegresar'  >Regresar</a>"?>
-        </form>
+     <!--  titulo de la sección  *************************-->
+     <div class="container-fluid  titleBox">
+        <div class="container mt-3">
+            <div class="mt-4 title  rounded">
+                <i class="bi bi-search" style="font-size: 50px;"></i>
+                <h1>Búsqueda Individual</h1>
+            </div>
+        </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col -12 col-md-12  d-flex justify-content-center">
+            <form action="buscar.php" method="get" class="row g-3">
+                    <div class="col-12 col-md-3">
+                        <p>Buscar Alumno</p>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <label for="" class="visually-hidden"></label>
+                        <input  type="text" minlength="9" maxlength="9" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" name="num_cuenta" id="num_cuenta" class="form-control"  placeholder="Número de Cuenta">
+                    </div>
+                    <div class="col-12 col-md-2 ">
+                           <!--  <button class="button" id="buscar" type="submit" >Buscar</button>-->
+                        <button type="submit" onclick="searchByNumCuenta()" class="btn btn-primary mb-3 ">Buscar</button>
+                    </div>
+                    <div class="col-12 col-md-2 ">
+                        <a href="profesor.php?id_usuario=<?php echo $id?>" class="btn btn-primary mb-3" >Regresar</a>
+                    </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+
 
     <?php if( $num_cuentaPOST!="null" and $validar==true):?>
         <?php
@@ -107,8 +153,8 @@ $conexionSYS = new conexionSYS;
             }
             
         ?>
-    <div class="containerTAB">
-        <table class="paleBlueRows" id="datatable" >
+    <div class="container table-busqueda">
+        <table id="loadTable" class=" table table-striped table-bordered table-hover" width="100%"  >
             <thead>
                 <tr>
                     <th>Id Curso</th>
@@ -166,7 +212,26 @@ $conexionSYS = new conexionSYS;
                         <td id="calificacion_final" ><?php echo $format_number1 = round($calificacion, 2)?></td>
                         <td id="estatus" ><?php echo $estatus?></td>
                         <td id="buttonEnviar" >
-                            <?php echo'<a href="cargar.php?id_curso='.$id_curso.'&id_grupo='.$id_grupo.'&numero_cuenta='.$numero_Cuenta.'&cal='.$calfinal.'&r='.$reporte.'"class="button buttonBuscar" type="button">Subir Calificación</a>' ?>
+                        <?php 
+
+                        $id_curso_code = base64_encode($id_curso);
+                        $id_curso_code= urldecode( $id_curso_code);
+
+                        
+                         $id_grupo_code = base64_encode( $id_grupo);
+                        $id_grupo_code= urldecode($id_grupo_code);
+                        //echo $numero_Cuenta;
+                        $numero_cuenta_code = base64_encode( $numero_Cuenta);
+                        $numero_cuenta_code= urldecode($numero_cuenta_code);
+                        //echo $calfinal;
+                        $calfinal_code = base64_encode( $calfinal);
+                        $calfinal_code = urldecode($calfinal_code);
+              
+                        $reporte_code = base64_encode( $reporte);
+                        $reporte_code = urldecode($reporte_code);
+
+                        ?>
+                        <a href="cargar.php?id_curso=<?php echo $id_curso_code?>&id_grupo=<?php echo $id_grupo_code?>&numero_cuenta=<?php echo $numero_cuenta_code;?>&cal=<?php echo $calfinal_code;?>&r=<?php echo $reporte_code;?>" class="btn btn-primary" type="button">Subir Calificación</a>
                         
                         </td>
                     </tr>
@@ -175,16 +240,18 @@ $conexionSYS = new conexionSYS;
                 <?php endif?> 
             </tbody>
         </table>
-        <div>
-            <?php
-            echo "<a href='profesor.php?id_usuario=$id' class='button buttonRegresar' type=''>Regresar</a>";
-            ?>
-            <a href='profesor.php?id_usuario=$id_usuario' class='button buttonRegresar' type=''>Reporte General</a>
-        </div>
+      
     </div>
     <?php endif;?>
     
+    <div class="footer-busqueda">
+        <?php include('./components/footer.php');?>
+    </div>
+
+
+
     <script src="./js/prueba.js"></script>
+    <script src="./js/dataTable.js"></script>
 </body>
 
 </html>
