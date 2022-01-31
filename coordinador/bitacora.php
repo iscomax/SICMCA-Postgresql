@@ -15,9 +15,14 @@ if (isset($_POST['id_bitacora'])) {
  $id_bitacora =$_POST['id_bitacora'];
 
  $result = $conexionB->eliminarBitacora($id_bitacora);
- echo $result;
 }
 
+$id_usuario = $_SESSION['id_usuario'];
+$datosUsuario= $conexionB->obtnerUsuario($id_usuario);
+//print_r($datosUsuario);
+foreach ($datosUsuario as $key => $dato) {
+    $nombre = $dato['nombre']." ". $dato['apellidos'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,25 +32,61 @@ if (isset($_POST['id_bitacora'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bitácora</title>
-  <link rel="stylesheet" href="../Styles/styles.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <!-- iconos -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--bootstrap 5 local-->
+    <link rel="stylesheet" href="../Styles/bootstrap/bootstrap.min.css">
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/bootstrap/popper.min.js"></script>
+    
+    
+    <!-- data Table-->
+    <link rel="stylesheet" href="../dataTable/datatables.css">
+    <script src="../dataTable/datatables.js"></script>
+    
+    <!--data datle bootstrap 5 -->
+    <link rel="stylesheet" href="../dataTable/DataTables-1.11.3/css/dataTables.bootstrap5.css">
+    <script src="../dataTable/DataTables-1.11.3/js/dataTables.bootstrap5.js"></script>
+
+    <!-- styles propios -->
+    <link rel="stylesheet" href="../Styles/navbar.css">
+    <link rel="stylesheet" href="../Styles/styles.css">
+  
+
+    <!-- botones  -->
+    <script src="../dataTable/Buttons-2.1.1/js/dataTables.buttons.js"></script>
+    <script src="../dataTable/JSZip-2.5.0/jszip.js"></script>
+    <script src="../dataTable/pdfmake-0.1.36/pdfmake.js"></script>
+    <script src="../dataTable/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="../dataTable/Buttons-2.1.1/js/buttons.html5.js"></script>
 </head>
 <body>
-<div id="navbar">
-        <ul>
-            <li></li>
-            <li><?php echo " <a href='./cursos.php'>Cursos</a>" ?></li>
-            <li><?php echo " <a href='../coordinador.php'>Grupos</a>" ?></li>
-            <li><?php echo " <a href=''>Bitácora</a>" ?></li>
-           
-            <li style="float:right"><a class="active" href="../clases/destroy.php">Cerrar Sesión</a></li>
-        </ul>
+<?php
+    $ruta1='cursos.php';
+    $ruta2='../coordinador.php';
+    $ruta3= 'bitacora.php';
+    $ruta4='../clases/destroy.php';
+    $rutLogo='../img/logo-unam.png';
+    $rutLogoF='../img/logo-dgtic.png';
+    ?>
+
+<?php include('../components/navbarCord.php');?>
+
+ <!--  titulo de la sección  *************************-->
+ <div class="container-fluid  titleBox">
+    <div class="container mt-3">
+        <div class="mt-4 title  rounded">
+            <i class="bi bi-pencil-square" style="font-size: 50px;"></i>
+            <h1>Registro de Bitácora</h1>
+        </div>
     </div>
-<div class="titulos">
-<h1>Registro de Bitácora</h1>
 </div>
-  <div class="containerTAB">
-        <table  class="paleBlueRows" id="datatable">
+<!--  -->
+
+  <div class="container table-gruposBox">
+        <table   id="loadTable" class=" table table-striped table-bordered table-hover" width="100%">
             <thead>
                 <tr>
                     <th>Id Bitacora</th>
@@ -71,8 +112,7 @@ if (isset($_POST['id_bitacora'])) {
                         <td>
                         <?php
                         echo '
-                       
-                        <a id="" class="button"  onclick="eliminarB('.$dato['id_bitacora'].')" type="button">Eliminar</a>
+                        <a onclick="eliminarB('.$dato['id_bitacora'].')" class="btn btn-primary" type="button">Eliminar</a>
                         ';
                         ?>
                         </td>
@@ -88,6 +128,12 @@ if (isset($_POST['id_bitacora'])) {
     <div id="respuesta">
         
     </div>
+
+      <!--  -->
+      <?php include('../components/footer.php');?>
+
+    <!--  -->
+    <script src="../js/dataTable.js"></script>
     <script src="../js/prueba.js"></script>
 </body>
 </html>
