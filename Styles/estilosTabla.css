@@ -1,0 +1,12 @@
+ /*estilos para la tabla*/
+ table th {
+     background-color: #C5911E !important;
+     color: white;
+ }
+ table>tbody>tr>td {
+     vertical-align:middle !important;
+ }
+ td{
+    border: none;
+}
+ 
