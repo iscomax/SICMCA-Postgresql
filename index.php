@@ -88,7 +88,8 @@ try {
     <?php $rutLogoF='./img/logo-dgtic.png';?>
     <?php include('./components/header.php');?>
 <!-- prueba en la rama -->
-    <div class="container boxLogin">
+<div class="container boxLogin">
+        <!--prueba-->
         <div class="row justify-content-center">
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="container mt-3">
