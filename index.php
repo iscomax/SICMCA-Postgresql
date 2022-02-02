@@ -1,8 +1,27 @@
 <?php
 require("./conexion/conexionSYS.php");
 require_once 'validar.php';
+require_once 'keys.php';
 $conexion = new conexionSYS;
 $error = "";
+
+if($_POST){
+    function getCaptcha($SecretKey){
+        $Response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".SECRET_KEY."&response={$SecretKey}");
+        $Return = json_decode($Response);
+        return $Return;
+    }
+    $Return = getCaptcha($_POST['g-recaptcha-response']);
+    //var_dump($Return);
+    if($Return->success == true && $Return->score > 0.5){
+       echo "Bienvenido!";
+    }else{
+        echo "Usted es un Robot!!";
+    }
+}
+
+?>
+<?php
 try {
     if (isset($_POST['submit'])) {
         if (empty($_POST["email"]) || empty($_POST["pwd"])) {
@@ -162,6 +181,16 @@ try {
                     }, false)
                 })
         })()
+    </script>
+
+    <script>
+        grecaptcha.ready(function() {
+        grecaptcha.execute('<?php echo SITE_KEY; ?>', {action: 'homepage'})
+        .then(function(token) {
+            //console.log(token);
+            document.getElementById('g-recaptcha-response').value=token;
+            });
+        });
     </script>
 
     <script src="./js/bootstrap/bootstrap.min.js"></script>
