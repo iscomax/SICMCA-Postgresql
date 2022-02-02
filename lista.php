@@ -157,8 +157,8 @@ $errorNumeroCuenta="";
                     <th>Nombre <br> del Profesor</th>
                     <th>Número de Cuenta</th>
                     <th>Nombre del Alumno</th>
-                    <th>Califiación Moodle</th>
-                    <th>Califiación Final</th>
+                    <th>Calificación Moodle</th>
+                    <th>Calificación Final</th>
                     <th>Aprobado / <br>Reprobado</th>
                     <th>Pendiente/Concluido</th>
                     <th>Acción</th>
