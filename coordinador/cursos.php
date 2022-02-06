@@ -149,5 +149,6 @@ $ciclo="2021-2";
 
     <!--  -->
     <script src="../js/cursosCoordinador.js"></script>
+  
 </body>
 </html>

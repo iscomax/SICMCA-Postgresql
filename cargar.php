@@ -218,9 +218,9 @@ $nombre= $profesor;
          <form action="" class="d-flex justify-content-evenly"; method="post">
             <label for="lname">Calificación</label>
             <input maxlength="2" style="width: 14%;"    required autocomplete="off"  min="5"   max="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" type="text" id="calificacion2" name="calificacion2" value="<?php echo $format_number1 = round($calificacion, 2) ; ?>">
-            <button id="editar" name="editar" class="btn btn-danger" type="button" data-bs-dismiss="modal" onclick="" > Actualizar</button>
-            <button id="np" name="np" class="btn btn-danger" type="button"  onclick="" > NP</button>
-            <button id="na" name="na" class="btn btn-danger" type="button"  onclick="" > NA</button>
+            <button id="editar" name="editar" class="btn btn-primary" type="button" data-bs-dismiss="modal" onclick="" > Actualizar</button>
+            <button id="np" name="np" class="btn btn-success" type="button"  onclick="" > NP</button>
+            <button id="na" name="na" class="btn btn-success" type="button"  onclick="" > NA</button>
           <!--   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> -->
           </form>
       </div>
@@ -228,7 +228,7 @@ $nombre= $profesor;
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
 
     </div>

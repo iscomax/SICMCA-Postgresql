@@ -159,7 +159,7 @@
                             $dataP= urldecode($dataP);
                         ?>
                          <div class="col-1">
-                         <button  type="button" class="btn btn-danger" >Exportar</button>
+                      <!--    <button  type="button" class="btn btn-danger" >Exportar</button> -->
                          </div>
                     </div>
 
@@ -169,7 +169,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
             <h3 style="text-align: center;">UNAM</h3>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                
             </div>
 

@@ -366,7 +366,7 @@ if (!empty($errorNumeroCuenta)) {
                             $dataP= urldecode($dataP);
                         ?>
                         <!--./reportesPDF/reporteReprobados.php?data=<?php echo $data?>&dataP=<?php echo $dataP?>-->
-                    <a  style="text-decoration:none" type="button" name="exportarR" class="button " id="exportarR" href="#" target=""  >Exportar</a>
+                  <!--   <a  style="text-decoration:none" type="button" name="exportarR" class="button " id="exportarR" href="#" target=""  >Exportar</a> -->
                     <button type="button" name="exit" class="button" id="exit">Cerrar</button>
                 </div>
             </div>
