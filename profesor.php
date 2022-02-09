@@ -53,8 +53,9 @@ try {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--bootstrap 5 local-->
     <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
-    <script src="./js/bootstrap/bootstrap.min.js"></script>
     <script src="./js/bootstrap/popper.min.js"></script>
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+    
     
     <!-- data Table-->
     <link rel="stylesheet" href="./dataTable/datatables.css">
@@ -119,9 +120,6 @@ try {
         </div>
     </div>
 
-    <div id="contenedor">
-        
-    </div>
     <!-- tabla grupos ******************************-->
     <div class="container  table-gruposBox">
         <table id="loadTableGrupos" class=" table table-striped table-bordered table-hover" width="100%">
@@ -232,7 +230,17 @@ try {
         </table>
 
     </div>
+ <!-- contenedor -->
+ <div class="container container_grafica_grupos">
+        <div class="row justify-content-center grafica_row">
+             <div class="col-12">
+                 <div id="contenedor" class="">
 
+                </div>
+            </div>
+        </div>
+    </div>
+   
     <?php include('./components/footer.php');?>
     <script src="./js/gruposProfesor.js"></script> 
     <!-- <script src="./js/dataTable.js"></script> -->

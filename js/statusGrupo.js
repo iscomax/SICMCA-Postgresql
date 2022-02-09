@@ -46,7 +46,7 @@ $(document).ready(function() {
                 extend: 'pdfHtml5',
                 text: '<i class="bi bi-file-earmark-pdf-fill"></i>',
                 titleAttr: 'Exportar a PDF',
-                className: 'btn btn-danger'
+                className: 'btn btn-primary'
             },
             {
                 extend: 'print',
@@ -56,8 +56,8 @@ $(document).ready(function() {
             },
             {
                 extend: 'searchPanes',
-                titleAttr: 'Grafica',
-                className: 'btn btn-danger',
+                titleAttr: 'Filtrar',
+                className: 'btn btn-warning',
                 config: {
                    
                     cascadePanes: true

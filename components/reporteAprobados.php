@@ -39,11 +39,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="graficaAprodados" class="">
+                             <!-- contenedor -->
+                                <div class="container">
+                                    <div class="row justify-content-center grafica_row">
+                                        <div class="col-12">
+                                        <div id="graficaAprodados" class="">
+                                        </div>
+                                    </div>
+                                </div>
+                           
 
                             </div>
                             <!-- tabla de resultados -->
-                             <div class="container">
+                             <div class="container tableAprobados">
                                  <div class="row">
                                     <table id="reporteAprobados" class=" table table-striped table-bordered table-hover" width="100%">
                                         <thead>
@@ -74,7 +82,7 @@
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         </div>
 
                         </div>

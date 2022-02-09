@@ -1,4 +1,6 @@
-    <!-- barra de navegacion -->
+
+   
+   <!-- barra de navegacion -->
     <nav class="navbar navbar-expand-sm   bg-dark navbar-dark">
         <div class="container-fluid ">
             <a class="navbar-brand" href="">
@@ -12,7 +14,7 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                      
-                        <a class="nav-link" href="<?php echo $ruta1 ?>">Cursos</a>
+                        <a class="nav-link a"  role="button" href="<?php echo $ruta1 ?>">Cursos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $ruta2 ?>">Grupos</a>
@@ -21,18 +23,22 @@
                         <a class="nav-link" href="<?php echo $ruta3 ?>">Bitacora</a>
                     </li>
                 </ul>
-                <div class="btn btn-danger perfil">
-
-                    <i class="bi bi-file-person-fill">
-                    </i>
-                    <span class=" "><?php echo $nombre ?></span>
-                </div>
+            
                 <div class="d-flex">
-                    <a href="<?php echo $ruta4 ?>">
 
-                        <button class="btn btn-danger  " type="button">Cerrar Sesión</button>
-                    </a>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-file-person-fill"></i>
+                            <span class=" "><?php echo $nombre ?></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Datos de Usuario</a></li> 
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="<?php echo $ruta4 ?>">Cerrar Sesión</a></li>
+                    </ul>
+                    
                 </div>
             </div>
         </div>
     </nav>
+

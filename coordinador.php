@@ -37,10 +37,11 @@ try {
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!--bootstrap 5 local-->
-    <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
-    <script src="./js/bootstrap/bootstrap.min.js"></script>
-    <script src="./js/bootstrap/popper.min.js"></script>
+        <!--bootstrap 5 local-->
+        <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
+        <script src="./js/bootstrap/popper.min.js"></script>
+        <script src="./js/bootstrap/bootstrap.min.js"></script>
+       
     
     <!-- data Table-->
     <link rel="stylesheet" href="./dataTable/datatables.css">
@@ -95,9 +96,7 @@ try {
     </div>
 
     <!-- ************************************ -->
-    <div id="contenedor" class="">
-
-    </div>
+    
     <!-- tabla -->
     <div class="container table-gruposBox">
         <table id="loadTable" class=" table table-striped table-bordered table-hover" width="100%">
@@ -159,7 +158,15 @@ try {
             </tbody>
         </table>
     </div>
+    <div class="container container_grafica_grupos_cord ">
+        <div class="row grafica_row">
+             <div class="col-12">
+                 <div id="contenedor" class="">
 
+                </div>
+            </div>
+        </div>
+    </div>
 
     <?php include('./components/footer.php');?>
     <script src="./js/statusGrupos.js"></script> 

@@ -65,8 +65,9 @@ $nombre = $nombre_Profesor;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--bootstrap 5 local-->
     <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
-    <script src="./js/bootstrap/bootstrap.min.js"></script>
     <script src="./js/bootstrap/popper.min.js"></script>
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+  
     
     <!-- data Table-->
     <link rel="stylesheet" href="./dataTable/datatables.css">
@@ -87,6 +88,7 @@ $nombre = $nombre_Profesor;
     <script src="./dataTable/pdfmake-0.1.36/pdfmake.js"></script>
     <script src="./dataTable/pdfmake-0.1.36/vfs_fonts.js"></script>
     <script src="./dataTable/Buttons-2.1.1/js/buttons.html5.js"></script>
+
 </head>
 
 <body>
@@ -105,7 +107,7 @@ $nombre = $nombre_Profesor;
         <div class="container mt-3">
             <div class="mt-4 title  rounded">
                 <i class="bi bi-search" style="font-size: 50px;"></i>
-                <h1>Búsqueda Individual</h1>
+                <h1>Búscar por Número de Cuenta</h1>
             </div>
         </div>
     </div>
@@ -165,7 +167,7 @@ $nombre = $nombre_Profesor;
                     <th>Nombre del Alumno</th>
                     <th>Calificación Moodle</th>
                     <th>Calificación Final</th>
-                    <th>Pendiente/ <br> Concluido</th>
+                    <th>Pendiente/Concluido</th>
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -183,12 +185,13 @@ $nombre = $nombre_Profesor;
                 <?php if ($grupo== $id_grupo ): ?>
                     <?php 
                     $calificacion;
-                    $reporte= $conexionSYS->verificarStatus($id_grupo,$id_curso, $numero_Cuenta);
+                   $reporte= $conexionSYS->verificarStatus($id_grupo,$id_curso, $numero_Cuenta);
                     if ($reporte) {
-                        $estatus = "Concluido";
+                       $estatus = "Concluido";
                         $calificacion =0;
-                        $calificacion= $conexionSYS->actualizarCalificacion($id_grupo,$id_curso, $numero_Cuenta);
-                      //  echo "calificacion: ". $calificacion;
+                        $result= $conexionSYS->actualizarCalificacion($id_grupo,$id_curso, $numero_Cuenta);
+                        $calificacion = $result[0];
+                        $tipo_calificacion = $result[1];
                     } else {
                         $estatus = "Pendiente";
                         $calificacion =0;
@@ -197,8 +200,17 @@ $nombre = $nombre_Profesor;
                     
                     if ($estatus=="Pendiente" ) {
                         $calfinal =$curso['finalgrade'];
+                
                     } else{
                         $calfinal = $calificacion;
+                      
+                        if ($tipo_calificacion== 1) {
+                            $calificacion="NA";
+                        } else if ($tipo_calificacion== 2){
+                            $calificacion="NP";
+                        } else if ($tipo_calificacion== 3){
+                            $calificacion = round($calificacion, 2);
+                        }
                     }
                     ?>              
                     <tr>
@@ -209,7 +221,7 @@ $nombre = $nombre_Profesor;
                         <td id="numero_Cuenta" ><?php echo $numero_Cuenta?></td>
                         <td id="nombre_Alumno" ><?php echo $curso["firstname"]." ".$curso["lastname"] ?></td>
                         <td id="calificacion_Moodle" ><?php echo $format_number1 = round($curso['finalgrade'], 2)?></td>
-                        <td id="calificacion_final" ><?php echo $format_number1 = round($calificacion, 2)?></td>
+                        <td id="calificacion_final" ><?php echo $calificacion?></td>
                         <td id="estatus" ><?php echo $estatus?></td>
                         <td id="buttonEnviar" >
                         <?php 
@@ -231,7 +243,8 @@ $nombre = $nombre_Profesor;
                         $reporte_code = urldecode($reporte_code);
 
                         ?>
-                        <a href="cargar.php?id_curso=<?php echo $id_curso_code?>&id_grupo=<?php echo $id_grupo_code?>&numero_cuenta=<?php echo $numero_cuenta_code;?>&cal=<?php echo $calfinal_code;?>&r=<?php echo $reporte_code;?>" class="btn btn-primary" type="button">Subir Calificación</a>
+            
+                        <a href="cargar.php?id_curso=<?php echo $id_curso_code?>&id_grupo=<?php echo $id_grupo_code?>&numero_cuenta=<?php echo $numero_cuenta_code?>&cal=<?php echo $calfinal_code;?>&r=<?php echo $reporte_code?>" class="btn btn-primary" type="button">Subir Calificación</a>
                         
                         </td>
                     </tr>

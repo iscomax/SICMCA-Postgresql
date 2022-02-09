@@ -16,10 +16,10 @@ try {
 
     $id_profesor= $_GET['id_profesor'];
     urldecode($id_profesor);
-    $id_profesor = base64_decode($id_profesor);
+    $id_profesor_lim = base64_decode($id_profesor);
 
     $curso_Grupos = new cursos();
-    $listaCursos = $curso_Grupos->mostrarGrupos($id_profesor,$id_curso);
+    $listaCursos = $curso_Grupos->mostrarGrupos($id_profesor_lim,$id_curso);
    $nombre_curso= $curso_Grupos->getNombreCurso();
 
     foreach ($listaCursos as $key => $curso) {
@@ -56,8 +56,9 @@ $ciclo="2021-2";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--bootstrap 5 local-->
     <link rel="stylesheet" href="../Styles/bootstrap/bootstrap.min.css">
-    <script src="../js/bootstrap/bootstrap.min.js"></script>
     <script src="../js/bootstrap/popper.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+   
     
     
     <!-- data Table-->
@@ -92,8 +93,8 @@ $ciclo="2021-2";
 <body>
     <?php
     $ruta1='cursos.php';
-    $ruta2='../profesor.php';
-    $ruta3= '../buscar.php';
+    $ruta2='../coordinador.php';
+    $ruta3= 'bitacora.php';
     $ruta4='../clases/destroy.php';
     $rutLogo='../img/logo-unam.png';
     $rutLogoF='../img/logo-dgtic.png';
@@ -119,10 +120,7 @@ $ciclo="2021-2";
             </div>
         </div>
     </div>
-    <!-- contenedor -->
-    <div id="contenedor">
-
-    </div>
+   
 <!-- tabla grupos ******************************-->
 <div class="container  table-gruposBox">
         <table id="cursosProfesor" class=" table table-striped table-bordered table-hover" width="100%">
@@ -163,7 +161,7 @@ $ciclo="2021-2";
                             <td><?php echo  $numeroC ?></td>
                             <td>
                             <?php 
-                                $id_profesor = base64_encode( $id_profesor);
+                                $id_profesor = base64_encode( $id_profesor_lim);
                                 $id_profesor= urldecode($id_profesor);
 
                                 $id_grupo = base64_encode( $curso['id']);
@@ -236,6 +234,16 @@ $ciclo="2021-2";
 
         </table>
 
+    </div>
+     <!-- contenedor -->
+     <div class="container container_grafica_curso_cord">
+        <div class="row grafica_row">
+             <div class="col-12">
+                 <div id="contenedor" class="">
+
+                </div>
+            </div>
+        </div>
     </div>
   <?php include('../components/footer.php');?>
   <script src="../js/cursoProfesor.js"></script>

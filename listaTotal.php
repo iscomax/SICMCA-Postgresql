@@ -78,8 +78,9 @@ foreach ($datosUsuario as $key => $dato) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--bootstrap 5 local-->
     <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
-    <script src="./js/bootstrap/bootstrap.min.js"></script>
     <script src="./js/bootstrap/popper.min.js"></script>
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+    
     
     <!-- data Table-->
     <link rel="stylesheet" href="./dataTable/datatables.css">
@@ -133,9 +134,8 @@ foreach ($datosUsuario as $key => $dato) {
             </div>
         </div>
     </div>
-    <div id="contenedor" class="">
-
-    </div>
+ 
+   
 
    <div class="container  table-gruposBox">
         <table  id="loadTable" class=" table table-striped table-bordered table-hover" width="100%" >
@@ -205,6 +205,16 @@ foreach ($datosUsuario as $key => $dato) {
         <?php 
      /*  echo "<a href='coordinador.php?id_usuario=$id_usuario' class='button' type=''>Regresar</a>"; */
     ?>
+      <!-- contenedor -->
+      <div class="container container_grafica_grupo_cord">
+        <div class="row grafica_row">
+             <div class="col-12">
+                 <div id="contenedor" class="">
+
+                </div>
+            </div>
+        </div>
+    </div>
     <?php include('./components/footer.php');?>
 <!--     <script src="./js/dataTable.js"></script> -->
   <script src="./js/statusGrupo.js"></script> 

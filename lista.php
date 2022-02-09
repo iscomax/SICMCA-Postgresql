@@ -76,8 +76,9 @@ $errorNumeroCuenta="";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--bootstrap 5 local-->
     <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
-    <script src="./js/bootstrap/bootstrap.min.js"></script>
     <script src="./js/bootstrap/popper.min.js"></script>
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+    
     
  
     <!-- data Table-->
@@ -134,6 +135,8 @@ $errorNumeroCuenta="";
     <div class="container-fluid  titleBox">
        <div class="container  d-flex justify-content-start">
             <div class=" titleCurso rounded">
+                 <span class="fw-bold">Nombre del profesor:</span> 
+                <span><?php echo $profesor ?></span><br>
                 <span class="fw-bold">Facultad:</span> 
                 <span><?php echo $facultad ?></span><br>
                 <span class="fw-bold">Carrera:</span> 
@@ -143,24 +146,38 @@ $errorNumeroCuenta="";
             </div>
         </div>
     </div>
-    <div id="contenedor">
+       <!-----------Botones ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
-    </div>
+       <div class="container botonesBox">
+        <div class="row ">
+            <div class="col-12 col-md-3"></div>
+                <div class="col-12 col-md-6  d-flex justify-content-evenly " >
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reporteG">Reporte General</button>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reporteA">Reporte Aprobados</button>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reporteP">Reporte Reprobados</button>
+               
+                </div>
+            </div> 
+            <div class="col-12 col-md-3"></div> 
+        </div>
+
+<!-- ********************************************************************************************************************************** -->
+  
     <!-----------tabla++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-      <div class="container-fluid">
-        <table id="tablaCursos" class=" table table-striped table-bordered table-hover" width="100%">
+      <div class="container table-grupoBox">
+        <table id="tablaCursos" class="table table-striped table-bordered table-hover " width="100%">
             <thead>
                 <tr>
                     <th>Id Curso</th>
                     <th>Nombre <br> del Curso</th>
                     <th>Nombre <br> del Grupo</th>
-                    <th>Nombre <br> del Profesor</th>
+                   
                     <th>Número de Cuenta</th>
                     <th>Nombre del Alumno</th>
                     <th>Calificación Moodle</th>
                     <th>Calificación Final</th>
-                    <th>Aprobado / <br>Reprobado</th>
-                    <th>Pendiente/Concluido</th>
+                    <th>Aprobado / Reprobado</th>
+                    <th>Pendiente / Concluido</th>
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -239,7 +256,7 @@ $errorNumeroCuenta="";
                                     <td><?php echo $id_curso_tabla; ?></td>
                                     <td><?php echo $cursoNombre; ?></td>
                                     <td><?php echo $grupo; ?></td>
-                                    <td><?php echo $profesor; ?></td>
+                                  
                                     <td><?php echo $cuenta['numero_cuenta'] ; ?></td>
                                     <td><?php echo  $cuenta['nombre'] . " " . $cuenta['paterno'] . "<br> " . $cuenta['materno'] ; ?></td>
                                     <td><?php echo $format_number1 = round($curso['finalgrade'], 2); ?></td>
@@ -293,22 +310,7 @@ if (!empty($errorNumeroCuenta)) {
 }*/
 
 ?>
-   <!-----------Botones ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
-        <div class="container botonesBox">
-        <div class="row ">
-            <div class="col-12 col-md-3"></div>
-                <div class="col-12 col-md-6  d-flex justify-content-evenly " >
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reporteG">Reporte General</button>
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reporteA">Reporte Aprobados</button>
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reporteP">Reporte Reprobados</button>
-               
-                </div>
-            </div> 
-            <div class="col-12 col-md-3"></div> 
-        </div>
-
-<!-- ********************************************************************************************************************************** -->
         <?php include('./components/reporteGeneral.php');?>
         <?php include('./components/reporteAprobados.php');?>
         <?php include('./components/reporteReprobados.php');?>
@@ -366,7 +368,7 @@ if (!empty($errorNumeroCuenta)) {
                             $dataP= urldecode($dataP);
                         ?>
                         <!--./reportesPDF/reporteReprobados.php?data=<?php echo $data?>&dataP=<?php echo $dataP?>-->
-                    <a  style="text-decoration:none" type="button" name="exportarR" class="button " id="exportarR" href="#" target=""  >Exportar</a>
+                  <!--   <a  style="text-decoration:none" type="button" name="exportarR" class="button " id="exportarR" href="#" target=""  >Exportar</a> -->
                     <button type="button" name="exit" class="button" id="exit">Cerrar</button>
                 </div>
             </div>
@@ -375,6 +377,17 @@ if (!empty($errorNumeroCuenta)) {
             </div>
         </div>
     </div>
+  <!-- contenedor -->
+  <div class="container container_grafica_grupo">
+        <div class="row justify-content-center grafica_row">
+             <div class="col-12">
+                 <div id="contenedor" class="">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <?php include('./components/footer.php');?>
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->

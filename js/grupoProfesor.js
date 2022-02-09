@@ -9,14 +9,16 @@ $(document).ready(function() {
                 searchPanes:{
                     show: true,
                 },
-                targets: [8,9],
+                targets: [7,8],
             },
             {
                 searchPanes:{
                     show: false,
                 },
                 targets: [0,1,2,3,4,5,6,7],
-            }
+            },
+            { "width": "135px", "targets": 9 }
+        
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
@@ -46,7 +48,7 @@ $(document).ready(function() {
                 extend: 'pdfHtml5',
                 text: '<i class="bi bi-file-earmark-pdf-fill"></i>',
                 titleAttr: 'Exportar a PDF',
-                className: 'btn btn-danger'
+                className: 'btn btn-primary'
             },
             {
                 extend: 'print',
@@ -56,8 +58,8 @@ $(document).ready(function() {
             },
             {
                 extend: 'searchPanes',
-                titleAttr: 'Grafica',
-                className: 'btn btn-danger',
+                titleAttr: 'Filtrar',
+                className: 'btn btn-warning',
                 config: {
                    
                     cascadePanes: true
@@ -109,7 +111,7 @@ $(document).ready(function() {
         // Contamos el número de entradas para cada puesto (Puesto) 
         // columna 1 = [0=nombre, 1=puesto, 2=pais]
         //seleccionamos la columna  a graficar
-        tablaGrupo.column(9, {
+        tablaGrupo.column(8, {
             search: 'applied'
         }).data().each(function(val) {
             if (filasAfectadas[val]) {
