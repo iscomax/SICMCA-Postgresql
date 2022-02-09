@@ -1,0 +1,127 @@
+.clearfix:after {
+     content: "";
+     display: table;
+     clear: both;
+   }
+   
+   a {
+     color: #0087C3;
+     text-decoration: none;
+   }
+   
+   body {
+     position: relative;
+     width: 21cm;  
+     height: 29.7cm; 
+     margin: 0 auto; 
+     color: #555555;
+     background: #FFFFFF; 
+     font-family: Arial, sans-serif; 
+     font-size: 14px; 
+     font-family: SourceSansPro;
+   }
+   
+   header {
+     padding: 10px 0;
+     margin-bottom: 20px;
+     border-bottom: 1px solid #AAAAAA;
+   }
+   
+   #logo {
+     float: left;
+     margin-top: 8px;
+   }
+   
+   #logo img {
+     height: 70px;
+   }
+   
+   #institucion {
+     float: right;
+     text-align: right;
+   }
+   
+   h2.nombre {
+     font-size: 1.4em;
+     font-weight: normal;
+     margin: 0;
+     color: #1C3D6C;
+   }
+   
+   #titulo {
+   
+     text-align: center;
+     margin-bottom: 20px;
+   }
+   
+   #titulo h1 {
+     color: #1C3D6C;
+     font-size: 2.4em;
+     line-height: 1em;
+     font-weight: normal;
+     margin: 0  0 10px 0;
+   }
+   #titulo .tablaTitulo {
+     font-size: 1.3em;
+     text-align: left;
+     margin-bottom: 10px;
+   }
+   
+   #titulo .descripcion {
+     font-size: 1.1em;
+     color: #777777;
+     text-align: left;
+   }
+   
+   table {
+     width: 100%;
+     border-collapse: collapse;
+     border-spacing: 0;
+     margin-bottom: 20px;
+   }
+   
+   table th,
+   table td {
+     padding: 10px;
+     background: #EEEEEE;
+     text-align: center;
+   }
+   
+   table th {
+     white-space: nowrap;        
+     font-weight: normal;
+   }
+   
+   table td {
+     text-align: right;
+     font-size: 1.1em;
+     border: 1px solid #FFFFFF;
+   }
+   
+   
+   table .filas {
+     color: #FFFFFF;
+     font-size: 1.3em;
+     background: #1C3D6C;
+   }
+   
+   table .izquierda {
+     text-align: left;
+   }
+   
+   table .centrado {
+     text-align: center;
+   }
+   
+   table .columna1 {
+     background: #DDDDDD;
+   }
+   
+   table tbody tr:last-child td {
+     border: none;
+   }
+   
+   
+   
+   
+   

@@ -1,6 +1,11 @@
 <?php
 require('../conexion/conexionSYS.php');
 session_start();
+if (isset($_SESSION['login'])) {
+} else {
+    header("location: index.php");
+}
+
 $conexion = new conexionSYS;
 if (empty($_POST["id"])) {
     $id_usuario = $_GET["id_usuario"];
@@ -50,67 +55,112 @@ if (empty($_POST["id"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Editar</title>
+    <link rel="shortcut icon" href="https://www.unam.mx/sites/default/files/favicon_0.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+     <!-- CSS personalizado-->
+     <link rel="stylesheet" href="../Styles/estilosTabla.css">
+     <link rel="stylesheet" href="../Styles/styles.css">
+     <link rel="stylesheet" href="../Styles/bootstrap/bootstrap.min.css">
+     <link rel="stylesheet" href="../Styles/navbar.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
-    <div id="navbar">
-        <ul>
-             <li><a href="../adm.php">Inicio</a></li>
-            <li><a href="altas.php">Altas</a></li>
-            <li ><a href="docu.php">Documentación</a></li>
-            <li><a href="../ip.php">Datos Conexión</a></li>
-            <li style="float:right"><a class="active" href="../clases/destroy.php">Cerrar Sesión</a></li>
-        </ul>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container-fluid">
+            <a class="navbar-brand" href="">
+                <img src="<?php echo $rutLogo ?>" alt="" width="40" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav me-auto">
+                      <li class="nav-item">
+                          <a href="../adm.php" class="nav-link">Lista de Usuarios</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link">Altas</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="./docu.php" class="nav-link">Documentación</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="../ip.php" class="nav-link">Datos Conexión</a>
+                      </li>
+                </ul>
+ 
+                <div class="d-flex">
+                      <a href="../clases/destroy.php">
+                          <button class="btn btn-danger">Cerrar Sesión</button>
+                      </a>
+                </div>
+            </div>
+      </div>
+  </nav>
+    <!----------------------------------------->
+   
+    <!-----------------Seccion formulario ------------------->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="shadow-lg mt-4 bg-body rounded ancho">
+                    <h3 class="text-center fondo text-white  fs-2 pt-3 pb-3 mb-5 titulologin">Editar Usuario</h3>
+                    <div class="p-3">
+                        <div class="col-md-12">
+                            <input type="hidden"  class="form-control" id="id_persona" name="id_persona" value="<?php echo $id_persona ?>" >
+                            <label for="fname" class="form-label ">Id Moodle</label>
+                            <input type="text" class="form-control mb-3" id="id_moodle" value="<?php echo $id ?>"disabled>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="fname" class="form-label "> Nombre(s)</label>
+                            <span  id="datos" class="error">* <?php  echo $e_Nombre?></span>
+                            <input type="text" class="form-control mb-3" id="nombre" name="nombre"   minlength="6" maxlength="40" onkeypress="return (event.charCode < 33 || event.charCode > 64)"     value="<?php echo $nombre ?>" required>
+                            <div class="valid-feedback"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="fname" class="form-label ">Apellidos</label>
+                            <span  id="datos" class="error">* <?php ?></span>
+                            <input type="text" class="form-control mb-3" id="apellidos" name="apellidos"  minlength="6" maxlength="40" onkeypress="return (event.charCode < 33 || event.charCode > 64)" value="<?php echo $apellidos ?>" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="fname" class="form-label ">Correo Institucional</label>
+                            <span  id="datos" class="error">* <?php ?></span>
+                            <input type="text" class="form-control mb-3" id="correo" name="correo" value="<?php echo $correo ?>" Required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="fname" class="form-label">Tipo de Usuario</label>
+                            <input type="text" class="form-control mb-3" id="roles" value="<?php echo $nombre_rol ?>"disabled>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <p id="error"></p>
+                            <button href="../adm.php" class="btn btn-warning mt-3 me-3 fw-bold text-white" type="" id="editar" name="editar">Actualizar</button>
+                            <button class="btn btn-primary mt-3 me-3 fw-bold">Enviar Contraseña</button>
+                            <?php
+                            echo "<a href='../adm.php'   class='btn btn-success mt-3  fw-bold' type='button'>Regresar</a>";
+                            ?>
+                        </div> 
+                    </div>                    
+             
+                </div>
+            </div>
+        </div>
     </div>
-
-        
-    <div class="containerEditar admform">
-        <input type="hidden" id="id_persona" name="id_persona" value="<?php echo $id_persona ?>" >
-        <label for="fname">Id Moodle</label>
-        <input type="text" id="id_moodle" name="id_moodle" value="<?php echo $id ?>"disabled>
-
-        <label for="fname"> Nombre</label>
-        <span  id="datos" class="error">* <?php  echo $e_Nombre?></span>
-        <input type="text" id="nombre" name="nombre"   minlength="6" maxlength="40" onkeypress="return (event.charCode < 33 || event.charCode > 64)"     value="<?php echo $nombre ?>">
-
-        <label for="fname">Apellidos</label>
-        <span  id="datos" class="error">* <?php ?></span>
-        <input type="text" id="apellidos" name="apellidos"  minlength="6" maxlength="40" onkeypress="return (event.charCode < 33 || event.charCode > 64)" value="<?php echo $apellidos ?>" required>
-
-        <label for="fname">Correo Institucional</label>
-        <span  id="datos" class="error">* <?php ?></span>
-        <input type="text" id="correo" name="correo" value="<?php echo $correo ?>" Required>
-
-
-        <label for="fname">Tipo de Usuario</label>
-        <input type="hidden" name="rol" id="rol" size="30" ><br>
-        <select name="rol" id="roles">
-            <option value="1">Administrador</option>
-            <option value="2">Coordinador</option>
-            <option value="3">Profesor</option>
-        </select>
-        <br>
-
-        <p id="error"></p>
-        <button href="../adm.php" class="button " type="" id="editar" name="editar">Actualizar</button>
-        <button class="button ">Enviar Contraseña</button>
-        <?php
-        echo "<a href='../adm.php'   class='button' type='button'>Regresar</a>";
-        ?>
-    </div>
-        
 
     <div id="respuesta">
+        
+    </div>   
+    
 
-    </div>
-  
-
-            
+<script src="../js/validacionEditar.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap/popper.min.js"></script>
+<script src="../js/bootstrap/bootstrap.min.js"></script>
 
 </body>
-<script src="../js/validacionEditar.js"></script>
+
+<?php include('../templates/footer.php'); ?>
 
 </html>
