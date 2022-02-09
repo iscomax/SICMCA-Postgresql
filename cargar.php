@@ -74,8 +74,9 @@ $nombre= $profesor;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--bootstrap 5 local-->
     <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
-    <script src="./js/bootstrap/bootstrap.min.js"></script>
     <script src="./js/bootstrap/popper.min.js"></script>
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+   
     
     <!-- data Table-->
     <link rel="stylesheet" href="./dataTable/datatables.css">
@@ -182,11 +183,11 @@ $nombre= $profesor;
                         ?>
                      
                         <a href="lista.php?id_grupo=<?php echo $id_grupo ?>&id_curso=<?php echo $id_curso?>"
-                        class="btn btn-outline-secondary text-wrap col-4 col-md-3" type="button" id='Enviar' name='enviar' onclick='enviarDatos()'> Registrar</a>
+                        class="btn  text-wrap col-4 col-md-3  btn-success" type="button" id='Enviar'  name='enviar' onclick='enviarDatos()'> Registrar</a>
                         <!-- open modal -->
-                        <a class="btn btn-outline-secondary col-4 col-md-3" id="" data-bs-toggle="modal" data-bs-target="#myModal" type="button">Editar</a>
+                        <a class="btn  btn-warning col-4 col-md-3" id="" data-bs-toggle="modal" data-bs-target="#myModal" type="button">Editar</a>
 
-                        <a href="lista.php?id_grupo=<?php echo $id_grupo ?>&id_curso=<?php echo $id_curso?>" class="btn btn-outline-secondary  text-wrap col-4 col-md-3" type="button">Cancelar</a>
+                        <a href="lista.php?id_grupo=<?php echo $id_grupo ?>&id_curso=<?php echo $id_curso?>" class="btn btn-primary  text-wrap col-4 col-md-3" type="button">Cancelar</a>
                     </div>
                 </div>
             </div>
@@ -228,7 +229,7 @@ $nombre= $profesor;
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
       </div>
 
     </div>

@@ -14,7 +14,7 @@
             <!-- Modal body -->
             <div class="modal-body">
             <div class="container">
-                    <div class="jumbotron">
+                    <div class="jumbotronGeneral">
                         <div class="row justify-content-center" >
                             <div class="col-12 col-md-7 col-lg-4">
                                 <div class=" title  rounded contorno">

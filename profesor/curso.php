@@ -25,9 +25,11 @@ try {
 
     $conexionSYS = new conexionSYS();
 
-    
+   
 } catch (Exception $ex) {
     //throw $th;
+    echo "hola";
+    header("location: ./cursos.php");
 }
 
 $ciclo="2021-2";
@@ -47,8 +49,9 @@ $ciclo="2021-2";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--bootstrap 5 local-->
     <link rel="stylesheet" href="../Styles/bootstrap/bootstrap.min.css">
-    <script src="../js/bootstrap/bootstrap.min.js"></script>
     <script src="../js/bootstrap/popper.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+   
     
     
     <!-- data Table-->
@@ -110,11 +113,9 @@ $ciclo="2021-2";
             </div>
         </div>
     </div>
-    <!-- contenedor -->
-    <div id="contenedor">
-
-    </div>
+    
 <!-- tabla grupos ******************************-->
+
 <div class="container  table-gruposBox">
         <table id="cursosProfesor" class=" table table-striped table-bordered table-hover" width="100%">
             <thead>
@@ -164,58 +165,9 @@ $ciclo="2021-2";
                         </tr>
                     <?php endforeach ?>
                 <?php else : ?>
-                    <h1>Moodle mal configurado</h1>
-                        | <table class="paleBlueRows" id="datatable">
-                            <thead>
-                                <tr>
-                                    <th>Id Curso</th>
-                                    <th>Nombre del Curso</th>
-                                    <th>Nombre del Grupo</th>
-                                    <th>Nombre del Profesor</th>
-                                    <th>Pendientes por <br> Calificar</th>
-                                    <th>Calificados</th>
-                                    <th>Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                try {
-                                    if (isset($listaCursos) && !empty($listaCursos) && sizeof($listaCursos) > 0) {
-                                        foreach ($listaCursos as $key => $curso) {
-                                            $id_grupo = $curso['id'];
-                                            $id_curso = $curso['instanceid'];
-                                            $numeroA = $cursos->numeroAlumnos($id_grupo, $id_curso);
-                                            $numeroC = $conexionSYS->numeroCalificados($id_grupo);
-                                            //echo "total concluidos= ". $numeroC;
-                                            // echo "total de alumnos= ". $numeroA;
-                                            $pendientes = $numeroA - $numeroC;
-                                            //echo $curso["instanceid"] . "-" . $curso["fullname"] . "-" .  $curso["firstname"] . "-" . $curso["lastname"] . "<br/>";
-                                            echo
-                                            '
-                                                <tr>
-                                                    <td>' . $curso['instanceid'] . '</td>
-                                                    <td>' . $curso['fullname'] . '</td>
-                                                    <td>' . $curso['name'] . '</td>
-                                                    <td>' . $curso['firstname'] . " " . $curso['lastname'] . '</td>
-                                                    <td>' . $pendientes . '</td>
-                                                    <td>' . $numeroC . '</td>
-                                                    <td>
-                                                    <a href="../lista.php?id_grupo=' . $curso['id'] . '&id_curso=' . $curso['instanceid'] . '" class="button" type="button">ver grupo</a>
-                                                
-                                                    </td>
-                                                </tr>
-                                                ';
-                                        }
-                                    }
-                                } catch (Exception $ex) {
-                                    //throw $th;
-                                }
-                                // $id_grupo=1;
-
-
-                                ?>
-                            </tbody>
-                        </table>
+                    <h1>Moodle mal configurado no hay alumnos inscritos o aun no hay calificaciones sss </h1>
+                    <?php   header("location: ./cursos.php");?>
+                        
                 <?php endif ?>
 
 
@@ -223,6 +175,17 @@ $ciclo="2021-2";
 
         </table>
 
+    </div>
+ 
+    <!-- contenedor -->
+    <div class="container container_grafica_curso">
+        <div class="row justify-content-center grafica_row">
+             <div class="col-12">
+                 <div id="contenedor" class="grafica_curso ">
+
+                </div>
+            </div>
+        </div>
     </div>
   <?php include('../components/footer.php');?>
   <script src="../js/cursoProfesor.js"></script>

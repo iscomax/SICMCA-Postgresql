@@ -19,7 +19,7 @@ $(document).ready(function() {
                 extend: 'pdfHtml5',
                 text: '<i class="bi bi-file-earmark-pdf-fill"></i>',
                 titleAttr: 'Exportar a PDF',
-                className: 'btn btn-danger'
+                className: 'btn btn-primary'
             },
             {
                 extend: 'print',

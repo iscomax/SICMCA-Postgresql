@@ -49,8 +49,9 @@ $ciclo="2021-2";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--bootstrap 5 local-->
     <link rel="stylesheet" href="../Styles/bootstrap/bootstrap.min.css">
-    <script src="../js/bootstrap/bootstrap.min.js"></script>
     <script src="../js/bootstrap/popper.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+ 
     
     
     <!-- data Table-->
@@ -62,8 +63,9 @@ $ciclo="2021-2";
     <script src="../dataTable/DataTables-1.11.3/js/dataTables.bootstrap5.js"></script>
 
     <!-- styles propios -->
-    <link rel="stylesheet" href="../Styles/navbar.css">
+    
     <link rel="stylesheet" href="../Styles/styles.css">
+    <link rel="stylesheet" href="../Styles/navbar.css">
   
 
     <!-- botones  -->
@@ -102,9 +104,10 @@ $ciclo="2021-2";
             </div>
         </div>
     </div>
-<div id="contenedor">
 
-</div>
+
+ 
+
   <div class="container table-cursosBox" >
         <table  id="cursosProfesor" class=" table table-striped table-bordered table-hover" width="100%" >
                 <thead>
@@ -146,6 +149,17 @@ $ciclo="2021-2";
         </table>
 
   </div>
+  
+  <div class="container container_grafica_cursos">
+        <div class="row grafica_row">
+             <div class="col-12">
+                 <div id="contenedor" class="grafica_cursos">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
   <?php include('../components/footer.php');?>
   <script src="../js/cursosProfesor.js"></script>
 </body>

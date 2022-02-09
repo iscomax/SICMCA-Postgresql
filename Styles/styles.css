@@ -22,6 +22,8 @@ body{
   background-color:#d4ae72;
   text-align: center;
 
+  
+
 }
 
 .titleCurso{
@@ -47,10 +49,13 @@ body{
     margin-bottom: 3%;
   }
   .table-gruposBox{
-    margin-bottom: 3%;
+    margin-bottom: 5%;
+  }
+  .table-grupoBox{
+    margin-bottom: 4%;
   }
   .table-cursosBox{
-    margin-bottom: 10%;
+    margin-bottom: 5%;
   }
 /*************grupos************************************************** */
 /*************grupo************************************************** */
@@ -128,4 +133,66 @@ thead{
 
 .contorno{
   border: 2px solid  #1C3D6C;
+}
+/**************medias*****************************************************************/
+
+@media only screen and (max-width: 1031px) and (min-width: 768px) {  
+  .boxLogin {
+    margin-top: 25%;
+    margin-bottom: 24%;
+
+} 
+.footer-busqueda {
+  margin-top: 90.5%;
+}
+} 
+/*******************contenedores grafica ************************************************************/
+
+.container_grafica_cursos{
+  margin-bottom: 8%;
+  
+}
+.container_grafica_cursos_cord{
+  margin-bottom: 8%;
+  
+}
+
+
+.container_grafica_curso{
+  margin-bottom: 8%;
+}
+.container_grafica_curso_cord{
+  margin-bottom: 8%;
+}
+.container_grafica_grupos{
+  margin-bottom: 8%;
+}
+.container_grafica_grupos_cord{
+  margin-bottom: 8%;
+}
+.container_grafica_grupo{
+  margin-bottom: 8%;
+}
+.container_grafica_grupo_cord{
+  margin-bottom: 8%;
+}
+
+.grafica_cursos{
+  width: 100%;
+}
+.grafica_curso{
+  width: 100%;
+
+}
+.grafica_row{
+
+  border-style: solid;
+  border-color: #1C3D6C;
+  border-radius: 10px;
+}
+
+/************coordinador****************************************************************************************/
+.table-bitacora{
+  margin-bottom: 10%;
+  
 }

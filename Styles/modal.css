@@ -15,6 +15,16 @@
   border-radius: 0%;
 }
 .jumbotron{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.jumbotronGeneral{
   margin-top: 5%;
   margin-bottom: 5%;
+}
+.tableAprobados{
+  margin-top: 2%;
+}
+.tableReprobados{
+  margin-top: 2%;
 }

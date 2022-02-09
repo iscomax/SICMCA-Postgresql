@@ -91,7 +91,7 @@ try {
 <div class="container boxLogin">
         <!--prueba-->
         <div class="row justify-content-center">
-            <div class="col-12 col-sm-12 col-md-4">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
                 <div class="container mt-3">
                     <div class="card" style="border-color:  #1C3D6C;  border-style: solid;">
                         <div class="card-header cardHeader">
