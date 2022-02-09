@@ -8,6 +8,24 @@ if (isset($_SESSION['login'])) {
     header("location: index.php");
 }
 /*******************************************/
+try{
+    $conectar = new conexionSYS();
+    $id_usuario = $_SESSION['id_usuario'];
+    $obtenerDatos =$conectar->obtnerUsuario($id_usuario);
+    foreach($obtenerDatos as $datos=>$dato){
+        /*$usuario = $dato['nombre'] ." ". $dato['apellidos'] ." ". $dato['nombre_rol'] ." ". $dato['correo'];*/
+        $nombre = $dato['nombre'];
+
+
+    }
+
+}catch (Exception $e){
+
+
+
+}
+
+/******************************************/
 
 
 if (empty($_POST['id_moodle']))
@@ -87,42 +105,53 @@ $listaUsuarios = $conexion->listaUsuarios();
     <link rel="shortcut icon" href="https://www.unam.mx/sites/default/files/favicon_0.ico" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
      <!-- CSS personalizado-->
-     <link rel="stylesheet" href="Styles/estilosTabla.css">
-     <link rel="stylesheet" href="./Styles/estilos.css">
+     <!--<link rel="stylesheet" href="./Styles/estilosTabla.css">-->
+     <link rel="stylesheet" href="./Styles/styles.css">
      <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
-
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+     <link rel="stylesheet" href="./Styles/navbar.css">
+<!-- 
+    <link rel="stylesheet" href="./Styles/estilos.css">
+     Bootstrap CSS 
+     <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+     -->
      <!--Botones -->
-     <link rel="stylesheet" href="datatables/Buttons-2.2.2/css/buttons.dataTables.min.css">
-     
-     <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">    
+     <link rel="stylesheet" href="./datatables/Buttons-2.1.1/css/buttons.dataTables.min.css">
+   
     <!-- data Table-->
     <link rel="stylesheet" href="./dataTable/datatables.css">
     
     <!--data datle bootstrap 5 -->
-    <link rel="stylesheet" href="./dataTable/DataTables-1.11.4/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="./dataTable/DataTables-1.11.3/css/dataTables.bootstrap5.css">
  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
        <!-- graficos  -->
      <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/1.2.0/css/searchPanes.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
-
+<!-- highcharts-->
     <script src="https://cdn.datatables.net/searchpanes/1.2.0/js/dataTables.searchPanes.min.js"></script>
-
     <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
-
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>  
+    <!-- optional -->  
+    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>  
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/highcharts-drilldown@0.1.7/drilldown.js"></script>
+
+
 </head>
-<?php include('./templates/header.php'); ?>
+<?php include('./components/navbarAdm.php'); ?>
 
 <body>
+<div class="container" id="grafica" style="width=50%; height:300px;">
+    </div>
+    
         <div class="container">
             <div class="row">
                 <div class="col">
                     <h1 class="text-center">Lista de Usuarios</h1>
-                    <div class="container">
-                        <table id="tablaAdministrador" class="table table-striped table-bordered nowrap mt-2" cellspacing="0" width="100%">
+                    <div class="container table-gruposBox">
+                        <table id="tablaAdministrador" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                             
                             <thead>
                                 <!--id="tabla"-->
@@ -162,6 +191,8 @@ $listaUsuarios = $conexion->listaUsuarios();
             </div>
         </div>
     </div>
+
+
     <div id="respuesta"></div>
     <script>
         function eliminar(id_usuario, id_persona)
@@ -199,26 +230,30 @@ $listaUsuarios = $conexion->listaUsuarios();
     <script src="./js/bootstrap/bootstrap.min.js"></script>
 
        <!-- datatables JS -->
+    <script src=" ./dataTable/datatables.js "></script>
     <script src="./datatables/datatables.min.js"></script> 
-    <script src="./dataTable/DataTables-1.11.4/js/dataTables.bootstrap5.js"></script>  
+    <script src="./dataTable/DataTables-1.11.3/js/dataTables.bootstrap5.js"></script>  
     
     <!-- para usar botones en datatables JS -->
-    <script src="./datatables/Buttons-2.2.2/js/dataTables.buttons.js"></script>
-    <script src="./datatables/Buttons-2.2.2/js/buttons.html5.min.js"></script>
-    <script src="./datatables/pdfmake-0.1.36/pdfmake.js"></script>  
-    <script src="./datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-    <script src="./datatables/JSZip-2.5.0/jszip.min.js"></script> 
+    <script src="./dataTable/Buttons-2.1.1/js/dataTables.buttons.js"></script>
+    <script src="./dataTable/Buttons-2.1.1/js/buttons.html5.js"></script>
+    <script src="./dataTable/pdfmake-0.1.36/pdfmake.js"></script>  
+    <script src="./dataTable/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="./dataTable/JSZip-2.5.0/jszip.js"></script> 
 
     <!-- JS gráficos-->
     <script src="https://cdn.datatables.net/searchpanes/1.2.0/js/dataTables.searchPanes.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
     <!-- código JS propìo-->    
-    <script type="text/javascript" src="js/tabla.js"></script>  
 
+    <!-- código JS propìo-->    
+    <script type="text/javascript" src="./js/tabla.js"></script>
+
+    <!-- Footer -->
+    <?php include('./components/footer.php'); ?>
 
 </body>
-<!-- Footer -->
-<?php include('./templates/footer.php'); ?>
+
 
 </html>

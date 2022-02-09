@@ -9,4 +9,39 @@
  td{
     border: none;
 }
- 
+.fondo{
+    background-color: #1C3D6C !important;
+}
+
+.titulologin{
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom: 7px solid #C5911E;
+}
+.enlaces{
+    text-decoration: none;
+}
+
+.docu{
+    font-size: 1.5rem !important;
+    color: #1C3D6C;
+    text-decoration: none;
+}
+.docu:hover{
+    color: #C5911E;
+}
+
+@media (min-width:768px){
+    .ancho {
+         width: 450px;
+         margin-left: auto;
+         margin-right: auto;
+    }
+
+   
+}
+
+.contenedor-enlaces {
+    margin-bottom: 10% ;
+
+}
