@@ -42,7 +42,10 @@ $calificacion;
     values ('$idCurso','$id_grupo','$cursoNombre','$grupo', '$profesor', '$cuenta', '$alumno','$calificacion', 1, $tipoCalificacion)";
     $id_materia =$conexionB -> guardar($query);
     //echo"registro exitoso";
+    date_default_timezone_set("America/Mexico_City");
     $fechaActual = date('Y-m-d H:i:s');
+    /* $fecha = new DateTime('NOW');
+    echo 'Fecha/hora actual: ', $fecha->format('Y-m-d H:i:s'); */
     //echo $fechaActual;
     $query = "INSERT into bitacora (grupo,profesor,alumno,calificacion,fecha_hora,id_usuario,id_materia)values
     ('$grupo','$profesor','$alumno','$calificacion','$fechaActual','$id_usuario','$id_materia')";
