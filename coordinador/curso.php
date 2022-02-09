@@ -99,7 +99,7 @@ $ciclo="2021-2";
     $rutLogo='../img/logo-unam.png';
     $rutLogoF='../img/logo-dgtic.png';
     ?>
-<?php include('../components/navbar.php');?>
+<?php include('../components/navbarCord.php');?>
 
     <!--  titulo de la sección  *************************-->
     <div class="container-fluid  titleBox">
