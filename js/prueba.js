@@ -80,6 +80,7 @@ function enviarDatos() {
   var grupo = document.getElementById('grupo').value;
   var estatus = document.getElementById('reporte').value;
   var calificacion = document.getElementById('calificacion').value;
+
   console.log(calificacion);
   if (calificacion % 1 == 0 || calificacion == "NA" || calificacion == "NP") {
     if (estatus >= 1) {
@@ -109,7 +110,8 @@ function enviarDatos() {
             console.log("complete");
           });
         window.alert("La calificación se ha registrado exitosamente");
-        //location.reload();
+     
+       // location.reload();
       } 
     } else {
       window.alert("El Rango de la calificación Final es de 5 a 10");

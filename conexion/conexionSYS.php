@@ -391,7 +391,33 @@ class conexionSYS
         }
     }
 
+    public function getCalificacion($id_grupo, $numero_cuenta)
+    {
+       /*  echo $id_grupo ."/". $numero_cuenta;  */
+         $qry = "SELECT * from materia where id_grupo =$id_grupo and numero_cuenta = $numero_cuenta";
+        $result =  $this->conexion ->query($qry);
+        $datos= $result->fetch() ;
+       // print_r($datos);
 
+       $calificacion = $datos['calificacion'];
+    $tipo_calificacion = $datos['tipo_calificacion'];
+
+        if ( $tipo_calificacion  == 1 ) {
+             
+            $calificacionF = "NA";
+
+        }else if ( $tipo_calificacion == 2){
+                
+           $calificacionF = "NP";
+            
+        }else if( $tipo_calificacion  == 3){
+            
+            $calificacionF = $calificacion;
+        }
+
+        return $calificacionF;
+
+    }
 
 
 /*     public function encryption($string){

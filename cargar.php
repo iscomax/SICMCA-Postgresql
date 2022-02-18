@@ -47,8 +47,13 @@ $materno= $alumno->getMaternoAlumno();
 
 $conexionBD = new conexionSYS();
 $reporte = $conexionBD->getStatusRegistro($id_grupo, $cuenta);
+$calificacionBD= $conexionBD->getCalificacion($id_grupo, $cuenta); 
 
-
+if ($reporte>=1) {
+  $format_number1= $calificacionBD;  
+}else{
+  $format_number1 = round($calificacion, 2) ;
+}
 
 /*
 
@@ -180,7 +185,7 @@ $nombre= $profesor;
                 <div class="col-12 col-md-10 col-lg-6">
                 <label for="lname">Calificación</label>
                     <div class="input-group ">
-                        <input type="text" id="calificacion" class="col-12 col-md-2" name="calificacion" value="<?php echo $format_number1 = round($calificacion, 2) ?> " disabled>
+                        <input type="text" id="calificacion" class="col-12 col-md-2" name="calificacion" value="<?php echo $format_number1 ?> " disabled>
                         <?php 
                           $id_grupo = base64_encode( $id_grupo);
                           $id_grupo= urldecode($id_grupo);
@@ -188,6 +193,7 @@ $nombre= $profesor;
                           $id_curso= urldecode($id_curso);  
                         ?>
                      <!-- lista.php?id_grupo=<?php echo $id_grupo ?>&id_curso=<?php echo $id_curso?> -->
+
                         <a href=""
                         class="btn  text-wrap col-4 col-md-3  btn-success" type="button" id='Enviar'  name='enviar' onclick='enviarDatos()'> Registrar</a>
                         <!-- open modal -->
