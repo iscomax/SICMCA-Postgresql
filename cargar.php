@@ -5,6 +5,7 @@ if (isset($_SESSION['login'])) {
 } else {
   header("location: index.php");
 }
+require('./conexion/conexionSYS.php');
 require("./conexion/conexionDGAE.php");
 require("./conexion/conexion.php");
 require("./clases/cursos.php");
@@ -43,6 +44,11 @@ $alumno->getDataAlumno($cuenta);
 $nombreA = $alumno->getNombreAlumno();
 $paterno = $alumno->getPaternoAlumno();
 $materno= $alumno->getMaternoAlumno();
+
+$conexionBD = new conexionSYS();
+$reporte = $conexionBD->getStatusRegistro($id_grupo, $cuenta);
+
+
 
 /*
 
@@ -181,8 +187,8 @@ $nombre= $profesor;
                           $id_curso = base64_encode($idCurso);
                           $id_curso= urldecode($id_curso);  
                         ?>
-                     
-                        <a href="lista.php?id_grupo=<?php echo $id_grupo ?>&id_curso=<?php echo $id_curso?>"
+                     <!-- lista.php?id_grupo=<?php echo $id_grupo ?>&id_curso=<?php echo $id_curso?> -->
+                        <a href=""
                         class="btn  text-wrap col-4 col-md-3  btn-success" type="button" id='Enviar'  name='enviar' onclick='enviarDatos()'> Registrar</a>
                         <!-- open modal -->
                         <a class="btn  btn-warning col-4 col-md-3" id="" data-bs-toggle="modal" data-bs-target="#myModal" type="button">Editar</a>

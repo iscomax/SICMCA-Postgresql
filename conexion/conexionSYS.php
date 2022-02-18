@@ -65,6 +65,7 @@ class conexionSYS
     }
     public function verificarStatus($id_grupo,$id_curso, $numero_cuenta)
     { 
+       
         $status =false;
         $qry = "SELECT * from materia where numero_cuenta='$numero_cuenta'";
         $cont= intval( $this->conexion->query($qry)->rowCount());
@@ -322,6 +323,10 @@ class conexionSYS
 
                 $calificacion = $dato['calificacion'];
                 $tipo_calificacion = $dato['tipo_calificacion'];
+            }else{
+
+                $calificacion = 0;
+                $tipo_calificacion = 0;
             }
         }
         //print_r($resultArray);
@@ -370,20 +375,21 @@ class conexionSYS
 
         return $this->promedio_Curso;
     }
+
+    
     public function getStatusRegistro($id_grupo, $numero_cuenta)
     {
+       /*  echo $id_grupo ."/". $numero_cuenta; */
         $qry = "SELECT * from materia where id_grupo =$id_grupo and numero_cuenta = $numero_cuenta";
        
-        $filas = $this->conexion->query($qry)->rowCount();
+        $filas = $this->conexion->query($qry)->rowCount(); 
       
-        //echo "filas= " . $filas;
         if ($filas >= 1) {
             return  $filas;
         } else {
             return 0;
         }
     }
-
 
 
 

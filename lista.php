@@ -155,6 +155,15 @@ $errorNumeroCuenta="";
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reporteG">Reporte General</button>
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reporteA">Reporte Aprobados</button>
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reporteP">Reporte Reprobados</button>
+                    <?php
+            
+                        $id_curso_code = base64_encode($id_curso);
+                        $id_curso_code= urldecode( $id_curso_code);
+            
+                    ?>
+                    <a href="profesor/curso.php?id_curso=<?php echo $id_curso_code?>" >
+                        <button type="button" class="btn btn-primary" >Regresar a Grupos</button>
+                    </a>
                
                 </div>
             </div> 
@@ -207,7 +216,7 @@ $errorNumeroCuenta="";
                                  $numero_cuenta = $cuenta['numero_cuenta'];
                                 
                                 try {
-                                    $reporte = $conexionSYS->verificarStatus($id_grupo, $id_curso, $numero_cuenta);
+                                     $reporte = $conexionSYS->verificarStatus($id_grupo, $id_curso, $numero_cuenta);
                             
                                      // echo "numero_cuenta = " .$numero_cuenta;
                                   // echo "vALOR = ". $reporte;
@@ -227,20 +236,27 @@ $errorNumeroCuenta="";
                                     //$reporte=0;
                                 }
 
+                                //funcion asignar valor  califiacion final 
+
                                 if ($estatus == "Pendiente") {
                                     $calfinal = $curso['finalgrade'];
                                     $tipo = $conexionSYS->statusAprobados($calfinal);
                                 } else {
                                     $calfinal = $calificacion;
                                     $tipo = $conexionSYS->statusAprobados($calfinal);
+                                    //asignar tipo calificacion final
                                     if ($tipo_calificacion== 1) {
                                         $calificacion="NA";
                                     } else if ($tipo_calificacion== 2){
                                         $calificacion="NP";
                                     } else if ($tipo_calificacion== 3){
                                         $calificacion = round($calificacion, 2);
+                                    }else{
+                                        $calificacion="0";
                                     }
+
                                 }
+
                                 if ($calfinal >= 6) {
                                     $aprobadosArray[] = ["cuenta" => $numero_cuenta, "nombre" => $cuenta['nombre'] . " " . $cuenta['paterno'] . " " . $cuenta['materno'], "calMoodle" => round($curso['finalgrade'], 2), "calFinal" => $calificacion];
                                 } else {

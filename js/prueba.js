@@ -83,30 +83,34 @@ function enviarDatos() {
   console.log(calificacion);
   if (calificacion % 1 == 0 || calificacion == "NA" || calificacion == "NP") {
     if (estatus >= 1) {
-      window.alert("Esta calificacion ya esta registrada en el sistema DGAE");
+      window.alert("Esta calificación ya esta registrada en el sistema DGAE");
       //location.reload();
 
-    } else if (calificacion >= 5 ||  calificacion == "NA" || calificacion == "NP") {
-      var ruta = "profesor=" + profesor + "&idcurso=" + idcurso + "&cuenta=" + cuenta + "&nombre=" + nombre + "&paterno="
-        + paterno + "&materno=" + materno + "&cursoNombre=" + curso + "&grupo=" + grupo + "&calificacion=" + calificacion + "&estatus=" + estatus + "&id_usuario=" + id_usuario + "&id_grupo=" + id_grupo;
-      console.log(ruta);
-      $.ajax
-        ({
-          url: "insert.php",
-          type: 'POST',
-          data: ruta,
-        })
-        .done(function (res) {
-          $('#respuesta').html(res);
+    } else if (calificacion >= 5 || calificacion == "NA" || calificacion == "NP") {
+      var resultado = window.confirm('¿Está seguro de registrar la calificación final?');
+      if (resultado === true) {
+        var ruta = "profesor=" + profesor + "&idcurso=" + idcurso + "&cuenta=" + cuenta + "&nombre=" + nombre + "&paterno="
+          + paterno + "&materno=" + materno + "&cursoNombre=" + curso + "&grupo=" + grupo + "&calificacion=" + calificacion + "&estatus=" + estatus + "&id_usuario=" + id_usuario + "&id_grupo=" + id_grupo;
+        console.log(ruta);
+        $.ajax
+          ({
+            url: "insert.php",
+            type: 'POST',
+            data: ruta,
+          })
+          .done(function (res) {
+            $('#respuesta').html(res);
 
-        })
-        .fail(function () {
-          console.log("error");
-        })
-        .always(function () {
-          console.log("complete");
-        });
-     //location.reload();
+          })
+          .fail(function () {
+            console.log("error");
+          })
+          .always(function () {
+            console.log("complete");
+          });
+        window.alert("La calificación se ha registrado exitosamente");
+        //location.reload();
+      } 
     } else {
       window.alert("El Rango de la calificación Final es de 5 a 10");
     }
