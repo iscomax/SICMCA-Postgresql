@@ -85,6 +85,8 @@ try {
     <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <!-- fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
@@ -101,11 +103,10 @@ try {
 
 
     <!--  titulo de la sección  *************************-->
-    <div class="container-fluid  titleBox">
-        <div class="container mt-3">
-            <div class="mt-4 title  rounded">
-                <i class="bi bi-journal-text" style="font-size: 50px;"></i>
-                <h1> Grupos</h1>
+    <div class="container-fluid title ">
+        <div class="row">
+            <div class="col-12">
+                    <h1 ><i class="bi bi-journal-text" style="font-size: 50px;"></i> Grupos</h1>
             </div>
         </div>
     </div>
@@ -138,7 +139,8 @@ try {
             <tbody>
                 <?php if (isset($listaCursos) && !empty($listaCursos) && sizeof($listaCursos) > 0) : ?>
                     <?php foreach ($listaCursos as $key => $curso) : ?>
-                        <?php $id_grupo = $curso['id'];
+                        <?php 
+                        $id_grupo = $curso['id'];
                         $id_curso = $curso['instanceid'];
                         $carrera2= $cursos->getCarreraCurso($id_curso);
                         $numeroA = $cursos->numeroAlumnos($id_grupo, $id_curso);

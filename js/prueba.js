@@ -84,7 +84,7 @@ function enviarDatos() {
   console.log(calificacion);
   if (calificacion % 1 == 0 || calificacion == "NA" || calificacion == "NP") {
     if (estatus >= 1) {
-      window.alert("Esta calificación ya esta registrada en el sistema DGAE");
+      window.alert("Esta calificación ya está registrada en el sistema DGAE");
       //location.reload();
 
     } else if (calificacion >= 5 || calificacion == "NA" || calificacion == "NP") {
@@ -168,9 +168,13 @@ function searchByNumCuenta() {
 
   var long = num_cuenta.length;
   console.log(long);
-  if (long < 9 || long > 9) {
-    window.alert("Un numero de cuenta es de 9 digitos");
-  } else {
+  if (num_cuenta === "") {
+    window.alert("Para realizar una búsqueda debes ingresar un número de cuenta de 9 dígitos");
+ 
+  }else if(long < 9 || long > 9){
+    window.alert("Un número de cuenta es de 9 dígitos");
+  } 
+  else {
     var ruta = "num_cuenta=" + num_cuenta;
     console.log(ruta);
     $.ajax

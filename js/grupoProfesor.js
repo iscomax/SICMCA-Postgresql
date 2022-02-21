@@ -24,7 +24,7 @@ $(document).ready(function() {
             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
             searchPanes: {
               
-                collapse: 'Filtrar',
+                collapse: '<i class="bi bi-funnel-fill"></i>',
                 clearMessage: 'Limpiar Todo',
                 cascadePanes: true,
                 viewTotal: true,

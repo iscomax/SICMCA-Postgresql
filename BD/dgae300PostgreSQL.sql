@@ -1,5 +1,5 @@
 INSERT INTO alumnos (numero_cuenta, nombre, paterno, materno, correo) VALUES
-(123456781, 'Mireya', 'Broz', 'Izar', 'correo1@dominio.com.mx'),
+    (123456781, 'Mireya', 'Broz', 'Izar', 'correo1@dominio.com.mx'),
 (123456782, 'Demetrio', 'Navedo', 'Galarza', 'correo2@dominio.com.mx'),
 (123456783, 'Prica', 'Camango', 'Cendegui', 'correo3@dominio.com.mx'),
 (123456784, 'Janina', 'Vallejo', 'Rios', 'correo4@dominio.com.mx'),

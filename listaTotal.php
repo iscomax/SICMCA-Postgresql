@@ -72,6 +72,7 @@ foreach ($datosUsuario as $key => $dato) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coordinador</title>
+   
         <!-- iconos -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <!-- jquery -->
@@ -111,6 +112,8 @@ foreach ($datosUsuario as $key => $dato) {
     <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
+     <!-- fuentes -->
+     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
 </head>
 <body>
 <?php
@@ -126,16 +129,13 @@ foreach ($datosUsuario as $key => $dato) {
 
    <?php include('./components/navbarCord.php');?>
     <!--  titulo de la sección  *************************-->
-    <div class="container-fluid  titleBox">
-        <div class="container mt-3">
-            <div class="mt-4 title  rounded">
-                <i class="bi bi-journal-bookmark-fill" style="font-size: 50px;"></i>
-                <h1><?php echo  $grupo;?></h1>
-            </div>
+    <div class="container-fluid title ">
+        <div class="row">
+                <div class="col-12">
+                        <h1 ><i class="bi bi-journal-bookmark-fill" style="font-size: 50px;"></i> <?php echo   $cursoNombre." ".$grupo;?></h1>
+                </div>
         </div>
     </div>
- 
-   
 
    <div class="container  table-gruposBox">
         <table  id="loadTable" class=" table table-striped table-bordered table-hover" width="100%" >
@@ -164,13 +164,14 @@ foreach ($datosUsuario as $key => $dato) {
                             <?php
                                 $numero_cuenta = $cuenta['numero_cuenta'];
                                 // $query = "select * from curso where numero_cuenta=  $numero_cuenta";
-                                 $reporte= $conexionSYS->verificarStatus($id_grupo, $id_curso, $numero_cuenta);
+                                 //$reporte= $conexionSYS->verificarStatus($id_grupo, $id_curso, $numero_cuenta);
+                                 $reporte = $conexionSYS->verificarStatus($numero_cuenta, $id_grupo);
                                 // echo "numero_cuenta = " .$numero_cuenta;
                                 //echo "vALOR = ". $reporte;
-                                if ($reporte ==1) {
+                                if ($reporte) {
                                     $estatus = "Concluido";
                                     $calificacion =0;
-                                    $result= $conexionSYS->actualizarCalificacion($id_grupo, $id_curso, $numero_cuenta);
+                                    $result= $conexionSYS->actualizarCalificacion($numero_cuenta, $id_grupo);
                                     $calificacion = $result[0];
                                     $tipo_calificacion = $result[1];
                                     if ($tipo_calificacion== 1) {

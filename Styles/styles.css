@@ -1,5 +1,6 @@
 body{
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
   /* ***********login*************************************************** */
@@ -21,9 +22,13 @@ body{
   color: #1C3D6C;
   background-color:#d4ae72;
   text-align: center;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 2%;
+  background-image: linear-gradient(to right top, #ffff8d, #ecd77a, #d3b26b, #b58f5e, #947051);
 
-  
-
+}
+.title h1{
+  margin: 20px;
 }
 
 .titleCurso{
@@ -80,6 +85,7 @@ body{
    border-style: solid;
    padding-bottom: 3%;
    padding-top: 3%;
+   font-family: 'Roboto', sans-serif;
 }
 .boxForm{
   margin-bottom: 9.6%;
@@ -92,6 +98,7 @@ body{
     border-top: 5px solid #c5911f;
     border-bottom: 5px solid #c5911f;
     padding-top: 2%;
+    font-family: 'Roboto', sans-serif;
 }
 .footer a {
   text-decoration: none;

@@ -63,7 +63,7 @@ class conexionSYS
 
     
     }
-    public function verificarStatus($id_grupo,$id_curso, $numero_cuenta)
+    public function verificarStatus2($id_grupo,$id_curso, $numero_cuenta)
     { 
        
         $status =false;
@@ -91,7 +91,17 @@ class conexionSYS
         
         return $status ;
     }
-
+    public function verificarStatus($numero_cuenta, $id_grupo){
+        $status =false;
+        $qry = " SELECT * from materia where numero_cuenta=$numero_cuenta and id_grupo=$id_grupo";
+        $result =  $this->conexion->query($qry)->rowCount();
+        if ($result >= 1) {
+            $status=true;
+        } else {
+            $status=false;
+        }
+        return $status ;
+    }
 
     public function obtenerRol($id)
     {
@@ -305,7 +315,7 @@ class conexionSYS
     }
     /********************funciones profesor***********************************************************/
 
-    public function actualizarCalificacion($id_grupo,$id_curso, $numero_cuenta)
+    public function actualizarCalificacion2($id_grupo,$id_curso, $numero_cuenta)
     {
         //echo $id_grupo . $id_curso. $numero_cuenta;
         $qry = "SELECT * from materia where numero_cuenta='$numero_cuenta'";
@@ -321,17 +331,37 @@ class conexionSYS
             $curso = $dato['id_moodle'];//id_moodle
             if ($id_curso == $curso && $grupo == $id_grupo) {
 
-                $calificacion = $dato['calificacion'];
+               $calificacion = $dato['calificacion'];
                 $tipo_calificacion = $dato['tipo_calificacion'];
-            }else{
+            }/* else{
 
                 $calificacion = 0;
                 $tipo_calificacion = 0;
-            }
+            } */
         }
         //print_r($resultArray);
         return array($calificacion, $tipo_calificacion);
     }
+
+    public function actualizarCalificacion($numero_cuenta, $id_grupo)
+    {
+        //echo $id_grupo . $id_curso. $numero_cuenta;
+        $qry = " SELECT * from materia where numero_cuenta=$numero_cuenta and id_grupo=$id_grupo";
+        $result =  $this->conexion->query($qry);
+        $datos= $result->fetch();
+
+        if (empty($datos)) {
+            //variable vacia
+            $calificacion = 0;
+            $tipo_calificacion = 0;
+        } else {
+            $calificacion = $datos['calificacion'];
+            $tipo_calificacion = $datos['tipo_calificacion'];
+        }
+        
+        return array($calificacion, $tipo_calificacion);
+    }
+  
   
 
     public function numeroCalificados($id_grupo)
@@ -365,6 +395,29 @@ class conexionSYS
         
        return $status;
     }
+
+    public function asignarTipoCalifiacion($tipo_calificacion, $calificacion){
+    
+        if ($tipo_calificacion == 1) {
+           return $calificacion="NA";
+        } else if ($tipo_calificacion == 2){
+           return $calificacion="NP";
+        } else if ($tipo_calificacion == 3){
+           return $calificacion = round($calificacion, 2);
+        }else{
+           return $calificacion="0";
+        }
+
+    }
+
+
+
+
+
+
+
+
+
 
     public function promedioCurso($calificacionesArray)
     {

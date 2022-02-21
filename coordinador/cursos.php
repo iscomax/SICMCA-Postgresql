@@ -33,6 +33,8 @@ $ciclo="2021-2";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SICMCA-Cursos</title>
+     <!-- fuentes -->
+     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
    <!-- iconos -->
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <!-- jquery -->
@@ -85,16 +87,13 @@ $ciclo="2021-2";
     ?>
 <?php include('../components/navbarCord.php');?>
    <!--  titulo de la sección  *************************-->
-   <div class="container-fluid  titleBox">
-        <div class="container mt-3">
-            <div class="mt-4 title  rounded">
-                <i class="bi bi-mortarboard-fill" style="font-size: 50px;"></i>
-                <h1>Cursos</h1>
+   <div class="container-fluid title ">
+        <div class="row">
+            <div class="col-12">
+                    <h1 ><i class="bi bi-mortarboard-fill" style="font-size: 50px;"></i> Cursos</h1>
             </div>
         </div>
-    </div>
-  
-  
+    </div>  
 <!--  -->
     <div class="container table-gruposBox">
         <table id="cursosCoordinador" class=" table table-striped table-bordered table-hover" width="100%">

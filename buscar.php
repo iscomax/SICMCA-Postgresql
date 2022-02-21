@@ -16,14 +16,13 @@ if (isset($_SESSION['login'])) {
 if (empty($_GET["num_cuenta"]))
 {
    //echo "vacio";
-    $num_cuentaPOST="null";
+    $num_cuenta="null";
 } 
 else
 {
     //echo "iniciar busqueda";
-   $num_cuentaPOST=$_GET["num_cuenta"];
-   if (strlen( $num_cuentaPOST)<9 || strlen( $num_cuentaPOST)>9){
-    
+   $num_cuenta=$_GET["num_cuenta"];
+   if (strlen( $num_cuenta)<9 || strlen( $num_cuenta)>9){
      //  echo "El número de cuenta es de 9 Digitos";
         $validar = false;
     }else{
@@ -58,7 +57,7 @@ $nombre = $nombre_Profesor;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SICMCA-Busquedas</title>
+    <title>SICMCA Busquedas</title>
  <!-- iconos -->
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <!-- jquery -->
@@ -88,6 +87,8 @@ $nombre = $nombre_Profesor;
     <script src="./dataTable/pdfmake-0.1.36/pdfmake.js"></script>
     <script src="./dataTable/pdfmake-0.1.36/vfs_fonts.js"></script>
     <script src="./dataTable/Buttons-2.1.1/js/buttons.html5.js"></script>
+       <!-- fuentes -->
+       <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
 
 </head>
 
@@ -103,14 +104,14 @@ $nombre = $nombre_Profesor;
   <?php include('./components/navbar.php');?>
 
      <!--  titulo de la sección  *************************-->
-     <div class="container-fluid  titleBox">
-        <div class="container mt-3">
-            <div class="mt-4 title  rounded">
-                <i class="bi bi-search" style="font-size: 50px;"></i>
-                <h1>Búscar por Número de Cuenta</h1>
+     <div class="container-fluid title ">
+        <div class="row">
+            <div class="col-12">
+                    <h1 ><i class="bi bi-search" style="font-size: 50px;"></i> Búscar por Número de Cuenta</h1>
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="row">
             <div class="col -12 col-md-12  d-flex justify-content-center">
@@ -136,9 +137,9 @@ $nombre = $nombre_Profesor;
     </div>
 
 
-    <?php if( $num_cuentaPOST!="null" and $validar==true):?>
+    <?php if( $num_cuenta!="null" and $validar==true):?>
         <?php
-            $numero_Cuenta = $num_cuentaPOST;
+       $numero_Cuenta = $num_cuenta;
             if ($numero_Cuenta !="null" ):
             $alumno = $conexionDGAE->getAlumnoby($numero_Cuenta);
             $alumnoCorrreo = $alumno['correo'];
@@ -151,7 +152,8 @@ $nombre = $nombre_Profesor;
                 // die();
                 
             }else{
-                $busqueda = $cursos->getListaBy($alumnoCorrreo);
+                 $busqueda = $cursos->getListaBy($alumnoCorrreo);
+                 //print_r($busqueda);
             }
             
         ?>
@@ -176,20 +178,21 @@ $nombre = $nombre_Profesor;
                 <?php   foreach ($busqueda  as $key => $curso): ?>
                 
                 <?php 
-                      $id_curso =$curso["courseid"];
-                      $id_grupo=$curso["id"];
+                       $id_curso =$curso["courseid"];
+                        $id_grupo=$curso["id"];
                       $indice = array_search($id_grupo,$idGrupoArray,true);
                       $grupo = $idGrupoArray[$indice];
                       //echo $grupo;
                 ?>
                 <?php if ($grupo== $id_grupo ): ?>
                     <?php 
-                    $calificacion;
-                   $reporte= $conexionSYS->verificarStatus($id_grupo,$id_curso, $numero_Cuenta);
+                  
+                     $calificacion;
+                    $reporte = $conexionSYS->verificarStatus($numero_Cuenta, $id_grupo);
                     if ($reporte) {
                        $estatus = "Concluido";
                         $calificacion =0;
-                        $result= $conexionSYS->actualizarCalificacion($id_grupo,$id_curso, $numero_Cuenta);
+                       $result= $conexionSYS->actualizarCalificacion($numero_Cuenta, $id_grupo);
                         $calificacion = $result[0];
                         $tipo_calificacion = $result[1];
                     } else {

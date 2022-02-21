@@ -50,9 +50,11 @@ $reporte = $conexionBD->getStatusRegistro($id_grupo, $cuenta);
 $calificacionBD= $conexionBD->getCalificacion($id_grupo, $cuenta); 
 
 if ($reporte>=1) {
-  $format_number1= $calificacionBD;  
+  $format_number1= $calificacionBD;
+  $mensaje='Esta calificación ya está registrada en el sistema DGAE';  
 }else{
   $format_number1 = round($calificacion, 2) ;
+  $mensaje='';
 }
 
 /*
@@ -79,6 +81,8 @@ $nombre= $profesor;
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SICMCA Subir Calificación</title>
+        <!-- fuentes -->
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
    <!-- iconos -->
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <!-- jquery -->
@@ -125,16 +129,13 @@ $nombre= $profesor;
 <?php include('./components/navbar.php');?>
 
     <!--  titulo de la sección  *************************-->
-    <div class="container-fluid  titleBox">
-        <div class="container mt-3">
-            <div class="mt-4 title  rounded">
-                <i class="bi bi-upload" style="font-size: 50px;"></i>
-                <h1>Subir calificación</h1>
+    <div class="container-fluid title ">
+        <div class="row">
+            <div class="col-12">
+                    <h1 ><i class="bi bi-upload" style="font-size: 50px;"></i> Subir calificación</h1>
             </div>
         </div>
     </div>
-
-
 <div class="container boxForm">
   <div class="row">
     <div class="col-12 col-md-2"></div>
@@ -186,6 +187,7 @@ $nombre= $profesor;
                 <label for="lname">Calificación</label>
                     <div class="input-group ">
                         <input type="text" id="calificacion" class="col-12 col-md-2" name="calificacion" value="<?php echo $format_number1 ?> " disabled>
+            
                         <?php 
                           $id_grupo = base64_encode( $id_grupo);
                           $id_grupo= urldecode($id_grupo);
@@ -200,6 +202,7 @@ $nombre= $profesor;
                         <a class="btn  btn-warning col-4 col-md-3" id="" data-bs-toggle="modal" data-bs-target="#myModal" type="button">Editar</a>
 
                         <a href="lista.php?id_grupo=<?php echo $id_grupo ?>&id_curso=<?php echo $id_curso?>" class="btn btn-primary  text-wrap col-4 col-md-3" type="button">Cancelar</a>
+                        <span><?php echo $mensaje?></span>
                     </div>
                 </div>
             </div>

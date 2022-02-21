@@ -80,11 +80,11 @@ $conexionSYS = new conexionSYS;
                       <?php if ($grupo== $id_grupo ):?>
                         <?php 
                              $calificacion;
-                             $reporte= $conexionSYS->verificarStatus($id_grupo,$id_curso, $numero_Cuenta);
+                             $reporte= $conexionSYS->verificarStatus($numero_Cuenta, $id_grupo);
                              if ($reporte) {
                                  $estatus = "Concluido";
                                  $calificacion =0;
-                                 $calificacion= $conexionSYS->actualizarCalificacion($id_grupo,$id_curso, $numero_Cuenta);
+                                 $calificacion= $conexionSYS->actualizarCalificacion($numero_Cuenta, $id_grupo);
                                //  echo "calificacion: ". $calificacion;
                              } else {
                                  $estatus = "Pendiente";

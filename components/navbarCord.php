@@ -27,14 +27,14 @@
                 <div class="d-flex">
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-success  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn btn-light  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-file-person-fill"></i>
                             <span class=" "><?php echo $nombre ?></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Datos de Usuario</a></li> 
+                        <li><a class="dropdown-item" href="#"> <i class="bi bi-person-fill"></i> Perfil</a></li> 
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="<?php echo $ruta4 ?>">Cerrar Sesión</a></li>
+                        <li><a class="dropdown-item" href="<?php echo $ruta4 ?>"><i class="bi bi-box-arrow-in-left"></i> Cerrar Sesión</a></li>
                     </ul>
                     
                 </div>
