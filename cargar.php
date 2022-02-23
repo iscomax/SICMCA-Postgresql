@@ -263,7 +263,6 @@ window.history.forward(1); //Esto es para cuando le pulse atras
 </script>
 
 
-  
   <script src="./js/notificaciones.js"></script>
   <script src="./js/prueba.js"></script>
   <script src="./js/np.js"></script>
