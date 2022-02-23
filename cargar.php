@@ -252,7 +252,7 @@ $nombre= $profesor;
 </div>
 <div id="respuesta">
     
-    </div>
+  </div>
 <!-- footer -->
 <?php  include('./components/footer.php');?>
 
