@@ -43,8 +43,8 @@ $status= $conexionB->getStatusRegistro($id_grupo, $cuenta);
 
 $curso = new cursos;
 $curso->mostrarCurso($id_usuario, $id_grupo);
-echo $cursoNombre=$curso->getNombreCurso();
-echo $grupo= $curso->getNombreGrupo();
+$cursoNombre=$curso->getNombreCurso();
+$grupo= $curso->getNombreGrupo();
 
 
 if ($status>=1) {
