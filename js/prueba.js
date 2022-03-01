@@ -1,39 +1,68 @@
 
+function alerta(mensaje) {
+  Swal.fire({
+    toast: true,
+    //title:'El Rango de la calificación Final es de 5 a 10',
+    text: mensaje,
+    confirmButtonColor: '#0d6efd',
+    position: 'top'
+  })
+}
+
+/*********************************************************************** */
 $('#editar').click(function () {
 
   let calificacion2 = document.getElementById("calificacion2").value;
   //console.log(calificacion2);
   if (calificacion2 < 5 || calificacion2 > 10) {
-    window.alert("El Rango de la calificación Final es de 5 a 10");
+    mensaje = 'El Rango de la calificación Final es de 5 a 10';
+    alerta(mensaje);
     calificacion2.value = 0;
   } else {
-    var resultado = window.confirm('¿Está seguro de actualizar la calificación final?');
-    if (resultado === true) {
-      let calificacion2 = document.getElementById("calificacion2").value;
-      let calificacion = document.getElementById("calificacion").value;
-      var datos = document.getElementById("calificacion");
-      console.log(calificacion);
-      console.log(calificacion2);
-      if (calificacion == calificacion2) {
+    Swal.fire({
+      //title: '¿Está seguro de actualizar la calificación final?',
+      text: "¿Está seguro de actualizar la calificación final?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#0d6efd',
+      cancelButtonColor: '#fb9b03',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+      toast: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-        calificacion = calificacion
-      } else {
+        let calificacion2 = document.getElementById("calificacion2").value;
+        let calificacion = document.getElementById("calificacion").value;
+        var datos = document.getElementById("calificacion");
+        console.log(calificacion);
+        console.log(calificacion2);
+        if (calificacion == calificacion2) {
 
-        calificacion = calificacion2
+          calificacion = calificacion
+        } else {
+
+          calificacion = calificacion2
+        }
+        datos.value = calificacion;
+        if (calificacion % 1 == 0) {
+          mensaje = 'El formato de la calificación es correcto';
+          alerta(mensaje);
+        } else if (calificacion == "NA") {
+          mensaje = 'El formato de la calificación es correcto "NA"';
+          alerta(mensaje);
+        }
+        else if (calificacion == "NP") {
+          mensaje = 'El formato de la calificación es correcto "NP"';
+          alerta(mensaje);
+        }
+        else {
+          mensaje = "La calificación actual es un número decimal no podrás realizar el registro";
+          alerta(mensaje);
+        }
       }
-      datos.value = calificacion;
-      if (calificacion % 1 == 0) {
-        alert('El formato de la calificación es correcto ');
-      } else if (calificacion == "NA") {
-        alert('El formato de la calificación es correcto "NA"');
-      }
-      else if (calificacion == "NP") {
-        alert('El formato de la calificación es correcto "NP"');
-      }
-      else {
-        alert("La calificación actual es un número decimal no podrás realizar el registro");
-      }
-    }
+    })
   }
 })
 
@@ -84,41 +113,76 @@ function enviarDatos() {
   console.log(calificacion);
   if (calificacion % 1 == 0 || calificacion == "NA" || calificacion == "NP") {
     if (estatus >= 1) {
-      window.alert("Esta calificación ya está registrada en el sistema DGAE");
-      //location.reload();
-
+      // window.alert("Esta calificación ya está registrada en el sistema DGAE");
+      Swal.fire({
+        icon: 'error',
+        title: "Esta calificación ya está registrada en el sistema DGAE",
+        //text: 'Something went wrong!',
+        confirmButtonColor: '#0d6efd',
+        position: 'top',
+        timer: 5000,//5 segundos
+        timeProgressBar: true,
+        showConfirmButton: true,
+      })
+      // location.reload();
     } else if (calificacion >= 5 || calificacion == "NA" || calificacion == "NP") {
-      var resultado = window.confirm('¿Está seguro de registrar la calificación final?');
-      if (resultado === true) {
-        var ruta = "profesor=" + profesor + "&idcurso=" + idcurso + "&cuenta=" + cuenta + "&nombre=" + nombre + "&paterno="
-          + paterno + "&materno=" + materno + "&cursoNombre=" + curso + "&grupo=" + grupo + "&calificacion=" + calificacion + "&estatus=" + estatus + "&id_usuario=" + id_usuario + "&id_grupo=" + id_grupo;
-        console.log(ruta);
-        $.ajax
-          ({
-            url: "insert.php",
-            type: 'POST',
-            data: ruta,
-          })
-          .done(function (res) {
-            $('#respuesta').html(res);
+      Swal.fire({
+        //title: '¿Está seguro de actualizar la calificación final?',
+        text: "¿Está seguro de registrar la calificación final?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#0d6efd',
+        cancelButtonColor: '#fb9b03',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar',
+        toast: true,
+        position: 'top',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var ruta = "profesor=" + profesor + "&idcurso=" + idcurso + "&cuenta=" + cuenta + "&nombre=" + nombre + "&paterno="
+            + paterno + "&materno=" + materno + "&cursoNombre=" + curso + "&grupo=" + grupo + "&calificacion=" + calificacion + "&estatus=" + estatus + "&id_usuario=" + id_usuario + "&id_grupo=" + id_grupo;
+          console.log(ruta);
+          $.ajax
+            ({
+              url: "insert.php",
+              type: 'POST',
+              data: ruta,
+            })
+            .done(function (res) {
+              $('#respuesta').html(res);
 
+            })
+            .fail(function () {
+              console.log("error");
+            })
+            .always(function () {
+              console.log("complete");
+            });
+          //window.alert("La calificación se ha registrado exitosamente");
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'La calificación se ha registrado exitosamente',
+            showConfirmButton: false,
+            timer: 1500
           })
-          .fail(function () {
-            console.log("error");
-          })
-          .always(function () {
-            console.log("complete");
-          });
-        window.alert("La calificación se ha registrado exitosamente");
-     
-       // location.reload();
-      } 
+          setTimeout(function () {
+            location.reload();
+          }, 1500);
+
+
+        }
+      })
+
+      /* ********* */
     } else {
-      window.alert("El Rango de la calificación Final es de 5 a 10");
+      mensaje= "El Rango de la calificación Final es de 5 a 10";
+      alerta(mensaje);
     }
 
   } else {
-    window.alert("El registro de la calificación debe ser un número entero");
+    mensaje="El registro de la calificación debe ser un número entero";
+    alerta(mensaje);
   }
 
 
@@ -170,10 +234,10 @@ function searchByNumCuenta() {
   console.log(long);
   if (num_cuenta === "") {
     window.alert("Para realizar una búsqueda debes ingresar un número de cuenta de 9 dígitos");
- 
-  }else if(long < 9 || long > 9){
+
+  } else if (long < 9 || long > 9) {
     window.alert("Un número de cuenta es de 9 dígitos");
-  } 
+  }
   else {
     var ruta = "num_cuenta=" + num_cuenta;
     console.log(ruta);

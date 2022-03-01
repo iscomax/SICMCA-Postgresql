@@ -91,7 +91,8 @@ $nombre= $profesor;
     <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
     <script src="./js/bootstrap/popper.min.js"></script>
     <script src="./js/bootstrap/bootstrap.min.js"></script>
-   
+   <!-- sweetalert -->
+   <script src="./js/sweetalert/sweetalert2.all.min.js"></script>
     
     <!-- data Table-->
     <link rel="stylesheet" href="./dataTable/datatables.css">
@@ -195,9 +196,9 @@ $nombre= $profesor;
                           $id_curso= urldecode($id_curso);  
                         ?>
                      <!-- lista.php?id_grupo=<?php echo $id_grupo ?>&id_curso=<?php echo $id_curso?> -->
-
-                        <a href=""
-                        class="btn  text-wrap col-4 col-md-3  btn-success" type="button" id='Enviar'  name='enviar' onclick='enviarDatos()'> Registrar</a>
+                        <button class="btn  text-wrap col-4 col-md-3  btn-success" type="button" id='Enviar'  name='enviar' onclick='enviarDatos()'> Registrar</button>
+                       <!--  <a href=""
+                        class="btn  text-wrap col-4 col-md-3  btn-success" type="button" id='Enviar'  name='enviar' onclick='enviarDatos()'> Registrar</a> -->
                         <!-- open modal -->
                         <a class="btn  btn-warning col-4 col-md-3" id="" data-bs-toggle="modal" data-bs-target="#myModal" type="button">Editar</a>
 
