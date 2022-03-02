@@ -4,7 +4,7 @@ require_once 'validar.php';
 require_once 'keys.php';
 $conexion = new conexionSYS;
 $error = "";
-
+/* voy a trabajar en index php */
 if($_POST){
     function getCaptcha($SecretKey){
         $Response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".SECRET_KEY."&response={$SecretKey}");
