@@ -471,6 +471,20 @@ class conexionSYS
         return $calificacionF;
 
     }
+   /*************************Consultar********************** */
+   public function validarUsuarioId($id)
+   {
+       //echo "idusuario= " . $id;
+       $qry = "select * from usuario where id_usuario= $id ";
+     
+
+       $filas =  $filas = $this->conexion->query($qry)->rowCount();
+       if ($filas >= 1) {
+           return  $filas;
+       } else {
+           return 0;
+       }
+   }
 
 
 /*     public function encryption($string){
