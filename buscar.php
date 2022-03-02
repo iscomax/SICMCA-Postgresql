@@ -117,7 +117,7 @@ $nombre = $nombre_Profesor;
     <div class="container">
         <div class="row">
             <div class="col -12 col-md-12  d-flex justify-content-center">
-            <form action="buscar.php" method="get" class="row g-3">
+            <form action="" method="" class="row g-3">
                     <div class="col-12 col-md-3">
                         <p>Buscar Alumno</p>
                     </div>

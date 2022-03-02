@@ -14,21 +14,22 @@ $paterno = $_POST["paterno"];
 $materno = $_POST["materno"];
 $cursoNombre = $_POST["cursoNombre"];
 $grupo = $_POST["grupo"];
-$calificacion = $_POST["calificacion"];
+$calificacionT = $_POST["calificacion"];
 $reporte =$_POST["estatus"];
 $id_grupo= $_POST["id_grupo"];
 
 $tipoCalificacion;
 
-if ( $calificacion == "NA" ) {
+if ( $calificacionT == "NA" ) {
     $tipoCalificacion =1;
     $calificacion = 0;
-}else if ( $calificacion == "NP"){
+}else if ( $calificacionT == "NP"){
     $tipoCalificacion =2;
     $calificacion = 0;
 
 }else{
     $tipoCalificacion =3;
+    $calificacion= $calificacionT;
 }
 
 $tipoCalificacion;
@@ -70,7 +71,7 @@ if ($status>=1) {
                 $fechaActual = date('Y-m-d H:i:s');
                 //sentencia de consulta
                 $query = "INSERT into bitacora (grupo,profesor,alumno,calificacion,fecha_hora,id_usuario,id_materia)values
-                ('$grupo','$profesor','$alumno','$calificacion','$fechaActual','$id_usuario','$id_materia')";
+                ('$grupo','$profesor','$alumno','$calificacionT','$fechaActual','$id_usuario','$id_materia')";
                 //insert en la BD
                 $resul= $conexionB->guardar($query);
                 //echo "id Bitacora = ". $resul; 

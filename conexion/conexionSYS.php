@@ -291,7 +291,7 @@ class conexionSYS
     /********************funciones coordinador***********************************************************/
     public function mostrarBItacora()
     {
-        $qry = "SELECT * from bitacora";
+        $qry = "SELECT * from bitacora order by id_bitacora DESC";
         $result =  $this->conexion->query($qry);
         $resultArray = array();
         foreach ($result as $key) {
@@ -413,12 +413,6 @@ class conexionSYS
 
 
 
-
-
-
-
-
-
     public function promedioCurso($calificacionesArray)
     {
         $this->calificacionesArray= $calificacionesArray;
@@ -477,7 +471,6 @@ class conexionSYS
        //echo "idusuario= " . $id;
        $qry = "select * from usuario where id_usuario= $id ";
      
-
        $filas =  $filas = $this->conexion->query($qry)->rowCount();
        if ($filas >= 1) {
            return  $filas;

@@ -42,7 +42,9 @@ foreach ($datosUsuario as $key => $dato) {
     <link rel="stylesheet" href="../Styles/bootstrap/bootstrap.min.css">
     <script src="../js/bootstrap/popper.min.js"></script>
     <script src="../js/bootstrap/bootstrap.min.js"></script>
- 
+    <!-- sweetalert -->
+    <script src="../js/sweetalert/sweetalert2.all.min.js"></script>
+    
     
     
     <!-- data Table-->

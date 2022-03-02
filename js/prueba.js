@@ -69,31 +69,55 @@ $('#editar').click(function () {
 /*****************************************************/
 function eliminarB(id_bitacora) {
   // window.alert("id_bitacora = "+ id_bitacora);
-  var resultado = window.confirm('¿Está seguro que desea eliminar este registro?');
+ /*  var resultado = window.confirm('¿Está seguro que desea eliminar este registro?'); */
+  Swal.fire({
+    //title: '¿Está seguro que desea eliminar este registro?',
+    text: "¿Está seguro que desea eliminar este registro?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#0d6efd',
+    cancelButtonColor: '#fb9b03',
+    confirmButtonText: 'Aceptar',
+    cancelButtonText: 'Cancelar',
+    toast: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
 
-  if (resultado === true) {
-    var ruta = "id_bitacora=" + id_bitacora;
-    console.log(ruta);
-    $.ajax({
-      url: 'bitacora.php',
-      type: 'POST',
-      data: ruta,
-    })
-      .done(function (res) {
-        $('#respuesta').html(res);
+      var ruta = "id_bitacora=" + id_bitacora;
+      console.log(ruta);
+      $.ajax({
+        url: 'bitacora.php',
+        type: 'POST',
+        data: ruta,
       })
-      .fail(function () {
-        console.log('error');
-      })
-      .always(function () {
-        console.log('complete');
-      });
-    location.reload();
-
-  } else {
-    window.alert('El registro no se ha eliminado');
-  }
+        .done(function (res) {
+          $('#respuesta').html(res);
+        })
+        .fail(function () {
+          console.log('error');
+        })
+        .always(function () {
+          console.log('complete');
+        });
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'EL Registrado se ha eliminado exitosamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setTimeout(function () {
+          location.reload();
+        }, 1500);
+  
+    }else {
+      mensaje="El registro no se ha eliminado";
+      alerta(mensaje);
+    }
+  })
 }
+
 
 /***************************************************************************************/
 function enviarDatos() {
@@ -241,7 +265,7 @@ function searchByNumCuenta() {
       text: mensaje,
       confirmButtonColor: '#0d6efd',
       position: 'top',
-      timer: 5000,
+      timer: 10000,
     })
 
 
