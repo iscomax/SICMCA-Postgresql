@@ -233,10 +233,22 @@ function searchByNumCuenta() {
   var long = num_cuenta.length;
   console.log(long);
   if (num_cuenta === "") {
-    window.alert("Para realizar una búsqueda debes ingresar un número de cuenta de 9 dígitos");
+    mensaje="Para realizar una búsqueda debes ingresar un número de cuenta de 9 dígitos";
+    
+    Swal.fire({
+      toast: true,
+      //title:'El Rango de la calificación Final es de 5 a 10',
+      text: mensaje,
+      confirmButtonColor: '#0d6efd',
+      position: 'top',
+      timer: 5000,
+    })
+
 
   } else if (long < 9 || long > 9) {
-    window.alert("Un número de cuenta es de 9 dígitos");
+    //window.alert("Un número de cuenta es de 9 dígitos");
+    mensaje= "Un número de cuenta es de 9 dígitos";
+    alerta(mensaje);
   }
   else {
     var ruta = "num_cuenta=" + num_cuenta;

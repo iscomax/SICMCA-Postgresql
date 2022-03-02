@@ -66,6 +66,8 @@ $nombre = $nombre_Profesor;
     <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
     <script src="./js/bootstrap/popper.min.js"></script>
     <script src="./js/bootstrap/bootstrap.min.js"></script>
+     <!-- sweetalert -->
+   <script src="./js/sweetalert/sweetalert2.all.min.js"></script>
   
     
     <!-- data Table-->
@@ -125,7 +127,7 @@ $nombre = $nombre_Profesor;
                     </div>
                     <div class="col-12 col-md-2 ">
                            <!--  <button class="button" id="buscar" type="submit" >Buscar</button>-->
-                        <button type="submit" onclick="searchByNumCuenta()" class="btn btn-primary mb-3 ">Buscar</button>
+                        <button type="" onclick="searchByNumCuenta()" class="btn btn-primary mb-3 ">Buscar</button>
                     </div>
                     <div class="col-12 col-md-2 ">
                         <a href="profesor.php?id_usuario=<?php echo $id?>" class="btn btn-primary mb-3" >Regresar</a>
@@ -144,127 +146,155 @@ $nombre = $nombre_Profesor;
             $alumno = $conexionDGAE->getAlumnoby($numero_Cuenta);
             $alumnoCorrreo = $alumno['correo'];
             if ($alumnoCorrreo==null) {
-                echo '<script type="text/javascript">
+                /* echo '<script type="text/javascript">
                 window.alert("Numero de cuenta no registrado en la BD");
                 window.location="buscar.php";
-                </script>';
-                // header("location: buscar.php");
+                </script>';  */
+                //header("location: buscar.php");
                 // die();
+            
+                $mensaje="Numero de cuenta no registrado en la BD";
                 
             }else{
                  $busqueda = $cursos->getListaBy($alumnoCorrreo);
+                 $mensaje="";
                  //print_r($busqueda);
             }
             
         ?>
-    <div class="container table-busqueda">
-        <table id="loadTable" class=" table table-striped table-bordered table-hover" width="100%"  >
-            <thead>
-                <tr>
-                    <th>Id Curso</th>
-                    <th>Nombre del Curso</th>
-                    <th>Nombre del Grupo</th>
-                    <th>Nombre del Profesor</th>
-                    <th>Número de Cuenta</th>
-                    <th>Nombre del Alumno</th>
-                    <th>Calificación Moodle</th>
-                    <th>Calificación Final</th>
-                    <th>Pendiente/Concluido</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-               
-                <?php   foreach ($busqueda  as $key => $curso): ?>
-                
-                <?php 
-                       $id_curso =$curso["courseid"];
-                        $id_grupo=$curso["id"];
-                      $indice = array_search($id_grupo,$idGrupoArray,true);
-                      $grupo = $idGrupoArray[$indice];
-                      //echo $grupo;
-                ?>
-                <?php if ($grupo== $id_grupo ): ?>
-                    <?php 
-                  
-                     $calificacion;
-                    $reporte = $conexionSYS->verificarStatus($numero_Cuenta, $id_grupo);
-                    if ($reporte) {
-                       $estatus = "Concluido";
-                        $calificacion =0;
-                       $result= $conexionSYS->actualizarCalificacion($numero_Cuenta, $id_grupo);
-                        $calificacion = $result[0];
-                        $tipo_calificacion = $result[1];
-                    } else {
-                        $estatus = "Pendiente";
-                        $calificacion =0;
-                      // $calificacion =$curso['finalgrade'];
-                    }
+        <?php if( $mensaje == ""):?>
+            <div class="container table-busqueda">
+                <table id="loadTable" class=" table table-striped table-bordered table-hover" width="100%"  >
+                    <thead>
+                        <tr>
+                            <th>Id Curso</th>
+                            <th>Nombre del Curso</th>
+                            <th>Nombre del Grupo</th>
+                            <th>Nombre del Profesor</th>
+                            <th>Número de Cuenta</th>
+                            <th>Nombre del Alumno</th>
+                            <th>Calificación Moodle</th>
+                            <th>Calificación Final</th>
+                            <th>Pendiente/Concluido</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     
-                    if ($estatus=="Pendiente" ) {
-                        $calfinal =$curso['finalgrade'];
-                
-                    } else{
-                        $calfinal = $calificacion;
-                      
-                        if ($tipo_calificacion== 1) {
-                            $calificacion="NA";
-                        } else if ($tipo_calificacion== 2){
-                            $calificacion="NP";
-                        } else if ($tipo_calificacion== 3){
-                            $calificacion = round($calificacion, 2);
-                        }
-                    }
-                    ?>              
-                    <tr>
-                        <td id="id_curso"><?php echo $curso["courseid"] ?></td>
-                        <td id="nombre_Curso"><?php echo $curso["fullname"] ?></td>
-                        <td id="nombre_Grupo"><?php echo $curso["name"] ?></td>
-                        <td id="nombre_Profesor"><?php echo $nombre_Profesor ?></td>
-                        <td id="numero_Cuenta" ><?php echo $numero_Cuenta?></td>
-                        <td id="nombre_Alumno" ><?php echo $curso["firstname"]." ".$curso["lastname"] ?></td>
-                        <td id="calificacion_Moodle" ><?php echo $format_number1 = round($curso['finalgrade'], 2)?></td>
-                        <td id="calificacion_final" ><?php echo $calificacion?></td>
-                        <td id="estatus" ><?php echo $estatus?></td>
-                        <td id="buttonEnviar" >
+                        <?php   foreach ($busqueda  as $key => $curso): ?>
+                        
                         <?php 
-
-                        $id_curso_code = base64_encode($id_curso);
-                        $id_curso_code= urldecode( $id_curso_code);
-
-                        
-                         $id_grupo_code = base64_encode( $id_grupo);
-                        $id_grupo_code= urldecode($id_grupo_code);
-                        //echo $numero_Cuenta;
-                        $numero_cuenta_code = base64_encode( $numero_Cuenta);
-                        $numero_cuenta_code= urldecode($numero_cuenta_code);
-                        //echo $calfinal;
-                        $calfinal_code = base64_encode( $calfinal);
-                        $calfinal_code = urldecode($calfinal_code);
-              
-                        $reporte_code = base64_encode( $reporte);
-                        $reporte_code = urldecode($reporte_code);
-
+                            $id_curso =$curso["courseid"];
+                                $id_grupo=$curso["id"];
+                            $indice = array_search($id_grupo,$idGrupoArray,true);
+                            $grupo = $idGrupoArray[$indice];
+                            //echo $grupo;
                         ?>
-            
-                        <a href="cargar.php?id_curso=<?php echo $id_curso_code?>&id_grupo=<?php echo $id_grupo_code?>&numero_cuenta=<?php echo $numero_cuenta_code?>&cal=<?php echo $calfinal_code;?>&r=<?php echo $reporte_code?>" class="btn btn-primary" type="button">Subir Calificación</a>
+                        <?php if ($grupo== $id_grupo ): ?>
+                            <?php 
                         
-                        </td>
-                    </tr>
-                    <?php endif?>                                    
-                <?php endforeach ?>
-                <?php endif?> 
-            </tbody>
-        </table>
-      
-    </div>
+                            $calificacion;
+                            $reporte = $conexionSYS->verificarStatus($numero_Cuenta, $id_grupo);
+                            if ($reporte) {
+                            $estatus = "Concluido";
+                                $calificacion =0;
+                            $result= $conexionSYS->actualizarCalificacion($numero_Cuenta, $id_grupo);
+                                $calificacion = $result[0];
+                                $tipo_calificacion = $result[1];
+                            } else {
+                                $estatus = "Pendiente";
+                                $calificacion =0;
+                            // $calificacion =$curso['finalgrade'];
+                            }
+                            
+                            if ($estatus=="Pendiente" ) {
+                                $calfinal =$curso['finalgrade'];
+                        
+                            } else{
+                                $calfinal = $calificacion;
+                            
+                                if ($tipo_calificacion== 1) {
+                                    $calificacion="NA";
+                                } else if ($tipo_calificacion== 2){
+                                    $calificacion="NP";
+                                } else if ($tipo_calificacion== 3){
+                                    $calificacion = round($calificacion, 2);
+                                }
+                            }
+                            ?>              
+                            <tr>
+                                <td id="id_curso"><?php echo $curso["courseid"] ?></td>
+                                <td id="nombre_Curso"><?php echo $curso["fullname"] ?></td>
+                                <td id="nombre_Grupo"><?php echo $curso["name"] ?></td>
+                                <td id="nombre_Profesor"><?php echo $nombre_Profesor ?></td>
+                                <td id="numero_Cuenta" ><?php echo $numero_Cuenta?></td>
+                                <td id="nombre_Alumno" ><?php echo $curso["firstname"]." ".$curso["lastname"] ?></td>
+                                <td id="calificacion_Moodle" ><?php echo $format_number1 = round($curso['finalgrade'], 2)?></td>
+                                <td id="calificacion_final" ><?php echo $calificacion?></td>
+                                <td id="estatus" ><?php echo $estatus?></td>
+                                <td id="buttonEnviar" >
+                                <?php 
+
+                                $id_curso_code = base64_encode($id_curso);
+                                $id_curso_code= urldecode( $id_curso_code);
+
+                                
+                                $id_grupo_code = base64_encode( $id_grupo);
+                                $id_grupo_code= urldecode($id_grupo_code);
+                                //echo $numero_Cuenta;
+                                $numero_cuenta_code = base64_encode( $numero_Cuenta);
+                                $numero_cuenta_code= urldecode($numero_cuenta_code);
+                                //echo $calfinal;
+                                $calfinal_code = base64_encode( $calfinal);
+                                $calfinal_code = urldecode($calfinal_code);
+                    
+                                $reporte_code = base64_encode( $reporte);
+                                $reporte_code = urldecode($reporte_code);
+
+                                ?>
+                    
+                                <a href="cargar.php?id_curso=<?php echo $id_curso_code?>&id_grupo=<?php echo $id_grupo_code?>&numero_cuenta=<?php echo $numero_cuenta_code?>&cal=<?php echo $calfinal_code;?>&r=<?php echo $reporte_code?>" class="btn btn-primary" type="button">Subir Calificación</a>
+                                
+                                </td>
+                            </tr>
+                            <?php endif?>                                    
+                        <?php endforeach ?>
+                        <?php endif?> 
+                    </tbody>
+                </table>
+            
+            </div>
+
+        <?php endif;?>
     <?php endif;?>
     
     <div class="footer-busqueda">
         <?php include('./components/footer.php');?>
     </div>
 
+    <script>
+           mensaje = "<?php echo $mensaje; ?>";
 
+           if (mensaje === "") {
+               console.log("vacio");
+           } else {
+               
+                    Swal.fire({
+                        toast: true,
+                        //title:'El Rango de la calificación Final es de 5 a 10',
+                        text: mensaje,
+                        confirmButtonColor: '#0d6efd',
+                        position: 'top'
+                    })
+                    //window.location="buscar.php";
+                    //location.reload();
+           }
+       
+        /* console.log(mensaje);
+        console.log("hola mundo"); */
+                     
+        
+    </script>                   
 
     <script src="./js/prueba.js"></script>
     <script src="./js/dataTable.js"></script>
