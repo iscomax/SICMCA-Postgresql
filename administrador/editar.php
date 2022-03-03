@@ -3,7 +3,7 @@ require('../conexion/conexionSYS.php');
 session_start();
 if (isset($_SESSION['login'])) {
 } else {
-    header("location: index.php");
+    header("location: ../index.php");
 }
 
 $conexion = new conexionSYS;
@@ -67,34 +67,45 @@ if (empty($_POST["id"])) {
 </head>
 
 <body>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <?php
+        $rutLogoF='../img/logo-dgtic.png';
+    ?>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <div class="container-fluid">
-            <a class="navbar-brand" href="">
-                <img src="<?php echo $rutLogo ?>" alt="" width="40" class="d-inline-block align-text-top">
+            <a class="navbar-brand" href="https://www.unam.mx/" target="_blank">
+                <img src="../img/logo-unam.png" alt="" width="40" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav me-auto">
-                      <li class="nav-item">
-                          <a href="../adm.php" class="nav-link">Lista de Usuarios</a>
-                      </li>
-                      <li class="nav-item">
-                          <a href="#" class="nav-link">Altas</a>
-                      </li>
-                      <li class="nav-item">
-                          <a href="./docu.php" class="nav-link">Documentación</a>
-                      </li>
-                      <li class="nav-item">
-                          <a href="../ip.php" class="nav-link">Datos Conexión</a>
-                      </li>
+                    <li class="nav-item">
+                        <a href="./inicio.php" class="nav-link">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./altas.php" class="nav-link">Altas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../adm.php" class="nav-link">Lista de Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./bitacora.php" class="nav-link">Bitácora de Actividades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../ip.php" class="nav-link">Datos Conexión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./noti.php" class="nav-link">Notificaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./docu.php" class="nav-link">Documentación</a>
+                    </li>
                 </ul>
  
                 <div class="d-flex">
                       <a href="../clases/destroy.php">
-                          <button class="btn btn-danger">Cerrar Sesión</button>
+                          <button class="btn btn-success"><i class="bi bi-file-person-fill"></i>Cerrar Sesión</button>
                       </a>
                 </div>
             </div>
@@ -106,9 +117,9 @@ if (empty($_POST["id"])) {
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="shadow-lg mt-4 bg-body rounded ancho">
+                <div class="shadow-lg my-4 bg-body rounded ancho">
                     <h3 class="text-center fondo text-white  fs-2 pt-3 pb-3 mb-5 titulologin">Editar Usuario</h3>
-                    <div class="p-3">
+                    <div class="p-3" id="data">
                         <div class="col-md-12">
                             <input type="hidden"  class="form-control" id="id_persona" name="id_persona" value="<?php echo $id_persona ?>" >
                             <label for="fname" class="form-label ">Id Moodle</label>
@@ -136,10 +147,9 @@ if (empty($_POST["id"])) {
                         </div>
                         <div class="mb-3 text-center">
                             <p id="error"></p>
-                            <button href="../adm.php" class="btn btn-warning mt-3 me-3 fw-bold text-white" type="" id="editar" name="editar">Actualizar</button>
-                            <button class="btn btn-primary mt-3 me-3 fw-bold">Enviar Contraseña</button>
+                            <button href="../adm.php" class="btn btn-primary mt-3 me-3 fw-bold text-white" type="" id="editar" name="editar">Actualizar</button>
                             <?php
-                            echo "<a href='../adm.php'   class='btn btn-success mt-3  fw-bold' type='button'>Regresar</a>";
+                            echo "<a href='../adm.php'   class='btn btn-primary mt-3  fw-bold' type='button'>Regresar</a>";
                             ?>
                         </div> 
                     </div>                    
@@ -152,7 +162,7 @@ if (empty($_POST["id"])) {
     <div id="respuesta">
         
     </div>   
-    
+<?php include('../components/footer.php'); ?>
 
 <script src="../js/validacionEditar.js"></script>
 <script src="../js/jquery.js"></script>
@@ -160,7 +170,5 @@ if (empty($_POST["id"])) {
 <script src="../js/bootstrap/bootstrap.min.js"></script>
 
 </body>
-
-<?php include('../templates/footer.php'); ?>
 
 </html>

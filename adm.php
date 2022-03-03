@@ -107,6 +107,7 @@ $listaUsuarios = $conexion->listaUsuarios();
      <!-- CSS personalizado-->
      <!--<link rel="stylesheet" href="./Styles/estilosTabla.css">-->
      <link rel="stylesheet" href="./Styles/styles.css">
+     <link rel="stylesheet" href="../Styles/estilosTabla.css">
      <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
      <link rel="stylesheet" href="./Styles/navbar.css">
 <!-- 
@@ -127,30 +128,44 @@ $listaUsuarios = $conexion->listaUsuarios();
        <!-- graficos  -->
      <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/1.2.0/css/searchPanes.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
-<!-- highcharts-->
-    <script src="https://cdn.datatables.net/searchpanes/1.2.0/js/dataTables.searchPanes.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>  
-    <!-- optional -->  
-    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>  
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/highcharts-drilldown@0.1.7/drilldown.js"></script>
-
 
 </head>
 <?php include('./components/navbarAdm.php'); ?>
 
 <body>
-<div class="container" id="grafica" style="width=50%; height:300px;">
-    </div>
-    
-        <div class="container">
+    <?php
+        $rutLogoF='./img/logo-dgtic.png';
+    ?>
+
+
+    <div class="container">
             <div class="row">
                 <div class="col">
                     <h1 class="text-center">Lista de Usuarios</h1>
                     <div class="container table-gruposBox">
+                        <!--Botón Modal-->
+                        <button class="btn btn-outline-primary m-4" data-bs-toggle="modal" data-bs-target="#contenedor-modal">Estadisticas</button>
+                        <!--Moodal content-->
+                        <div class="modal fade" id="contenedor-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-dialog-scrollable">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center" id="exampleModalLabel">Gráfica Lista de Usuarios</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container"  id="grafica"style="width=50%; height:50vh;">
+
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                          <!--Termina modal-->
+
                         <table id="tablaAdministrador" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                             
                             <thead>
@@ -189,8 +204,9 @@ $listaUsuarios = $conexion->listaUsuarios();
                     </div>
                 </div>
             </div>
-        </div>
     </div>
+    
+
 
 
     <div id="respuesta"></div>
@@ -245,7 +261,16 @@ $listaUsuarios = $conexion->listaUsuarios();
     <script src="https://cdn.datatables.net/searchpanes/1.2.0/js/dataTables.searchPanes.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
-    <!-- código JS propìo-->    
+    <!-- highcharts-->
+    <script src="https://cdn.datatables.net/searchpanes/1.2.0/js/dataTables.searchPanes.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>  
+    <!-- optional -->  
+    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>  
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/highcharts-drilldown@0.1.7/drilldown.js"></script>  
 
     <!-- código JS propìo-->    
     <script type="text/javascript" src="./js/tabla.js"></script>

@@ -100,6 +100,7 @@ if($_POST){
     <title>Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./Styles/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./Styles/estilosTabla.css">
     <link rel="stylesheet" href="./Styles/styles.css">
     <script src="https://www.google.com/recaptcha/api.js?render=<?php echo SITE_KEY; ?>"></script>
 </head>
