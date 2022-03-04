@@ -96,9 +96,9 @@ class conexionSYS
         $qry = " SELECT * from materia where numero_cuenta=$numero_cuenta and id_grupo=$id_grupo";
         $result =  $this->conexion->query($qry)->rowCount();
         if ($result >= 1) {
-            $status=true;
+            $status=1;
         } else {
-            $status=false;
+            $status=0;
         }
         return $status ;
     }
@@ -381,14 +381,17 @@ class conexionSYS
 
     public function statusAprobados($cal)
     {
-        if ($cal>=6) {
+        //$cal=100;
+        if ($cal>=6 && $cal<=10) {
             $status ="Aprobado";
             $this->cont_Aprobados++;
             array_push($this->calificacionesArray,$cal); 
-        } else {
+        } else if($cal < 6) {
             $status ="Reprobado";
             $this->cont_Reprobados++;
             array_push($this->calificacionesArray,$cal); 
+        }else{
+            $status="Sin estatus";
         }
         $this->total_alumnos =  $this->cont_Aprobados +  $this->cont_Reprobados;
        // print_r($this->calificacionesArray);

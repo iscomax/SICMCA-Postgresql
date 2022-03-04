@@ -209,7 +209,6 @@ $nombre= $profesor;
             </div>
             <div class="row ">
                 <div class="col-md-5 ">
-                    
                 </div>
             </div>
         </div>
@@ -217,6 +216,19 @@ $nombre= $profesor;
     </div>
     <div class="col-12 col-md-2"></div>
     </div>
+</div>
+
+<div class="container box-list">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-6 col-lg-6">
+      <ul class="list-group list-group-flush "> 
+        <li class="list-group-item item-color "> <b> Solo se pueden registrar calificaciones enteras.</b></li>
+        <li class="list-group-item item-color "><b>El rango de una calificación final aprobatoria es de 6 a 10.</b></li>
+        <li class="list-group-item item-color "><b>Para asignar una calificación final como "NA" esta debe ser menor o igual a 5.9.</b></li>
+        <li class="list-group-item item-color "><b>Para asignar una calificación final como "NP" esta debe ser igual a cero.</b></li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <!-- The Modal -->

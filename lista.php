@@ -218,13 +218,15 @@ $errorNumeroCuenta="";
                                  $numero_cuenta = $cuenta['numero_cuenta'];
                                 
                                 try {
-                                     //$reporte = $conexionSYS->verificarStatus($id_grupo, $id_curso, $numero_cuenta);
-                                   $reporte = $conexionSYS->verificarStatus($numero_cuenta, $id_grupo);
-                                     // echo "numero_cuenta = " .$numero_cuenta;
-                                  // echo "vALOR = ". $reporte;
+                                    //$reporte = $conexionSYS->verificarStatus($id_grupo, $id_curso, $numero_cuenta);
+                                    // echo "numero_cuenta = " .$numero_cuenta;
+                                  
+                                    $reporte = $conexionSYS->verificarStatus($numero_cuenta, $id_grupo);
+                                    // echo $reporte =5;
+                                     // echo "vALOR = ". $reporte;
                                   
                    
-                                if ($reporte) {
+                                if ($reporte == 1) {
                                     $estatus = "Concluido";
                                     $countConcluidos++;
                                     $calificacion = 0;
@@ -234,12 +236,15 @@ $errorNumeroCuenta="";
                                     $tipo_calificacion = $result[1];
                                   
                                     
-                                } else {
+                                } else   if ($reporte == 0 ) {
                                     $estatus = "Pendiente";
                                     $countPendientes++;
                                     $calificacion = 0;
                                     //$reporte=0;
+                                }else{
+                                    $estatus = "Sin estatus";
                                 }
+
 
                                 //funcion asignar valor  califiacion final 
 
@@ -263,6 +268,10 @@ $errorNumeroCuenta="";
                                         $calificacion="0";
                                     } */
                               
+                                }else if($estatus == "Sin estatus"){
+                                    $calificacion= 0;
+                                    $tipo= "Sin estatus";
+
                                 }
 
 
@@ -314,6 +323,27 @@ $errorNumeroCuenta="";
                             </tr>
                         <?php endif?>
                     <?php endforeach?>
+                    <?php else: ?>
+                        <div class="container-fluid  titleBox">
+                            <div class="container  d-flex justify-content-start">
+                                    <div class=" titleCurso rounded">
+                                        <span class="fw-bold">Aún no hay Calificaciones Finales registradas en el Moodle</span> 
+ 
+                                    </div>
+                            </div>
+                        </div>
+                        <tr>
+                        <td><?php echo $id_curso_tabla; ?></td>
+                        <td><?php echo $cursoNombre; ?></td>
+                        <td><?php echo $grupo; ?></td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>Sin estatus</td>
+                            <td>Sin estatus</td>
+                            <td>Sin estatus</td>
+                            <td>Sin estatus</td>
+                            <td>Sin Acciones</td>
+                        </tr>
                 <?php endif?>
                 <?php
                  $curso_Aprobados = $conexionSYS->getAprobados();
