@@ -1,6 +1,4 @@
-
-    
-    <div class="container-fluid footer">
+<div class="container-fluid footer">
       <!--align-items-end  -->
         <div class="row  justify-content-center">
             <div class="col-12 .col-sm-12 col-md-4 justify-content-center">
@@ -15,7 +13,7 @@
             </div>
             <div class="col-12 .col-sm-12 col-md-4 ">
                 <a href="" class="text-center text-white"><p>Aviso de Privacidad</p> </a>
-                <a href="" class="text-center text-white"><p>Creditos</p> </a>
+                <a href="" class="text-center text-white"><p>Créditos</p> </a>
       
       
             </div>
@@ -33,4 +31,4 @@
             </div>
         </div>
 
-    </div>
+</div>

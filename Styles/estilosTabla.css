@@ -1,7 +1,8 @@
+
  /*estilos para la tabla*/
- table th {
-     background-color: #C5911E !important;
-     color: white;
+ table th{
+     background-color: #1C3D6C  !important;
+     color: rgb(255, 255, 255);
  }
  table>tbody>tr>td {
      vertical-align:middle !important;
@@ -9,10 +10,35 @@
  td{
     border: none;
 }
+.grupoMenu {
+    background-color: #1C3D6C  !important;
+    color: #C5911E;
+}
+.page-item.active .page-link{
+    background-color: #1C3D6C  !important;
+    color: rgb(255, 255, 255);
+}
+.page-link{
+    color: rgb(255, 255, 255);
+}
+
 .fondo{
     background-color: #1C3D6C !important;
 }
 
+.seleccion:hover{
+    color: rgb(255, 255, 255); 
+
+}
+.seleccionDash{
+    text-decoration: none;
+    background-color: #1C3D6C;
+    color: white;
+}
+.seleccionDash:hover{
+    color: #C5911E;
+
+}
 .titulologin{
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
@@ -36,12 +62,68 @@
          width: 450px;
          margin-left: auto;
          margin-right: auto;
-    }
-
-   
+    }   
+}
+@media (max-width:768px){
+    .ancho {
+        width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 10px;
+    }   
 }
 
 .contenedor-enlaces {
-    margin-bottom: 10% ;
+    margin-bottom: 20%;
 
 }
+.navbar-collapse {
+    text-align: center; 
+}
+
+.dt-down-arrow{
+    background-color: #1C3D6C  !important;
+    color: rgb(255, 255, 255);
+}
+.buttons-collection .buttons-colvis{
+    background-color: #1C3D6C  !important;
+    color: rgb(255, 255, 255);
+}
+
+/* ***********footer*************************************************** */
+.footerAdm{
+    background-color: #1C3D6C;
+    font-family: "Helvetica", sans-serif;
+    /*padding-bottom: 2%;*/
+    border-top: 5px solid #c5911f;
+    border-bottom: 5px solid #c5911f;
+    padding-top: 2%;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    height: 143px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.footer {
+    background-color: #1C3D6C;
+    font-family: "Helvetica", sans-serif;
+    /*padding-bottom: 2%;*/
+    border-top: 5px solid #c5911f;
+    border-bottom: 5px solid #c5911f;
+    padding-top: 2%;
+    font-family: 'Roboto', sans-serif;
+}
+.footer a {
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+.aviso{
+  background-color: #3b4042;
+  padding-bottom: 2%;
+}
+

@@ -1,5 +1,5 @@
 <!-- Barra de navegacion administrador-->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark">
      <div class="container-fluid">
           <a class="navbar-brand" href="https://www.unam.mx/" target="_blank">
                <img src="./img/logo-unam.png" alt="" width="40" class="d-inline-block align-text-top">
@@ -16,7 +16,7 @@
                          <a href="./administrador/altas.php" class="nav-link">Altas</a>
                     </li>
                     <li class="nav-item">
-                         <a href="#" class="nav-link">Lista de Usuarios</a>
+                         <a href="./adm.php" class="nav-link">Lista de Usuarios</a>
                     </li>
                     <li class="nav-item">
                          <a href="./administrador/bitacora.php" class="nav-link">Bitácora de Actividades</a>
@@ -24,27 +24,32 @@
                     <li class="nav-item">
                          <a href="./ip.php" class="nav-link">Datos Conexión</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="./administrador/noti.php" class="nav-link">Notificaciones</a>
+                    <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Indicadores</a>
+                         <ul class="dropdown-menu submenu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item nav-link" href="./administrador/dashboard.php">Mi Actividad</a></li>
+                              <li><a class="dropdown-item nav-link" href="./administrador/listaRiesgoDesercion.php">Riesgo de Deserción</a></li>
+                              <li><a class="dropdown-item nav-link" href="./administrador/listaActividadesEnt.php">Actividades Pendientes</a></li>
+                              <li><a class="dropdown-item nav-link" href="./administrador/listaEstrategias.php">Estrategias Registrada</a></li>
+                              <li><a class="dropdown-item nav-link" href="./administrador/listaAlumosAsignados.php">Tareas Enviadas</a></li>
+                              <li><a class="dropdown-item nav-link" href="./administrador/listaGlobal.php">Reporte Global</a></li>
+                              <li><a class="dropdown-item nav-link" href="./administrador/">Profesores por Curso</a></li>
+                              
+                         </ul>
                     </li>
-                    <li class="nav-item">
-                         <a href="./administrador/docu.php" class="nav-link">Documentación</a>
-                    </li>
-
                </ul>
                <div class="d-flex">
-
-               <div class="btn-group">
-               <button type="button" class="btn btn-success  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-               <i class="bi bi-file-person-fill"></i>
-                         <span class=" "><?php echo $nombre ?></span>
-               </button>
-               <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Datos de Usuario</a></li> 
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="./clases/destroy.php">Cerrar Sesión</a></li>
-               </ul>
-               
+                    <div class="btn-group">
+                         <button type="button" class="btn btn-light  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="bi bi-file-person-fill"></i>
+                              <span class=" "><?php echo $nombre ?></span>
+                         </button>
+                         <ul class="dropdown-menu submenu">
+                              <li><a class="dropdown-item nav-link" href="#">Datos de Usuario</a></li> 
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item nav-link" href="./clases/destroy.php">Cerrar Sesión</a></li>
+                         </ul>                   
+                    </div>
                </div>
           </div>
      </div>
