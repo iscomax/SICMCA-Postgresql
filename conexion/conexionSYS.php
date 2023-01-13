@@ -67,7 +67,7 @@ class conexionSYS
     { 
        
         $status =false;
-        $qry = "SELECT * from materia where numero_cuenta='$numero_cuenta'";
+        $qry = "SELECT * from materia where numero_cuenta='$numero_cuenta';";
         $cont= intval( $this->conexion->query($qry)->rowCount());
 
             if ( $cont  >= 1) {
@@ -93,7 +93,7 @@ class conexionSYS
     }
     public function verificarStatus($numero_cuenta, $id_grupo){
         $status =false;
-        $qry = " SELECT * from materia where numero_cuenta=$numero_cuenta and id_grupo=$id_grupo";
+        $qry = " SELECT * from materia where numero_cuenta=$numero_cuenta and id_grupo=$id_grupo;";
         $result =  $this->conexion->query($qry)->rowCount();
         if ($result >= 1) {
             $status=true;
@@ -105,7 +105,11 @@ class conexionSYS
 
     public function obtenerRol($id)
     {
-         $qry = "select id_rol from rol_usuario where id_usuario ='$id'";
+         $qry = "select id_rol 
+         from rol_usuario 
+         as rol
+	join public.usuario as usuario on (rol.id_usuario = usuario.id_usuario and usuario.estatus= true)
+         where usuario.id_usuario ='$id';";
         $result =  $this->conexion ->query($qry);
         $datos= $result->fetch();
        // print_r($datos);
@@ -126,13 +130,13 @@ class conexionSYS
             return 1;
         } else {
             return 0;
-        }
+        }//e
     }
     /********funciones administrador***********************************************************/
     public function insertPersona($nombre, $apellidos)
     {
         $qry = "INSERT into persona (nombre, apellidos)values
-        ('$nombre','$apellidos')";
+        ('$nombre','$apellidos');";
        // $result =   $this->conexion->query($qry);
         $filas = $this->conexion->query($qry)->rowCount();
         if ($filas >= 1) {
@@ -145,21 +149,32 @@ class conexionSYS
 
     public function insertUsuario($id, $correo, $contraseña, $idPersona)
     {
-        $qry = "INSERT into usuario (id_usuario, correo, contraseña,id_persona)values
-        ('$id','$correo','$contraseña','$idPersona')";
+        try {
+            $qry = "select * from usuario where id_usuario= $id;";
+       $filas = $this->conexion->query($qry)->rowCount();
+            if($filas>=1)
+            $qry = "UPDATE  usuario set estatus =true where id_usuario = $id;";
 
-        $filas = $this->conexion->query($qry)->rowCount();
+            else
+            $qry = "INSERT into usuario (id_usuario, correo, contraseña,id_persona, estatus) values
+            ('$id','$correo','$contraseña','$idPersona', true);";
 
+    $filas = $this->conexion->query($qry)->rowCount();
         if ($filas >= 1) {
             return $this->conexion->lastInsertId();
         } else {
             return 0;
         }
+        } catch (\Throwable $th) {
+            echo $th;
+            echo "consulta ". $qry;
+
+        }        
     }
 
     public function insertROL($id_rol, $idPersona)
     {
-        $qry = "INSERT into rol_usuario(id_rol, id_usuario)values('$id_rol','$idPersona')";
+        $qry = "INSERT into rol_usuario(id_rol, id_usuario)values('$id_rol','$idPersona');";
 
         $filas = $this->conexion->query($qry)->rowCount();
         
@@ -183,11 +198,11 @@ class conexionSYS
 
     public function listaUsuarios()
     {
-        $qry = "SELECT usuario.id_usuario,usuario.id_persona, persona.nombre, persona.apellidos, rol.nombre_rol, usuario.correo 
-        from rol_usuario, rol,usuario, persona 
-        where rol_usuario.id_rol = rol.id_rol  
-        and rol_usuario.id_usuario = usuario.id_usuario 
-        and usuario.id_persona =persona.id_persona";
+        $qry = "SELECT usuario.id_usuario,usuario.id_persona, persona.nombre, persona.apellidos, rol.nombre_rol, usuario.correo, usuario.estatus, persona.estatus, rol_usuario.estatus 
+        from usuario 
+		left join persona on usuario.id_persona =persona.id_persona 
+		inner join rol_usuario on rol_usuario.id_usuario = usuario.id_usuario
+		left join rol on rol_usuario.id_rol = rol.id_rol;";
         $result =  $this->conexion->query($qry);
         $resultArray = array();
         foreach ($result as $key) {
@@ -202,7 +217,7 @@ class conexionSYS
         from rol_usuario, rol,usuario, persona 
         where rol_usuario.id_rol = rol.id_rol  
         and rol_usuario.id_usuario = usuario.id_usuario 
-        and usuario.id_persona =persona.id_persona and  usuario.id_usuario =$id";
+        and usuario.id_persona =persona.id_persona and  usuario.id_usuario =$id;";
         $result =  $this->conexion->query($qry);
         $resultArray = array();
         foreach ($result as $key) {
@@ -216,7 +231,7 @@ class conexionSYS
     {
         //echo "idusuario= " . $id;
         //echo "correo= " . $correo;
-        $qry = "UPDATE usuario set correo ='$correo' where id_usuario =$id";
+        $qry = "UPDATE usuario set correo ='$correo' where id_usuario =$id;";
       
 
         $filas =  $filas = $this->conexion->query($qry)->rowCount();
@@ -228,7 +243,7 @@ class conexionSYS
     }
     public function actualizarPersona($nombre, $apellidos, $id_persona)
     {
-        $qry = "update persona set  nombre = '$nombre', apellidos = '$apellidos' where id_persona='$id_persona'";
+        $qry = "update persona set  nombre = '$nombre', apellidos = '$apellidos' where id_persona='$id_persona';";
 
         $filas =   $filas = $this->conexion->query($qry)->rowCount();
         if ($filas >= 1) {
@@ -239,7 +254,7 @@ class conexionSYS
     }
     public function actualizarRol($id_rol, $id_usuario)
     {
-        $qry = "update rol_usuario set id_rol ='$id_rol' where id_usuario ='$id_usuario'";
+       echo $qry = "update rol_usuario set id_rol ='$id_rol' where id_usuario ='$id_usuario';";
       
           $filas = $this->conexion->query($qry)->rowCount();
         if ($filas >= 1) {
@@ -251,7 +266,7 @@ class conexionSYS
     /********************funciones eliminar usuario***********************************************************/
     public function eliminarRol($id_usuario)
     {
-        $qry = "DELETE from rol_usuario where id_usuario='$id_usuario'";
+        $qry = "DELETE from rol_usuario where id_usuario=$id_usuario;";
         //$result = $this->conexion->query($qry);
 
         $filas = $this->conexion->query($qry)->rowCount();
@@ -264,20 +279,23 @@ class conexionSYS
     }
     public function eliminarUsuario($id_usuario)
     {
-        $qry = "DELETE from usuario where id_usuario =$id_usuario";
-     
-
-        $filas =    $filas = $this->conexion->query($qry)->rowCount();
-        //echo "filas= " . $filas;
-        if ($filas >= 1) {
-            return  $filas;
-        } else {
-            return 0;
+        try {
+            $qry = "update usuario set estatus = false where id_usuario =$id_usuario;";
+            $filas =    $filas = $this->conexion->query($qry)->rowCount();
+            //echo "filas= " . $filas;
+            if ($filas >= 1) {
+                return  $filas;
+            } else {
+                return 0;
+            }
+        } catch (\Throwable $th) {
+            echo $th;
         }
     }
     public function eliminarPersona($id_persona)
     {
-        $qry = "DELETE from persona where id_persona = '$id_persona';";
+        $qry = "update persona set estatus = false where id_persona = $id_persona;";
+        //$qry = "DELETE from persona where id_persona = '$id_persona';";
 
         $filas =  $filas = $this->conexion->query($qry)->rowCount();
         //echo "filas= " . $filas;
@@ -291,7 +309,7 @@ class conexionSYS
     /********************funciones coordinador***********************************************************/
     public function mostrarBItacora()
     {
-        $qry = "SELECT * from bitacora order by id_bitacora DESC";
+        $qry = "SELECT * from bitacora order by id_bitacora DESC;";
         $result =  $this->conexion->query($qry);
         $resultArray = array();
         foreach ($result as $key) {
@@ -318,7 +336,7 @@ class conexionSYS
     public function actualizarCalificacion2($id_grupo,$id_curso, $numero_cuenta)
     {
         //echo $id_grupo . $id_curso. $numero_cuenta;
-        $qry = "SELECT * from materia where numero_cuenta='$numero_cuenta'";
+        $qry = "SELECT * from materia where numero_cuenta='$numero_cuenta';";
         $result =  $this->conexion->query($qry);
        // print_r($result);
         $resultArray = array();
@@ -346,7 +364,7 @@ class conexionSYS
     public function actualizarCalificacion($numero_cuenta, $id_grupo)
     {
         //echo $id_grupo . $id_curso. $numero_cuenta;
-        $qry = " SELECT * from materia where numero_cuenta=$numero_cuenta and id_grupo=$id_grupo";
+        $qry = " SELECT * from materia where numero_cuenta=$numero_cuenta and id_grupo=$id_grupo;";
         $result =  $this->conexion->query($qry);
         $datos= $result->fetch();
 
@@ -366,7 +384,7 @@ class conexionSYS
 
     public function numeroCalificados($id_grupo)
     {
-        $qry= "SELECT count(*) from materia where id_grupo ='$id_grupo'";
+        $qry= "SELECT count(*) from materia where id_grupo ='$id_grupo';";
 
         $result =  $this->conexion ->query($qry);
         $resultArray= $result->fetch();
@@ -427,7 +445,7 @@ class conexionSYS
     public function getStatusRegistro($id_grupo, $numero_cuenta)
     {
        /*  echo $id_grupo ."/". $numero_cuenta; */
-        $qry = "SELECT * from materia where id_grupo =$id_grupo and numero_cuenta = $numero_cuenta";
+        $qry = "SELECT * from materia where id_grupo =$id_grupo and numero_cuenta = $numero_cuenta;";
        
         $filas = $this->conexion->query($qry)->rowCount(); 
       
@@ -441,7 +459,7 @@ class conexionSYS
     public function getCalificacion($id_grupo, $numero_cuenta)
     {
        /*  echo $id_grupo ."/". $numero_cuenta;  */
-         $qry = "SELECT * from materia where id_grupo =$id_grupo and numero_cuenta = $numero_cuenta";
+         $qry = "SELECT * from materia where id_grupo =$id_grupo and numero_cuenta = $numero_cuenta;";
         $result =  $this->conexion ->query($qry);
         $datos= $result->fetch() ;
        // print_r($datos);
@@ -469,15 +487,80 @@ class conexionSYS
    public function validarUsuarioId($id)
    {
        //echo "idusuario= " . $id;
-       $qry = "select * from usuario where id_usuario= $id ";
-     
-       $filas =  $filas = $this->conexion->query($qry)->rowCount();
+       if($id="" or $id < 0){
+           return 0;
+       }
+       $qry = "select * from usuario where id_usuario= $id;";
+       $filas = $this->conexion->query($qry)->rowCount();
        if ($filas >= 1) {
            return  $filas;
        } else {
            return 0;
        }
    }
+   
+   /*************************Módulo estrategias********************** */
+   public function obtenerTipoEstrategia()
+   {
+       //echo "idusuario= " . $id;
+       $qry = 'SELECT id, descripcion
+       FROM "tipoEstrategia";';
+     
+       $filas = $this->conexion->query($qry)->fetchAll();
+       if ($filas >= 1) {
+           return  $filas;
+       } else {
+           return 0;
+       }
+   }
+
+   public function insertEstrategia($nombre, $alumno, $medio, $estatus, $profesor)
+   {
+        $qry ="INSERT INTO estrategia(\"nombreEstrategia\", alumno, medio, estatus, profesor, \"fechaCaptura\")
+            VALUES ('$nombre', '$alumno', '$medio', '$estatus', '$profesor', now());";
+        $filas = $this->conexion->query($qry)->rowCount();
+        if ($filas >= 1) {
+            return $this->conexion->lastInsertId();
+        } else 
+            return 0;
+   }
+
+   public function listaEstrategia()
+   {
+       $qry = "SELECT DISTINCT ON (alumno) alumno, tipo.id, tipo.descripcion as descr, medio, estatus, profesor, \"fechaCaptura\", tipom.descripcion, tipoe.descripcion as descrip 
+       FROM PUBLIC.estrategia as es
+       inner join \"tipoEstrategia\" as tipo on es.\"nombreEstrategia\" = tipo.id
+       left join \"tipoMedio\" as tipoM on es.medio = tipoM.id
+       left join \"tipoEstatus\" as tipoE on es.estatus = tipoE.id
+       order by alumno, tipo.id, tipo.descripcion, medio, estatus, profesor, \"fechaCaptura\", tipom.descripcion, tipoe.descripcion desc;";
+       $result =  $this->conexion->query($qry);
+       $resultArray = array();
+       foreach ($result as $key) {
+           $resultArray[] = $key;
+       }
+       //print_r($resultArray);
+       return $resultArray;
+   }
+
+   public function listaEstrategiaIndividual($correo)
+   {
+       $qry = "SELECT alumno, tipo.id, tipo.descripcion as descr, medio, estatus, profesor, \"fechaCaptura\", tipom.descripcion, tipoe.descripcion as descrip 
+       FROM PUBLIC.estrategia as es
+       inner join \"tipoEstrategia\" as tipo on es.\"nombreEstrategia\" = tipo.id
+       left join \"tipoMedio\" as tipoM on es.medio = tipoM.id
+       left join \"tipoEstatus\" as tipoE on es.estatus = tipoE.id
+       where alumno  
+       like '$correo'
+       order by alumno, tipo.id, tipo.descripcion, medio, estatus, profesor, \"fechaCaptura\", tipom.descripcion, tipoe.descripcion desc;";
+       $result =  $this->conexion->query($qry);
+       $resultArray = array();
+       foreach ($result as $key) {
+           $resultArray[] = $key;
+       }
+       //print_r($resultArray);
+       return $resultArray;
+   }
+
 
 
 /*     public function encryption($string){

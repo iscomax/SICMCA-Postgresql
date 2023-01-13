@@ -1,6 +1,10 @@
 body{
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  
+}
+.cuerpoAdm{
+  padding-top: 70px;
 }
 
   /* ***********login*************************************************** */

@@ -1,0 +1,69 @@
+/*.cuerpoAdm{
+     padding-top: 70px;
+}*/
+.fondo-primary{
+     background-color: #1C3D6C !important;
+}
+.texto-primary{
+     color: #1C3D6C !important;
+}
+
+.submenu {
+     background-color: #1C3D6C  !important;
+     color: rgb(255, 255, 255);
+ }
+
+/*
+
+body{
+     overflow: hidden;     
+     font-family: 'Roboto', sans-serif !important;;
+     font-weight: 300;
+     color: var(--primary);
+}
+#sidebar-container{
+     min-height: 100vh;
+}
+#sidebar-container .logo{
+     padding: .875rem 1.25rem;
+}
+#sidebar-container .menu {
+     width: 13rem;
+}
+.seleccionDash{
+     text-decoration: none;
+ }
+ .seleccionDash:hover{
+     color: #C5911E !important; 
+ }
+ #content {
+      overflow-y: auto;
+      height: 100vh;
+      padding-bottom: 5rem;
+ }
+ .logo{
+     color: #1C3D6C;
+     background-image: linear-gradient(to right top, #ffff8d, #ecd77a, #d3b26b, #b58f5e, #947051);
+   
+   }
+   .logo h4{
+     margin: 8px;
+   }
+
+   @media  screen and (min-width:992px) {
+        .navbar .container-fluid, .navbar-expand-lg .navbar-collapse,.navbar-expand-lg .navbar-nav{
+             flex-direction: column;
+             align-items: flex-start;
+        }
+        .navbar{
+             width: 30%;
+             height: 100vh;
+             align-items: flex-start;
+        }
+        .navbar-brand{
+             margin-left: 1.5rem;
+             font-weight: bold;
+        }
+        
+        
+   }

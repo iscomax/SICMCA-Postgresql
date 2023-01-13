@@ -2,6 +2,7 @@
 require("./conexion/conexionSYS.php");
 require_once 'validar.php';
 require_once 'keys.php';
+include_once('../script.php');
 $conexion = new conexionSYS;
 $error = "";
 /* voy a trabajar en index php */
@@ -21,17 +22,17 @@ if($_POST){
                 $error;
             } else {
                 $error = "";
-                $login = $_POST["email"];
-                $pwd = $_POST["pwd"];
+                $login = ltrim(rtrim($_POST["email"]));
+                $pwd = ltrim(rtrim($_POST["pwd"]));
     
                 $formato = validarCorreo($login);
                 if ($formato == true) {
                     $buscar_Dominio = strpos($login, 'unam.mx');
                     if ($buscar_Dominio === false) {
-                        $error2 = "Tienes que tener una cuenta unam.mx";
+                        $error2 = "El dominio del correo institucional debe ser unam.mx";
                     }
                 } else {
-                    $error2 = "Formato del correo Invalido";
+                    $error2 = "El campo correo institucional no tiene el formato correcto.";
                 }
     
                 $query = "select * from usuario where correo ='$login'";
@@ -53,7 +54,7 @@ if($_POST){
                     $_SESSION['id_usuario'] = $result['id_usuario'];
                     if ($rol == 1) {
     
-                        header("location: adm.php");
+                        header("location: ./administrador/inicio.php");
                     } else if ($rol == 2) {
     
                         header("location: ./coordinador/cursos.php");
@@ -107,42 +108,43 @@ if($_POST){
 
 <body>
     <?php $rutLogoF='./img/logo-dgtic.png';?>
-    <?php include('./components/header.php');?>
+    <!--<?php //include('./components/header.php');?>-->
 <!-- prueba en la rama -->
-<div class="container boxLogin">
+<div class="container-fluid">
         <!--prueba-->
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
-                <div class="container mt-3">
-                    <div class="card" style="border-color:  #1C3D6C;  border-style: solid;">
-                        <div class="card-header cardHeader">
-                            
-                            <h6 class="text-center">Inicio de Sesión</h6>
-                        </div>
-                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="needs-validation p-4 p-md-6 border rounded-3 bg-light" novalidate>
-                            <div class="mb-3 mt-3">
+        <div class="row contenedor-enlaces">
+            <div class="col">
+                <div class="shadow-lg mt-4 bg-body rounded ancho">
+                    <h3 class="text-center fondo text-white pt-3 pb-3 mb-3 titulologin">Inicio de Sesión</h3>
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="p-4 p-md-6">
+                            <div class="mb-3">
                                 <label for="uname" class="form-label">Correo Institucional</label>
+                                <span  id="datos" class="error ms-1">*</span>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id=""><i class="bi bi-person-fill"></i></span>
                                     </div>
 
-                                    <input type="text" class="form-control" id="email" placeholder="@" name="email" required>
-                                    <div class="valid-feedback"></div>
+                                    <input type="text" class="form-control" id="email" placeholder="Ej: ejemplo@dominio.mx" name="email" required>
                                     
                                 </div>
                                 <code><?php echo $error2 ?></code>
                             </div>
                             <div class="mb-3">
                                 <label for="pwd" class="form-label">Contraseña</label>
+                                <span  id="datos" class="error ms-1">*</span>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id=""><i class="bi bi-lock-fill"></i></span>
                                     </div>
-                                    <input type="password" class="form-control" id="inputPass" minlength="5" maxlength="25" name="pwd" value="" id="pwd" placeholder="Contraseña" required>
-                                    <div class="valid-feedback"></div>
+                                    <input type="password" class="form-control" id="inputPass" minlength="5" maxlength="25" name="pwd" value="" id="pwd" placeholder="Ej: Contraseña" required>
+                                    <div class="valid-feedback"> Correcto</div>
+                                    <div class="invalid-feedback">
+                                 Ingrese una contraseña valida.   
+                                    </div>
                                     <code><?php echo $error ?></code>
-                                </div>
+                                 </div>
+
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" onclick="activarPass()" checked>
                                     <label class="form-check-label" for="flexCheckChecked">
@@ -160,65 +162,31 @@ if($_POST){
                                 <div class="valid-feedback">Valid.</div>
                                 <div class="invalid-feedback">Check this checkbox to continue.</div>
                             </div>-->
+                            <div class="text-center">
                             <button type="submit" name="submit" class="btn btn-primary">Ingresar</button>
+                            </div>
+
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- style ="border-color:  #1C3D6C;  border-style: solid;" -->
+   
     <?php include('./components/footer.php');?>
 
-    <!--Script para mostrar y ocultar contraseña-->
-    <script type="text/javascript">
-    function activarPass(){
-        var cambiar = document.getElementById("inputPass");
-        if(cambiar.type==="password"){
-            cambiar.type="text";
-        }else{
-            cambiar.type="password";
-        }
-    }
-    </script>
-
+    <!--Recaptcha-->
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms)
-                .forEach(function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
-    </script>
-
-    <script>
-        grecaptcha.ready(function() {
-        grecaptcha.execute('<?php echo SITE_KEY; ?>', {action: 'homepage'})
-        .then(function(token) {
-            //console.log(token);
-            document.getElementById('g-recaptcha-response').value=token;
-            });
-        });
-    </script>
-
+    grecaptcha.ready(function() {
+        grecaptcha.execute('<?php echo SITE_KEY; ?>', {action: 'homepage'}).then(function(token) {
+    //console.log(token);
+    document.getElementById('g-recaptcha-response').value=token;
+});
+});
+</script>
     <script src="./js/bootstrap/bootstrap.min.js"></script>
     <script src="./js/bootstrap/popper.min.js"></script>
+    <script src="./js/mostrarPass.js"></script>
 </body>
 
 </html>

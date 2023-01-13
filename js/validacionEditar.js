@@ -1,38 +1,64 @@
+function validarCorreoAlta(correo){
+    var expRegCorreo=/^\w+@(\w+\.)+\w{2,4}$/;
+    if(!expRegCorreo.exec(correo))
+    {
+        swal("ERROR","El campo correo institucional no tiene el formato correcto.", "error");
+      //alert("El campo correo institucional no tiene el formato correcto.");
+      correo.focus();
+      return false;
+    }
+
+
+   if (correo.indexOf("unam.mx")==-1) {
+       swal("ERROR","El dominio del correo institucional debe ser unam.mx", "error");
+       //alert("El dominio del correo institucional debe ser unam.mx");
+       return false;
+   } 
+    return true;
+
+}
 function validarForm(nombre, apellidos, correo){
    
     if (nombre =="") { 
-        alert("El campo Nombre no puede estar vacío.");
+        swal("ERROR","El campo nombre(s) no puede estar vacío.", "error");
+        //alert("El campo NOMBRE(s) no puede estar vacío.");
          return false; 
         }
     if (apellidos ==""){
-        alert("El campo Apellidos no puede estar vacío.") ;
+        swal("ERROR","El campo apellidos no puede estar vacío.", "error");
+        //alert("El campo apellidos no puede estar vacío.") ;
         return false;}
     if (correo ==""){
-        alert("El campo Correo electrónico no puede estar vacío.") ;
+        swal("ERROR","El campo correo institucional no puede estar vacío.", "error");
+        //alert("El campo correo institucional no puede estar vacío.") ;
         return false;
     }
     
     if (nombre.length<3) { 
-        alert("El campo Nombre es muy corto");
+        swal("ERROR","El campo nombre(s) es muy corto.", "error");
+        //alert("El campo nombre(s) es muy corto.");
          return false; 
     }
      
     if (apellidos.length<3) { 
-        alert("El campo Apellidos es muy corto");
+        swal("ERROR","El campo apellidos es muy corto.", "error");
+        //alert("El campo apellidos es muy corto.");
          return false; 
     }
     var expRegNombre= /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/
     var expRegApellidos=/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     if (!expRegNombre.exec(nombre))
      {
-        alert("El campo nombre admite letras y espacios.");
+        swal("ERROR","El campo nombre(s) solo admite letras y espacios.", "error");
+        //alert("El campo nombre(s) solo admite letras y espacios.");
         nombre.focus();
         return false;
      }
 
      if (!expRegApellidos.exec(apellidos))
      {
-        alert("El campo apellidos admite letras y espacios.");
+        swal("ERROR","El campo apellidos solo admite letras y espacios.", "error");
+        //alert("El campo apellidos solo admite letras y espacios.");
         nombre.focus();
         return false;
      }
@@ -40,36 +66,28 @@ function validarForm(nombre, apellidos, correo){
      var expRegCorreo=/^\w+@(\w+\.)+\w{2,4}$/;
      if(!expRegCorreo.exec(correo))
      {
-       alert("El campo correo no tiene el formato correcto.")
+        swal("ERROR","El campo correo institucional no tiene el formato correcto.", "error");
+       //alert("El campo correo institucional no tiene el formato correcto.")
        correo.focus();
        return false;
      }
-
-
-    if (correo.indexOf(".unam.mx")==-1) {
-        alert("El dominio del correo debe ser unam.mx")
+     if (correo.indexOf("unam.mx")==-1) {
+        swal("ERROR","El dominio del correo institucional debe ser unam.mx", "error");
+        //alert("El dominio del correo institucional debe ser unam.mx")
         return false;
-    } 
-
-
-
-  
-
-     return true;
-}
-
-
-
-
+    }
+    return true;
+    }
     $('#editar').click(function() {
 
-        var resultado = window.confirm('¿Estas seguro de actualizar los datos?');
+        var resultado = window.confirm('¿Está seguro de actualizar los datos?');
+        //var resultado = swal("Confirmacion","¿Está seguro de actualizar los datos?","info");
         if (resultado === true) {
             var id = document.getElementById('id_moodle').value;
-            var id_persona = document.getElementById('id_persona').value;
-            var nombre = document.getElementById('nombre').value;
-            var apellidos = document.getElementById('apellidos').value;
-            var correo = document.getElementById('correo').value;
+            var id_persona = document.getElementById('id_persona').value; console.log("id_persona" + id_persona);
+            var nombre = document.getElementById('nombre').value;console.log("nombre" + nombre);
+            var apellidos = document.getElementById('apellidos').value;console.log("apellidos" + apellidos);
+            var correo = document.getElementById('correo').value;console.log("correo" + correo);
             var roles = document.getElementById('roles').value;
 
             var validar= validarForm(nombre, apellidos, correo);
@@ -91,15 +109,17 @@ function validarForm(nombre, apellidos, correo){
                 })
                 .always(function() {
                     console.log('complete');
+                    location.href ="../adm.php";
                 });
-               location.href ="../adm.php";
+               //location.href ="../adm.php";
      
             } 
              
             //e.preventDefault();
 
         } else {
-            window.alert('Se ha cancelado la edición de datos');
+            swal("UPS...","Se ha cancelado la edición de datos", "info");
+            //window.alert('');
             location.href ="../adm.php";
         }
 

@@ -62,7 +62,7 @@ class conexionDGAE
 
     public function getAlumnoby($numero_Cuenta)
     { 
-        $query = "SELECT alumnos.correo  from alumnos where numero_cuenta =$numero_Cuenta";
+        $query = "SELECT alumnos.correo  from alumnos where numero_cuenta =$numero_Cuenta;";
         $result =  $this->conexion ->query($query);
       
         $datos= $result->fetch();
@@ -80,7 +80,7 @@ class conexionDGAE
     }
     public function getDataAlumno($numero_Cuenta)  
     {
-        $query = "SELECT * from alumnos where numero_cuenta =$numero_Cuenta";
+        $query = "SELECT * from alumnos where numero_cuenta =$numero_Cuenta;";
         
         /*$result =   $this->conexion->query($query);
         $resultArray = array();
